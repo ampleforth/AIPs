@@ -51,11 +51,6 @@ Airdrops have shown limited success in aligning recipients and projects--many ge
 This application will implement the EIP-900 Simple Staking Interface and will be general enough for use with any ERC-20 tokens.
 The deposit aka "Staking" token and distribution token may be the same or be different and are specified during initialization.
 
-A separate factory will provide an easy way to spawn new CVT distributors.
-
-Both the contracts and the frontend will be open-sourced. If successful other projects may also use this as a distribution
-mechanism in the future.
-
 ```solidity
 interface ContVestTokenDist is ERC20Detailed, IStaking {
 
@@ -137,7 +132,7 @@ The front-end is open to change during development, but the basic information to
 - "Stake" and "Unstake" functions
 - Unlock schedule
 
-Smart Contracts and Frontend will reside in https://github.com/ampleforth/continuous-vesting-distribution
+Smart contracts will reside in https://github.com/ampleforth/continuous-vesting-distribution
 
 ## Copyright
 Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
