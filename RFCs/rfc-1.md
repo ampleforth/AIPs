@@ -40,11 +40,10 @@ or MLM.
 ## Motivation
 
 As described in the [Token Transparency Report](https://medium.com/ampleforth/ampleforth-ieo-and-token-distribution-transparency-report-d7b632bbc838), roughly 20% and 23% of the total AMPL supply are currently allocated to the Treasury and Ecosystem Fund. We need to eventually find a way to distribute these tokens to users in “as sensible” way as possible.
-We’d also like to maintain our commitment to rules-based policy as possible in all aspects of the project. To that end, we can
+We’d also like to maintain our commitment to a rules-based policy in all aspects of the project. To that end, we can
 encode the distribution schedule and rules into a smart contract that operates autonomously over time.
 
-Airdrops have shown limited success in aligning recipients and projects--many get lost, forgotten, or simply dumped on markets.
-This system shows proof of care through continued ownership through any market condition.
+Airdrops have shown limited success in aligning recipients and projects--many get lost, forgotten, or simply dumped on markets. This system shows proof of care through continued ownership through any market condition.
 
 
 ## Specification
@@ -62,7 +61,7 @@ interface ContVestTokenDist is ERC20Detailed, IStaking {
 
     event TokensUnlocked(uint256 stage, uint256 numTokens);
 
-    constructor(address stakingToken, address disttributionToken);
+    constructor(address stakingToken, address distributionToken);
     
     function getStakingToken() public view returns (address);
     function getDistributionToken() public view returns (address);
@@ -120,16 +119,23 @@ Many different kinds of distribution have been attempted by projects. One thing 
 airdrops. Historically, most airdrops have been either ignored by recipients or immediately sold.
 
 Direct lockups would be the most straightforward, where a user locks up X tokens for Y time to receive X+Z tokens in return.
-This structure is easy to understand... However, since it’s done in blocks there would be different tranches for tokens as
-they get unlocked through time. We'd end up having multiple concurrent airdrop contracts users interact with, which is
+This structure is easy to understand, but since we want to unlock in blocks there would be different tranches for tokens as
+they unlock through time. We'd end up having multiple concurrent airdrop contracts users interact with, which is
 confusing. Also, since there’s a limited number of total tokens to unlock, there’s a limited number of tokens that can be
-staked, so a whale could come in and take up all the slots.
+staked, so a single whale could conceivably take all the slots.
 
-Any project is still free to place educational material on the frontend to teach users about the project before they
+Projects are still free to place educational material on the frontend to teach users about the application before they
 interact with the underlying system. If done properly, this solves a second problem with airdrops related to user education.
 
 
 ## Implementation
+
+The front-end is open to change during development, but the basic information to expose is:
+- Number of AMPL staked by user
+- Size of AMPL locked and unlocked pools
+- Current fractional ownership of unlock pool
+- "Stake" and "Unstake" functions
+- Unlock schedule
 
 Smart Contracts and Frontend will reside in https://github.com/ampleforth/continuous-vesting-distribution
 
