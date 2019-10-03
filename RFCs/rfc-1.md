@@ -33,8 +33,7 @@ fixed period.
 
 New distribution tokens may optionally be added to the locked pool by the owner along with an associated unlock time. However,
 the only way for distribution tokens to be removed from the system is by redeeming CVTD tokens. User deposit tokens are only
-used to claim ownership and are never transferred to others (except via explicit transfers via CVTD). This is not a pyramid
-or MLM.
+used to claim ownership and are never transferred to others (except via explicit transfers via CVTD)
 
 
 ## Motivation
