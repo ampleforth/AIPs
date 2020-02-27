@@ -131,7 +131,7 @@ The front-end is open to change during development, but the basic information to
 - "Stake" and "Unstake" functions
 - Unlock schedule
 
-Smart contracts will reside in https://github.com/ampleforth/continuous-vesting-distribution
+Smart contracts will reside in https://github.com/ampleforth/token-geyser
 
 ## Copyright
 Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
