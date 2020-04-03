@@ -3,7 +3,7 @@ rfc: 1
 title: Continuous Vesting Token Distribution
 author: Brandon Iles <brandon@ampleforth.org>, Nithin Ottilingam <nithin@ampleforth.org>
 type: Application
-status: Draft
+status: Accepted
 created: 2019-09-30
 ---
 
