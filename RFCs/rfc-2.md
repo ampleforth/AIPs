@@ -2,9 +2,10 @@
 rfc: 2
 title: Disallow Contracts from calling Rebase
 author: Ampleforth Dev Council - Brandon Iles <brandon@ampleforth.org>, Nithin Ottilingam <nithin@ampleforth.org>, Ahmed Naguib Aly <naguib@ampleforth.org>
-type: Application
-status: Draft
+type: Core
+status: Final
 created: 2020-03-26
+deployed: 2020-04-02
 ---
 
 ## Simple Summary
@@ -69,6 +70,8 @@ One common way of disallowing flash loans around a critical operation is to make
 
 ## Implementation
 The dev council will author the code change to the uFragments repo. The governance multisig will then be used to upgrade the policy's implementation code via the OpenZeppelin AdminUpgradeabilityProxy.
+
+[Github Release](https://github.com/ampleforth/uFragments/releases/tag/v1.0.1), deployed 2020-04-02.
 
 ## Copyright
 Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
