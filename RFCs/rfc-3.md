@@ -44,7 +44,7 @@ Secondly, Pausability increases the risk for outside platforms which build with 
 handles failed transfers of paused tokens. This may harm AMPL's ability to support the wider DeFi ecosystem.
 
 ## Implementation
-The OpenZeppelin AdminUpgradabilityProxy will be used to update the implementation of both UFragments and UFragmentsPolicy.
+The OpenZeppelin AdminUpgradabilityProxy will be used to update the implementation of UFragments.
 The two pause functions would be removed.
 Special care will be taken to ensure no changes are made to the storage layout.
 
