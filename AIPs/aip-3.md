@@ -1,5 +1,5 @@
 ---
-rfc: 3
+aip: 3
 title: Remove Pause Functions from Token and Policy
 author: Ampleforth Dev Council - Brandon Iles <brandon@ampleforth.org>, Nithin Ottilingam <nithin@ampleforth.org>, Ahmed Naguib Aly <naguib@ampleforth.org>
 type: Core
@@ -25,11 +25,11 @@ It has now been over a year. After unpausing the system at the time of launch wi
 Now that the implementation of the AMPL token and the Supply Policy have had time to prove themselves, we believe it's time they are removed.
 
 ## Motivation
-**setRebasePaused** fixes the supply of the token until rebase is unpaused--the supply stays constant and 
-Amples are still freely tradable by anyone. This was to guard against unexpected problems in the supply policy or oracle system upstream 
+**setRebasePaused** fixes the supply of the token until rebase is unpaused--the supply stays constant and
+Amples are still freely tradable by anyone. This was to guard against unexpected problems in the supply policy or oracle system upstream
 of the token.
 
-**setTokenPaused** pauses all transfers on chain. This was meant to guard balances against 
+**setTokenPaused** pauses all transfers on chain. This was meant to guard balances against
 unexpected problems in the token itself. It was also a guard used to help facilitate the launch before listing.
 
 Removing these two functions decreases both "Centralization Risk" and "Integration Risk".
@@ -37,7 +37,7 @@ Removing these two functions decreases both "Centralization Risk" and "Integrati
 ## Rationale
 As long as these functions exist, they are open to misuse by whoever controls the admin key (currently a 2-of-n multisig wallet owned by the development team).
 
-Even as the Ampleforth governance process decentralizes, we'd like to keep the governance surface area as small as possible to 
+Even as the Ampleforth governance process decentralizes, we'd like to keep the governance surface area as small as possible to
 avoid complexity and potential for exploits.
 
 Secondly, Pausability increases the risk for outside platforms which build with AMPL. Not every platform is willing (or able) to implement logic that safely

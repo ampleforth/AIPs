@@ -1,5 +1,5 @@
 ---
-rfc: 2
+aip: 2
 title: Disallow Contracts from calling Rebase
 author: Ampleforth Dev Council - Brandon Iles <brandon@ampleforth.org>, Nithin Ottilingam <nithin@ampleforth.org>, Ahmed Naguib Aly <naguib@ampleforth.org>
 type: Core
@@ -14,7 +14,7 @@ Proposal to disallow rebase from being called by contracts, to guard against fla
 
 ## Abstract
 
-Flash loans can be leveraged in combination with a rebase call to effectively "steal" rebase awards from liquidity providers on trading and lending platforms. Liquidity providers can be negatively impacted on both expansionary and contractionary cycles. Without any change to address this, AMPL holders may be disincentivized from providing liquidity. This has a negative effect on the health of the AMPL ecosystem, and also counteracts the liquidity incentive program described in [RFC-1](RFCs/rfc-1.md)
+Flash loans can be leveraged in combination with a rebase call to effectively "steal" rebase awards from liquidity providers on trading and lending platforms. Liquidity providers can be negatively impacted on both expansionary and contractionary cycles. Without any change to address this, AMPL holders may be disincentivized from providing liquidity. This has a negative effect on the health of the AMPL ecosystem, and also counteracts the liquidity incentive program described in [AIP-1](AIPs/aip-1.md)
 
 A solution of preventing non-EOA addresses from calling rebase is proposed.
 

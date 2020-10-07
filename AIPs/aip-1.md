@@ -1,5 +1,5 @@
 ---
-rfc: 1
+aip: 1
 title: Continuous Vesting Token Distribution
 author: Brandon Iles <brandon@ampleforth.org>, Nithin Ottilingam <nithin@ampleforth.org>
 type: Application
@@ -42,7 +42,7 @@ interface ContVestTokenDist is ERC20Detailed, IStaking {
     event TokensUnlocked(uint256 stage, uint256 numTokens);
 
     constructor(address stakingToken, address distributionToken);
-    
+
     function getStakingToken() public view returns (address);
     function getDistributionToken() public view returns (address);
 
@@ -51,13 +51,13 @@ interface ContVestTokenDist is ERC20Detailed, IStaking {
     function numUnlockStages() public view returns (uint256);
     function unlockTimestampForStage(uint256 stage) public view returns (uint256);
     function unlockTokensForStage(uint256 stage) public view returns (uint256);
-    
+
     // Pool info
     function getUnlockedPoolSize() public view returns (uint256);
     function getLockedPoolSize() public view returns (uint256);
     function totalDeposited() public view returns (uint256);
     function totalDepositedFor(address user) public view returns (uint256);
-    
+
     function updateGlobal() public returns (bool);
 
     // EIP-900 Staking Interface for managing deposits and withdrawals
@@ -75,14 +75,14 @@ interface ContVestTokenDist is ERC20Detailed, IStaking {
     function lastStakedFor(address addr) public view returns (uint256);
     function totalStakedForAt(address addr, uint256 blockNumber) public view returns (uint256);
     function totalStakedAt(uint256 blockNumber) public view returns (uint256);
-    
+
     // ERC-20 Interface for internal CVTD tokens
     event Transfer(address indexed from, address indexed to, uint256 value);
     event Approval(address indexed owner, address indexed spender, uint256 value);
 
     function name() public view returns (string memory);
     function symbol() public view returns (string memory);
-    function decimals() public view returns (uint8);    
+    function decimals() public view returns (uint8);
     function totalSupply() external view returns (uint256);
     function balanceOf(address account) external view returns (uint256);
     function transfer(address recipient, uint256 amount) external returns (bool);
