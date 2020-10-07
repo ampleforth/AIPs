@@ -1,2 +1,2 @@
-# RFCs
-"Request for Comment" document repository and discussions
+# AIPs
+"Ampleforth Improvement Proposals" document repository and discussions
