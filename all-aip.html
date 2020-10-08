@@ -1,0 +1,7 @@
+---
+layout: page
+title: All AIPs
+---
+
+{% assign aips=site.pages|where_exp:"page","page.aip > 0" %} {% include
+aiptable.html aips=aips %}

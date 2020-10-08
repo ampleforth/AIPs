@@ -1,0 +1,35 @@
+---
+layout: null
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ampleforth AIPs Last Call Review</title>
+    <description>All aips which are in the two-week "last call" status, please help review these and provide your feedback!</description>
+    <link>{{ site.url }}</link>
+    <atom:link href="{{ site.url }}/last-call.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>{{ site.time }}</lastBuildDate>
+    {% assign aips = site.pages | sort: 'aip' %}
+    {% for aip in aips %}
+      {% if aip.status == "Last Call" %}
+      {% capture description %}
+        <p><strong>aip #{{ aip.aip }} - {{aip.title }}</strong> is in Last Call status. It is authored by {{ aip.author }} and was originally created {{ aip.created }}. It is in the {{ aip.category }} category of type {{ aip.type }}. Please review and note any changes that should block acceptance.</p>
+        {% if aip.discussions-to %}
+          <p>The author has requested that discussions happen at the following URL: {{ aip.discussions-to }}</p>
+        {% else %}
+          <p>Please visit the [Ampleforth/aips issues to comment](https://github.com/Ampleforth/aips/issues/{{aip.aip}}).</p>
+        {% endif %}
+        <hr />
+        {{ aip.content }}
+      {% endcapture %}
+      <item>
+        <title>{{ aip.title | xml_escape }}</title>
+        <description>{{ description | xml_escape }}</description>
+        <pubDate>{{ aip.date | date: "%a, %d %b %Y %H:%M:%S %z" }}</pubDate>
+        <link>{{ site.url }}/{{ aip.url }}</link>
+        <guid isPermaLink="true">{{ site.url }}/{{ aip.url }}</guid>
+      </item>
+      {% endif %}
+    {% endfor %}
+  </channel>
+</rss>

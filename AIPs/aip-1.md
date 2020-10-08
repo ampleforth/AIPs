@@ -1,9 +1,9 @@
 ---
 aip: 1
 title: Continuous Vesting Token Distribution
+status: Implemented
 author: Brandon Iles <brandon@ampleforth.org>, Nithin Ottilingam <nithin@ampleforth.org>
-type: Application
-status: Accepted
+discussions-to: https://ampltalk.org/
 created: 2019-09-30
 ---
 
