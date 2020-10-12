@@ -1,0 +1,28 @@
+<style type="text/css">
+  .accptable .title {
+    width: 67%;
+  }
+
+  .accptable .author {
+    width: 33%;
+  }
+</style>
+{% for status in site.data.statuses %}
+  {% assign accp = include.accp|where:"status",status|sort:"accp" %}
+  {% assign count = accp|size %}
+  {% if count > 0 %}
+    <h2>{{status}}</h2>
+    <table class="accptable">
+      <thead>
+        <tr><th class="accpnum">Number</th><th class="title">Title</th><th class="author">Author</th></tr>
+      </thead>
+      {% for page in accp %}
+        <tr>
+          <td class="accpnum"><a href="{{page.url|relative_url}}">{{page.accp|xml_escape}}</a></td>
+          <td class="title">{{page.title|xml_escape}}</td>
+          <td class="author">{% include authorlist.html authors=page.author %}</td>
+        </tr>
+      {% endfor %}
+    </table>
+  {% endif %}
+{% endfor %}

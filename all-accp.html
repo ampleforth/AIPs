@@ -1,0 +1,7 @@
+---
+layout: page
+title: All ACCPs
+---
+
+{% assign accp=site.pages|where_exp:"page","page.accp > 0" %} {% include
+accptable.html accp=accp %}

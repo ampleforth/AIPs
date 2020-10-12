@@ -1,0 +1,8 @@
+{% assign accp=include.accp|split:"," %}
+{% for accpnum in accp %}
+  {% if accpnum contains 'AIP' %}
+  <a href="../AIPs/{{accpnum|strip|downcase}}">{{accpnum|strip}}</a>{% if forloop.last == false %}, {% endif %}
+  {% else %}
+  <a href="{{accpnum|strip|downcase}}">{{accpnum|strip}}</a>{% if forloop.last == false %}, {% endif %}
+  {% endif %}
+{% endfor %}
