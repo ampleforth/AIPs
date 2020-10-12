@@ -25,6 +25,7 @@ twitter_username: "AmpleforthOrg"
 github_username:  Ampleforth
 header_pages:
   - all-aip.html
+  - all-accp.html
 twitter:
   card: summary
   username: "AmpleforthOrg"
@@ -43,6 +44,10 @@ defaults:
       path: "AIPs"
     values:
       layout: "aip"
+  - scope:
+      path: "ACCP"
+    values:
+      layout: "accp"
 
 exclude:
   - Gemfile
@@ -52,6 +57,7 @@ exclude:
   - vendor/cache/
   - vendor/gems/
   - vendor/ruby/
+  - accp-x.md
   - aip-X.md
 
 # Exclude from processing.
