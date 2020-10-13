@@ -1,11 +1,10 @@
 ---
 aip: 3
 title: Disallow Contracts from calling Rebase
-status: Implemented
 author: Brandon Iles <brandon@ampleforth.org>, Nithin Ottilingam <nithin@ampleforth.org>, Ahmed Naguib Aly <naguib@ampleforth.org>
 discussions-to: https://ampltalk.org/
+status: Implemented
 created: 2020-03-26
-deployed: 2020-04-02
 ---
 
 ## Simple Summary

@@ -21,7 +21,7 @@ An ACCP must meet certain minimum criteria. It must be a clear and complete desc
 
 ## ACCP Work Flow
 
-Parties involved in the process are the *author*, the [*AIP editors*](#aip-editors), and the [Ampleforth Engineering Team].
+Parties involved in the process are the *author*, the [*AIP editors*](#aip-editors), the [Ampleforth Core Contributors], and the Ampleforth Community.
 
 :warning: Before you begin, vet your idea, this will save you time. Ask the Ampleforth community first if the proposed change is original to avoid wasting time on something that will be rejected based on prior research (searching the Internet does not always do the trick). It also helps to make sure the idea is applicable to the entire community and not just the author. Just because an idea sounds good to the author does not mean it will have the intend effect. The appropriate public forum to gauge interest around your ACCP is [the Ampleforth Discord].
 
@@ -166,7 +166,7 @@ See [the revision history for further details](https://github.com/ampleforth/**)
 [markdown]: https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
 [Bitcoin's BIP-0001]: https://github.com/bitcoin/bips
 [Python's PEP-0001]: https://www.python.org/dev/peps/
-[Ampleforth Engineering Team]: https://github.com/orgs/Ampleforth/people
+[Ampleforth Core Contributors]: https://github.com/orgs/Ampleforth/people
 
 ## Copyright
 

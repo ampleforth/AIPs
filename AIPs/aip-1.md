@@ -1,11 +1,11 @@
 ---
 aip: 1
 title: AIP Purpose and Guidelines
-status: Implemented
 author: Tom Nash (@morelazers)
 discussions-to: https://discord.gg/mptQ49m
+status: Implemented
 created: 2020-09-12
-updated: N/A
+requires: N/A
 ---
 
 ## What is an AIP?
@@ -26,7 +26,7 @@ An AIP or ACCP must meet certain minimum criteria. It must be a clear and comple
 
 ## AIP Work Flow
 
-Parties involved in the process are the *author*, the [*AIP editors*](#aip-editors), the [Ampleforth Core Contributors] and the Ampleforth community.
+Parties involved in the process are the *author*, the [*AIP editors*](#aip-editors), the [Ampleforth Core Contributors], and the Ampleforth Community.
 
 :warning: Before you begin, vet your idea, this will save you time. Ask the Ampleforth community first if an idea is original to avoid wasting time on something that will be rejected based on prior research (searching the Internet does not always do the trick). It also helps to make sure the idea is applicable to the entire community and not just the author. Just because an idea sounds good to the author does not mean it will have the intend effect. The appropriate public forum to gauge interest around your AIP or ACCP is [the Ampleforth Discord].
 
@@ -176,7 +176,7 @@ See [the revision history for further details](https://github.com/ampleforth/), 
 [markdown]: https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
 [Bitcoin's BIP-0001]: https://github.com/bitcoin/bips
 [Python's PEP-0001]: https://www.python.org/dev/peps/
-[Ampleforth Core Contributors]: https://github.com/orgs/ampleforth/people
+[Ampleforth Core Contributors]: https://github.com/orgs/Ampleforth/people
 
 ## Copyright
 
