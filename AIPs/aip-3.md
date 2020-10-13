@@ -1,52 +1,77 @@
 ---
 aip: 3
-title: Remove Pause Functions from Token and Policy
+title: Disallow Contracts from calling Rebase
 status: Implemented
 author: Brandon Iles <brandon@ampleforth.org>, Nithin Ottilingam <nithin@ampleforth.org>, Ahmed Naguib Aly <naguib@ampleforth.org>
 discussions-to: https://ampltalk.org/
-created: 2020-07-24
-deployed: 2020-07-31
+created: 2020-03-26
+deployed: 2020-04-02
 ---
 
 ## Simple Summary
 
-Proposal to remove the pause functions in the AMPL ERC-20 and Supply Policy contracts.
+Proposal to disallow rebase from being called by contracts, to guard against flash loan attacks on liquidity providers.
 
 ## Abstract
-There are currently two admin-callable functions, *setRebasePaused* and *setTokenPaused*, that were included in the initial
-deployment as emergency controls. They were meant to:
-- Facilitate the launch itself
-- Guard balances in critical situations post-launch
 
-As stated in the pre-launch [governance post](https://www.ampltalk.org/app/forum/governance-20/topic/state-of-discretion-and-governance-in-ampleforth-6/):
-> We view both of these emergency switches as options of last resort and hope they never have to be enabled. We felt it was most responsible to launch with these in place, especially in the early days when the system is new and proving its worth in an adversarial environment.
+Flash loans can be leveraged in combination with a rebase call to effectively "steal" rebase awards from liquidity providers on trading and lending platforms. Liquidity providers can be negatively impacted on both expansionary and contractionary cycles. Without any change to address this, AMPL holders may be disincentivized from providing liquidity. This has a negative effect on the health of the AMPL ecosystem, and also counteracts the liquidity incentive program described in [AIP-1](AIPs/aip-1.md)
 
-It has now been over a year. After unpausing the system at the time of launch with Bitfinex, there has been no need to enable either of these.
-Now that the implementation of the AMPL token and the Supply Policy have had time to prove themselves, we believe it's time they are removed.
+A solution of preventing non-EOA addresses from calling rebase is proposed.
 
 ## Motivation
-**setRebasePaused** fixes the supply of the token until rebase is unpaused--the supply stays constant and
-Amples are still freely tradable by anyone. This was to guard against unexpected problems in the supply policy or oracle system upstream
-of the token.
 
-**setTokenPaused** pauses all transfers on chain. This was meant to guard balances against
-unexpected problems in the token itself. It was also a guard used to help facilitate the launch before listing.
+Consider the following scenario. Alice deploys a contract onchain. It has one method that performs the following:
+1) Takes out all AMPL from uniswap v2 via a flash swap.
+2) Call rebase when in an expansionary period.
+3) Return AMPL back to Uniswap, keeping rebase awards.
 
-Removing these two functions decreases both "Centralization Risk" and "Integration Risk".
+While this does provide an incentive for callers to execute rebase, the net result is that liquidity providers lose out on all the AMPL tokens they would have received from an expansionary cycle.
+
+Similar attacks can be performed with non-AMPL flash loans and don't require AMPL to be available on lending platforms.
+
+1) Take out an ETH flash loan from Dydx, Aave, and/or other platforms.
+2) Buy as much AMPL as possible from Uniswap, Kyber, Bancor, ...
+3) Calls rebase when in expansionary period
+4) Sells AMPL back
+5) pays off ETH loan
+
+Alice only has to overcome the following fees:
+- 2*0.3% uniswap fee
+- Dydx charges 0% on flash loans, Aave charges 0.09%
+
+Alice is profitable as long as the oracle rate is roughly > $1.06. With the existing deviation threshold of 5%, positive rebases start at $1.06155
+
+Shorts spanning contractionary rebases similarly impact liquidity providers by offloading more of the contraction adjustment to them.
+
+The most damaging effect of allowing flash loan users to call rebase is that it will discourage people from supplying liquidity on DEXs and lending platforms. This would lead to unnecessarily high volatility and unpredictability around supply adjustments.
+
+## Specification
+
+To address this, the dev council proposes adding a single check at the top of our Supply Policy rebase function:
+
+`require(msg.sender == tx.origin);`
+
+This enforces that rebase is only called from EOA wallets, which removes the possibility of flash loans being used simultaneously with rebase calls.
+
+Note that `tx.origin` is NOT used for authentication.
 
 ## Rationale
-As long as these functions exist, they are open to misuse by whoever controls the admin key (currently a 2-of-n multisig wallet owned by the development team).
+EOAs (Externally Owned Account) are unable to leverage flash loans, because flash loans require multiple steps within the same transaction: loan, do something, repay. Requiring rebases be called from EOA is the simplest way to bar flash loan attacks on rebases.
 
-Even as the Ampleforth governance process decentralizes, we'd like to keep the governance surface area as small as possible to
-avoid complexity and potential for exploits.
+While it's still possible to perform the same actions without flash loans, the user would be subjecting themselves to considerable market risk and also have to put a lot of their own capital at stake to do so.
 
-Secondly, Pausability increases the risk for outside platforms which build with AMPL. Not every platform is willing (or able) to implement logic that safely
-handles failed transfers of paused tokens. This may harm AMPL's ability to support the wider DeFi ecosystem.
+An alternative implementation would be to create a whitelist of ethereum addresses (EOA or contracts) allowed to execute rebases. There are two benefits: approved contracts (including multisigs) would be able to call rebase, and we would avoid using the relatively controversial `tx.origin`.
+
+The downsides are that it would expand the surface area of governance, add more complexity to the system, and remove the ability for "anyone" to call rebase. So far, the Ampleforth system only uses whitelists in the oracle where it's inherently part of the architecture. We'd prefer to not expand the use of whitelists if not absolutely necessary, especially in the token and policy.
+
+While enforcing EOA status breaks the general composability of contracts, we believe the proposed solution is the best tradeoff. Since rebase is meant to be "public", the use case for multisigs is basically non-existent, allowing all contracts is too dangerous, and whitelisting contracts brings too much governance requirements.
+
+One common way of disallowing flash loans around a critical operation is to make that operation span multiple transactions. We could, in theory, require rebase to occur in two phases, each in different blocks. However, this is not viable in our case since one step must affect the supply adjustment and this adjustment could still be wrapped with flash loans.
 
 ## Implementation
-The OpenZeppelin AdminUpgradabilityProxy will be used to update the implementation of UFragments.
-The two pause functions would be removed.
-Special care will be taken to ensure no changes are made to the storage layout.
+The dev council will author the code change to the uFragments repo. The governance multisig will then be used to upgrade the policy's implementation code via the OpenZeppelin AdminUpgradeabilityProxy.
+
+[Github Release](https://github.com/ampleforth/uFragments/releases/tag/v1.0.1), deployed 2020-04-02.
 
 ## Copyright
 Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).

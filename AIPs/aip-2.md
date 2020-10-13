@@ -1,77 +1,117 @@
 ---
 aip: 2
-title: Disallow Contracts from calling Rebase
+title: Continuous Vesting Token Distribution
 status: Implemented
-author: Brandon Iles <brandon@ampleforth.org>, Nithin Ottilingam <nithin@ampleforth.org>, Ahmed Naguib Aly <naguib@ampleforth.org>
+author: Brandon Iles <brandon@ampleforth.org>, Nithin Ottilingam <nithin@ampleforth.org>
 discussions-to: https://ampltalk.org/
-created: 2020-03-26
-deployed: 2020-04-02
+created: 2019-09-30
 ---
 
 ## Simple Summary
 
-Proposal to disallow rebase from being called by contracts, to guard against flash loan attacks on liquidity providers.
+A smart-contract based mechanism to distribute tokens over time, inspired loosely by Compound and Uniswap.
+
 
 ## Abstract
 
-Flash loans can be leveraged in combination with a rebase call to effectively "steal" rebase awards from liquidity providers on trading and lending platforms. Liquidity providers can be negatively impacted on both expansionary and contractionary cycles. Without any change to address this, AMPL holders may be disincentivized from providing liquidity. This has a negative effect on the health of the AMPL ecosystem, and also counteracts the liquidity incentive program described in [AIP-1](AIPs/aip-1.md)
+The following is a smart-contract based mechanism for distributing tokens over time, inspired loosely by Compound's continuous interest accrual and Uniswap's liquidity pool tokens.
 
-A solution of preventing non-EOA addresses from calling rebase is proposed.
+Distribution tokens (in our case AMPL) are added to a locked pool in the contract and become unlocked over time according to a once-configurable unlock schedule. Once unlocked, they are available to be claimed by users.
+
+A user may deposit tokens (in our case AMPL-Uniswapv2 LP)to accrue ownership share over the unlocked pool. This owner share is a function of the number of tokens deposited as well as the length of time deposited. Specifically, a user's share of the currently-unlocked pool equals their "deposit-seconds" divided by the global "deposit-seconds". This aligns the new token distribution with long term supporters of the project, addressing one of the major drawbacks of simple airdrops.
+
+When the user redeems, they receive their share of the current unlocked distribution pool along with their previously deposited tokens. Users may deposit or redeem at any time, so aren't required to "lock up" tokens for any fixed period. However, to disincentivize continuous deposit/withdraw behavior there is a gradual bonus that's applied that reaches max after a configurable time frame.
+
+New distribution tokens may optionally be added to the locked pool by the owner along with an associated unlock time. However, the only way for distribution tokens to be removed from the system is by redeeming previously deposited tokens. User deposit tokens are only used to claim ownership and are never transferred to others.
+
 
 ## Motivation
 
-Consider the following scenario. Alice deploys a contract onchain. It has one method that performs the following:
-1) Takes out all AMPL from uniswap v2 via a flash swap.
-2) Call rebase when in an expansionary period.
-3) Return AMPL back to Uniswap, keeping rebase awards.
+As described in the [Token Transparency Report](https://medium.com/ampleforth/ampleforth-ieo-and-token-distribution-transparency-report-d7b632bbc838), roughly 20% and 23% of the total AMPL supply are currently allocated to the Treasury and Ecosystem Fund. We need to eventually find a way to distribute these tokens to users in “as sensible” way as possible. We’d also like to maintain our commitment to a rules-based policy in all aspects of the project. To that end, we can encode the distribution schedule and rules into a smart contract that operates autonomously over time.
 
-While this does provide an incentive for callers to execute rebase, the net result is that liquidity providers lose out on all the AMPL tokens they would have received from an expansionary cycle.
+Airdrops have shown limited success in aligning recipients and projects--many get lost, forgotten, or simply dumped on markets. This system shows proof of care through continued ownership through any market condition as well as rewards users who contribute positively to the ecosystem through providing liquidity.
 
-Similar attacks can be performed with non-AMPL flash loans and don't require AMPL to be available on lending platforms.
-
-1) Take out an ETH flash loan from Dydx, Aave, and/or other platforms.
-2) Buy as much AMPL as possible from Uniswap, Kyber, Bancor, ...
-3) Calls rebase when in expansionary period
-4) Sells AMPL back
-5) pays off ETH loan
-
-Alice only has to overcome the following fees:
-- 2*0.3% uniswap fee
-- Dydx charges 0% on flash loans, Aave charges 0.09%
-
-Alice is profitable as long as the oracle rate is roughly > $1.06. With the existing deviation threshold of 5%, positive rebases start at $1.06155
-
-Shorts spanning contractionary rebases similarly impact liquidity providers by offloading more of the contraction adjustment to them.
-
-The most damaging effect of allowing flash loan users to call rebase is that it will discourage people from supplying liquidity on DEXs and lending platforms. This would lead to unnecessarily high volatility and unpredictability around supply adjustments.
 
 ## Specification
 
-To address this, the dev council proposes adding a single check at the top of our Supply Policy rebase function:
+This application will implement the EIP-900 Simple Staking Interface and will be general enough for use with any ERC-20 tokens. The deposit aka "Staking" token and distribution token may be the same or be different and are specified during initialization.
 
-`require(msg.sender == tx.origin);`
+```solidity
+interface ContVestTokenDist is ERC20Detailed, IStaking {
 
-This enforces that rebase is only called from EOA wallets, which removes the possibility of flash loans being used simultaneously with rebase calls.
+    event TokensUnlocked(uint256 stage, uint256 numTokens);
 
-Note that `tx.origin` is NOT used for authentication.
+    constructor(address stakingToken, address distributionToken);
+
+    function getStakingToken() public view returns (address);
+    function getDistributionToken() public view returns (address);
+
+    // Unlock schedule & adding tokens
+    function addUnlockStageTokens(uint256 numTokens, uint256 unlockTimestamp) public returns (bool);
+    function numUnlockStages() public view returns (uint256);
+    function unlockTimestampForStage(uint256 stage) public view returns (uint256);
+    function unlockTokensForStage(uint256 stage) public view returns (uint256);
+
+    // Pool info
+    function getUnlockedPoolSize() public view returns (uint256);
+    function getLockedPoolSize() public view returns (uint256);
+    function totalDeposited() public view returns (uint256);
+    function totalDepositedFor(address user) public view returns (uint256);
+
+    function updateGlobal() public returns (bool);
+
+    // EIP-900 Staking Interface for managing deposits and withdrawals
+    event Staked(address indexed user, uint256 amount, uint256 total, bytes blockTimestamp);
+    event Unstaked(address indexed user, uint256 amount, uint256 total, bytes blockTimestamp);
+
+    function stake(uint256 amount, bytes _) public;
+    function stakeFor(address user, uint256 amount, bytes _) public;
+    function unstake(uint256 amount, bytes _) public;
+    function totalStakedFor(address addr) public view returns (uint256);
+    function totalStaked() public view returns (uint256);
+    function token() public view returns (address);
+    function supportsHistory() public pure returns (bool);
+
+    function lastStakedFor(address addr) public view returns (uint256);
+    function totalStakedForAt(address addr, uint256 blockNumber) public view returns (uint256);
+    function totalStakedAt(uint256 blockNumber) public view returns (uint256);
+
+    // ERC-20 Interface for internal CVTD tokens
+    event Transfer(address indexed from, address indexed to, uint256 value);
+    event Approval(address indexed owner, address indexed spender, uint256 value);
+
+    function name() public view returns (string memory);
+    function symbol() public view returns (string memory);
+    function decimals() public view returns (uint8);
+    function totalSupply() external view returns (uint256);
+    function balanceOf(address account) external view returns (uint256);
+    function transfer(address recipient, uint256 amount) external returns (bool);
+    function allowance(address owner, address spender) external view returns (uint256);
+    function approve(address spender, uint256 amount) external returns (bool);
+    function transferFrom(address sender, address recipient, uint256 amount) external returns (bool);
+    function increaseAllowance(address spender, uint256 addedValue);
+    function decreaseAllowance(address spender, uint256 subtractedValue);
+}
+```
 
 ## Rationale
-EOAs (Externally Owned Account) are unable to leverage flash loans, because flash loans require multiple steps within the same transaction: loan, do something, repay. Requiring rebases be called from EOA is the simplest way to bar flash loan attacks on rebases.
+Many different kinds of distribution have been attempted by projects. One thing that's clear is the limited effectiveness of airdrops. Historically, most airdrops have been either ignored by recipients or immediately sold.
 
-While it's still possible to perform the same actions without flash loans, the user would be subjecting themselves to considerable market risk and also have to put a lot of their own capital at stake to do so.
+Direct lockups would be the most straightforward, where a user locks up X tokens for Y time to receive X+Z tokens in return. This structure is easy to understand, but since we want to unlock in blocks there would be different tranches for tokens as they unlock through time. We'd end up having multiple concurrent airdrop contracts users interact with, which is confusing. Also, since there’s a limited number of total tokens to unlock, there’s a limited number of tokens that can be staked, so a single whale could conceivably take all the slots.
 
-An alternative implementation would be to create a whitelist of ethereum addresses (EOA or contracts) allowed to execute rebases. There are two benefits: approved contracts (including multisigs) would be able to call rebase, and we would avoid using the relatively controversial `tx.origin`.
+Projects are still free to place educational material on the frontend to teach users about the application before they interact with the underlying system. If done properly, this solves a second problem with airdrops related to user education.
 
-The downsides are that it would expand the surface area of governance, add more complexity to the system, and remove the ability for "anyone" to call rebase. So far, the Ampleforth system only uses whitelists in the oracle where it's inherently part of the architecture. We'd prefer to not expand the use of whitelists if not absolutely necessary, especially in the token and policy.
-
-While enforcing EOA status breaks the general composability of contracts, we believe the proposed solution is the best tradeoff. Since rebase is meant to be "public", the use case for multisigs is basically non-existent, allowing all contracts is too dangerous, and whitelisting contracts brings too much governance requirements.
-
-One common way of disallowing flash loans around a critical operation is to make that operation span multiple transactions. We could, in theory, require rebase to occur in two phases, each in different blocks. However, this is not viable in our case since one step must affect the supply adjustment and this adjustment could still be wrapped with flash loans.
 
 ## Implementation
-The dev council will author the code change to the uFragments repo. The governance multisig will then be used to upgrade the policy's implementation code via the OpenZeppelin AdminUpgradeabilityProxy.
 
-[Github Release](https://github.com/ampleforth/uFragments/releases/tag/v1.0.1), deployed 2020-04-02.
+The front-end is open to change during development, but the basic information to expose is:
+- Number of AMPL staked by user
+- Size of AMPL locked and unlocked pools
+- Current fractional ownership of unlock pool
+- "Stake" and "Unstake" functions
+- Unlock schedule
+
+Smart contracts will reside in https://github.com/ampleforth/token-geyser
 
 ## Copyright
 Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).

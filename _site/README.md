@@ -25,7 +25,7 @@ When you believe your AIP is mature and ready to progress past the WIP phase, yo
 * **Rejected** - a AIP that has been rejected.
 
 
-# Validation
+# Validation (WIP)
 
 AIPs must pass some validation tests.  The AIP repository ensures this by running tests using [html-proofer](https://rubygems.org/gems/html-proofer) and [aip_validator](https://rubygems.org/gems/aip_validator).
 

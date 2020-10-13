@@ -4,23 +4,23 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>
-    AIP-1: Continuous Vesting Token Distribution
+    AIP-1: AIP Purpose and Guidelines
   </title><!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>Continuous Vesting Token Distribution</title>
+<title>AIP Purpose and Guidelines</title>
 <meta name="generator" content="Jekyll v3.9.0" />
-<meta property="og:title" content="Continuous Vesting Token Distribution" />
-<meta name="author" content="Brandon Iles <brandon@ampleforth.org>, Nithin Ottilingam <nithin@ampleforth.org>" />
+<meta property="og:title" content="AIP Purpose and Guidelines" />
+<meta name="author" content="Tom Nash (@morelazers)" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Ampleforth Improvement Proposals (AIPs) describe standards for the Ampleforth platform, including core protocol specifications, client APIs, and supporting applications." />
 <meta property="og:description" content="Ampleforth Improvement Proposals (AIPs) describe standards for the Ampleforth platform, including core protocol specifications, client APIs, and supporting applications." />
 <link rel="canonical" href="http://localhost:4000/AIPs/aip-1" />
 <meta property="og:url" content="http://localhost:4000/AIPs/aip-1" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Continuous Vesting Token Distribution" />
+<meta property="twitter:title" content="AIP Purpose and Guidelines" />
 <meta name="twitter:site" content="@AmpleforthOrg" />
-<meta name="twitter:creator" content="@Brandon Iles <brandon@ampleforth.org>, Nithin Ottilingam <nithin@ampleforth.org>" />
+<meta name="twitter:creator" content="@Tom Nash (@morelazers)" />
 <script type="application/ld+json">
-{"url":"http://localhost:4000/AIPs/aip-1","author":{"@type":"Person","name":"Brandon Iles <brandon@ampleforth.org>, Nithin Ottilingam <nithin@ampleforth.org>"},"headline":"Continuous Vesting Token Distribution","description":"Ampleforth Improvement Proposals (AIPs) describe standards for the Ampleforth platform, including core protocol specifications, client APIs, and supporting applications.","@type":"WebPage","@context":"https://schema.org"}</script>
+{"url":"http://localhost:4000/AIPs/aip-1","author":{"@type":"Person","name":"Tom Nash (@morelazers)"},"headline":"AIP Purpose and Guidelines","description":"Ampleforth Improvement Proposals (AIPs) describe standards for the Ampleforth platform, including core protocol specifications, client APIs, and supporting applications.","@type":"WebPage","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css">
   <link rel="shortcut icon" type="image/png" href="/favicon.ico" /><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" /></head>
@@ -44,129 +44,219 @@
         <link rel="stylesheet" href="/assets/additional-styles.css">
 <div class="home">
   <h1 class="page-heading">
-    AIP 1: Continuous Vesting Token Distribution
+    AIP 1: AIP Purpose and Guidelines
     <a href="/blob/master/AIPs/aip-1.md"><svg role="img" aria-label="Source" xmlns="https://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16"><title>Source</title><path fill-rule="evenodd" d="M9.5 3L8 4.5 11.5 8 8 11.5 9.5 13 14 8 9.5 3zm-5 0L0 8l4.5 5L6 11.5 2.5 8 6 4.5 4.5 3z"/></svg></a>
   </h1>
   <table>
-    <tr><th>Author</th><td><a href="mailto:brandon@ampleforth.org">Brandon Iles</a>, <a href="mailto:nithin@ampleforth.org">Nithin Ottilingam</a></td></tr>
+    <tr><th>Author</th><td><a href="https://github.com/morelazers">Tom Nash</a></td></tr>
     
-      <tr><th>Discussions-To</th><td><a href="https://ampltalk.org/">https://ampltalk.org/</a></td></tr>
+      <tr><th>Discussions-To</th><td><a href="https://discord.gg/mptQ49m">https://discord.gg/mptQ49m</a></td></tr>
     
     <tr><th>Status</th><td>Implemented
     
     </td></tr>
     
-    <tr><th>Created</th><td>2019-09-30</td></tr>
+    <tr><th>Created</th><td>2020-09-12</td></tr>
     
     
     
     
   </table>
 
-  <h2 id="simple-summary">Simple Summary</h2>
+  <h2 id="what-is-an-aip">What is an AIP?</h2>
 
-<p>A smart-contract based mechanism to distribute tokens over time, inspired loosely by Compound and Uniswap.</p>
+<p>AIP stands for Ampleforth Improvement Proposal, it has been adapted from the EIP (Ethereum Improvement Proposal). The purpose of this process is to ensure changes to Ampleforth are transparent and well governed. An AIP is a design document providing information to the Ampleforth community about a proposed change to the system. The author is responsible for building consensus within the community and documenting dissenting opinions.</p>
 
-<h2 id="abstract">Abstract</h2>
+<h2 id="what-is-an-accp">What is an ACCP?</h2>
 
-<p>The following is a smart-contract based mechanism for distributing tokens over time, inspired loosely by Compound’s continuous interest accrual and Uniswap’s liquidity pool tokens.</p>
+<p>ACCP stands for Ampleforth Configuration Change Proposal. ACCP’s are documents for making a case for modifying one of the system configuration variables. The intent is to provide a clear and detailed history behind each configuration change and the rationale behind it at the time it was implemented. The author of the document is responsible for building consensus within the community and documenting dissenting opinions.</p>
 
-<p>Distribution tokens (in our case AMPL) are added to a locked pool in the contract and become unlocked over time according to a once-configurable unlock schedule. Once unlocked, they are available to be claimed by users.</p>
+<h2 id="aip--accp-rationale">AIP &amp; ACCP Rationale</h2>
 
-<p>A user may deposit tokens (in our case AMPL-Uniswapv2 LP)to accrue ownership share over the unlocked pool. This owner share is a function of the number of tokens deposited as well as the length of time deposited. Specifically, a user’s share of the currently-unlocked pool equals their “deposit-seconds” divided by the global “deposit-seconds”. This aligns the new token distribution with long term supporters of the project, addressing one of the major drawbacks of simple airdrops.</p>
+<p>We intend AIPs and ACCPs to be the primary mechanisms for proposing new features, collecting community input on an issue, and for documenting the design decisions for changes to Ampleforth. Because they are maintained as text files in a versioned repository, their revision history is the historical record of the feature proposal.</p>
 
-<p>When the user redeems, they receive their share of the current unlocked distribution pool along with their previously deposited tokens. Users may deposit or redeem at any time, so aren’t required to “lock up” tokens for any fixed period. However, to disincentivize continuous deposit/withdraw behavior there is a gradual bonus that’s applied that reaches max after a configurable time frame.</p>
+<p>It is highly recommended that a single AIP contain a single key proposal or new idea. The more focused the AIP, the more successful it is likely to be.</p>
 
-<p>New distribution tokens may optionally be added to the locked pool by the owner along with an associated unlock time. However, the only way for distribution tokens to be removed from the system is by redeeming previously deposited tokens. User deposit tokens are only used to claim ownership and are never transferred to others.</p>
+<p>An AIP or ACCP must meet certain minimum criteria. It must be a clear and complete description of the proposed enhancement. The enhancement must represent a net improvement.</p>
 
-<h2 id="motivation">Motivation</h2>
+<h2 id="aip-work-flow">AIP Work Flow</h2>
 
-<p>As described in the <a href="https://medium.com/ampleforth/ampleforth-ieo-and-token-distribution-transparency-report-d7b632bbc838">Token Transparency Report</a>, roughly 20% and 23% of the total AMPL supply are currently allocated to the Treasury and Ecosystem Fund. We need to eventually find a way to distribute these tokens to users in “as sensible” way as possible. We’d also like to maintain our commitment to a rules-based policy in all aspects of the project. To that end, we can encode the distribution schedule and rules into a smart contract that operates autonomously over time.</p>
+<p>Parties involved in the process are the <em>author</em>, the <a href="#aip-editors"><em>AIP editors</em></a>, the <a href="https://github.com/orgs/ampleforth/people">Ampleforth Core Contributors</a> and the Ampleforth community.</p>
 
-<p>Airdrops have shown limited success in aligning recipients and projects–many get lost, forgotten, or simply dumped on markets. This system shows proof of care through continued ownership through any market condition as well as rewards users who contribute positively to the ecosystem through providing liquidity.</p>
+<p>:warning: Before you begin, vet your idea, this will save you time. Ask the Ampleforth community first if an idea is original to avoid wasting time on something that will be rejected based on prior research (searching the Internet does not always do the trick). It also helps to make sure the idea is applicable to the entire community and not just the author. Just because an idea sounds good to the author does not mean it will have the intend effect. The appropriate public forum to gauge interest around your AIP or ACCP is <a href="https://discord.gg/mptQ49m">the Ampleforth Discord</a>.</p>
 
-<h2 id="specification">Specification</h2>
+<p>Your role as the champion is to write the AIP using the style and format described below, shepherd the discussions in the appropriate forums, and build community consensus around the idea. Following is the process that a successful AIP will move along:</p>
 
-<p>This application will implement the EIP-900 Simple Staking Interface and will be general enough for use with any ERC-20 tokens. The deposit aka “Staking” token and distribution token may be the same or be different and are specified during initialization.</p>
-
-<div class="language-solidity highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">interface</span> <span class="n">ContVestTokenDist</span> <span class="k">is</span> <span class="n">ERC20Detailed</span><span class="p">,</span> <span class="n">IStaking</span> <span class="p">{</span>
-
-    <span class="k">event</span> <span class="n">TokensUnlocked</span><span class="p">(</span><span class="kt">uint256</span> <span class="n">stage</span><span class="p">,</span> <span class="kt">uint256</span> <span class="n">numTokens</span><span class="p">);</span>
-
-    <span class="k">constructor</span><span class="p">(</span><span class="kt">address</span> <span class="n">stakingToken</span><span class="p">,</span> <span class="kt">address</span> <span class="n">distributionToken</span><span class="p">);</span>
-
-    <span class="k">function</span> <span class="n">getStakingToken</span><span class="p">()</span> <span class="k">public</span> <span class="k">view</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">address</span><span class="p">);</span>
-    <span class="k">function</span> <span class="n">getDistributionToken</span><span class="p">()</span> <span class="k">public</span> <span class="k">view</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">address</span><span class="p">);</span>
-
-    <span class="c1">// Unlock schedule &amp; adding tokens
-</span>    <span class="k">function</span> <span class="n">addUnlockStageTokens</span><span class="p">(</span><span class="kt">uint256</span> <span class="n">numTokens</span><span class="p">,</span> <span class="kt">uint256</span> <span class="n">unlockTimestamp</span><span class="p">)</span> <span class="k">public</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">bool</span><span class="p">);</span>
-    <span class="k">function</span> <span class="n">numUnlockStages</span><span class="p">()</span> <span class="k">public</span> <span class="k">view</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint256</span><span class="p">);</span>
-    <span class="k">function</span> <span class="n">unlockTimestampForStage</span><span class="p">(</span><span class="kt">uint256</span> <span class="n">stage</span><span class="p">)</span> <span class="k">public</span> <span class="k">view</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint256</span><span class="p">);</span>
-    <span class="k">function</span> <span class="n">unlockTokensForStage</span><span class="p">(</span><span class="kt">uint256</span> <span class="n">stage</span><span class="p">)</span> <span class="k">public</span> <span class="k">view</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint256</span><span class="p">);</span>
-
-    <span class="c1">// Pool info
-</span>    <span class="k">function</span> <span class="n">getUnlockedPoolSize</span><span class="p">()</span> <span class="k">public</span> <span class="k">view</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint256</span><span class="p">);</span>
-    <span class="k">function</span> <span class="n">getLockedPoolSize</span><span class="p">()</span> <span class="k">public</span> <span class="k">view</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint256</span><span class="p">);</span>
-    <span class="k">function</span> <span class="n">totalDeposited</span><span class="p">()</span> <span class="k">public</span> <span class="k">view</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint256</span><span class="p">);</span>
-    <span class="k">function</span> <span class="n">totalDepositedFor</span><span class="p">(</span><span class="kt">address</span> <span class="n">user</span><span class="p">)</span> <span class="k">public</span> <span class="k">view</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint256</span><span class="p">);</span>
-
-    <span class="k">function</span> <span class="n">updateGlobal</span><span class="p">()</span> <span class="k">public</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">bool</span><span class="p">);</span>
-
-    <span class="c1">// EIP-900 Staking Interface for managing deposits and withdrawals
-</span>    <span class="k">event</span> <span class="n">Staked</span><span class="p">(</span><span class="kt">address</span> <span class="k">indexed</span> <span class="n">user</span><span class="p">,</span> <span class="kt">uint256</span> <span class="n">amount</span><span class="p">,</span> <span class="kt">uint256</span> <span class="n">total</span><span class="p">,</span> <span class="kt">bytes</span> <span class="n">blockTimestamp</span><span class="p">);</span>
-    <span class="k">event</span> <span class="n">Unstaked</span><span class="p">(</span><span class="kt">address</span> <span class="k">indexed</span> <span class="n">user</span><span class="p">,</span> <span class="kt">uint256</span> <span class="n">amount</span><span class="p">,</span> <span class="kt">uint256</span> <span class="n">total</span><span class="p">,</span> <span class="kt">bytes</span> <span class="n">blockTimestamp</span><span class="p">);</span>
-
-    <span class="k">function</span> <span class="n">stake</span><span class="p">(</span><span class="kt">uint256</span> <span class="n">amount</span><span class="p">,</span> <span class="kt">bytes</span> <span class="n">_</span><span class="p">)</span> <span class="k">public</span><span class="p">;</span>
-    <span class="k">function</span> <span class="n">stakeFor</span><span class="p">(</span><span class="kt">address</span> <span class="n">user</span><span class="p">,</span> <span class="kt">uint256</span> <span class="n">amount</span><span class="p">,</span> <span class="kt">bytes</span> <span class="n">_</span><span class="p">)</span> <span class="k">public</span><span class="p">;</span>
-    <span class="k">function</span> <span class="n">unstake</span><span class="p">(</span><span class="kt">uint256</span> <span class="n">amount</span><span class="p">,</span> <span class="kt">bytes</span> <span class="n">_</span><span class="p">)</span> <span class="k">public</span><span class="p">;</span>
-    <span class="k">function</span> <span class="n">totalStakedFor</span><span class="p">(</span><span class="kt">address</span> <span class="n">addr</span><span class="p">)</span> <span class="k">public</span> <span class="k">view</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint256</span><span class="p">);</span>
-    <span class="k">function</span> <span class="n">totalStaked</span><span class="p">()</span> <span class="k">public</span> <span class="k">view</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint256</span><span class="p">);</span>
-    <span class="k">function</span> <span class="n">token</span><span class="p">()</span> <span class="k">public</span> <span class="k">view</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">address</span><span class="p">);</span>
-    <span class="k">function</span> <span class="n">supportsHistory</span><span class="p">()</span> <span class="k">public</span> <span class="k">pure</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">bool</span><span class="p">);</span>
-
-    <span class="k">function</span> <span class="n">lastStakedFor</span><span class="p">(</span><span class="kt">address</span> <span class="n">addr</span><span class="p">)</span> <span class="k">public</span> <span class="k">view</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint256</span><span class="p">);</span>
-    <span class="k">function</span> <span class="n">totalStakedForAt</span><span class="p">(</span><span class="kt">address</span> <span class="n">addr</span><span class="p">,</span> <span class="kt">uint256</span> <span class="n">blockNumber</span><span class="p">)</span> <span class="k">public</span> <span class="k">view</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint256</span><span class="p">);</span>
-    <span class="k">function</span> <span class="n">totalStakedAt</span><span class="p">(</span><span class="kt">uint256</span> <span class="n">blockNumber</span><span class="p">)</span> <span class="k">public</span> <span class="k">view</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint256</span><span class="p">);</span>
-
-    <span class="c1">// ERC-20 Interface for internal CVTD tokens
-</span>    <span class="k">event</span> <span class="n">Transfer</span><span class="p">(</span><span class="kt">address</span> <span class="k">indexed</span> <span class="n">from</span><span class="p">,</span> <span class="kt">address</span> <span class="k">indexed</span> <span class="n">to</span><span class="p">,</span> <span class="kt">uint256</span> <span class="n">value</span><span class="p">);</span>
-    <span class="k">event</span> <span class="n">Approval</span><span class="p">(</span><span class="kt">address</span> <span class="k">indexed</span> <span class="n">owner</span><span class="p">,</span> <span class="kt">address</span> <span class="k">indexed</span> <span class="n">spender</span><span class="p">,</span> <span class="kt">uint256</span> <span class="n">value</span><span class="p">);</span>
-
-    <span class="k">function</span> <span class="n">name</span><span class="p">()</span> <span class="k">public</span> <span class="k">view</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">string</span> <span class="k">memory</span><span class="p">);</span>
-    <span class="k">function</span> <span class="n">symbol</span><span class="p">()</span> <span class="k">public</span> <span class="k">view</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">string</span> <span class="k">memory</span><span class="p">);</span>
-    <span class="k">function</span> <span class="n">decimals</span><span class="p">()</span> <span class="k">public</span> <span class="k">view</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint8</span><span class="p">);</span>
-    <span class="k">function</span> <span class="n">totalSupply</span><span class="p">()</span> <span class="k">external</span> <span class="k">view</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint256</span><span class="p">);</span>
-    <span class="k">function</span> <span class="n">balanceOf</span><span class="p">(</span><span class="kt">address</span> <span class="n">account</span><span class="p">)</span> <span class="k">external</span> <span class="k">view</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint256</span><span class="p">);</span>
-    <span class="k">function</span> <span class="nb">transfer</span><span class="p">(</span><span class="kt">address</span> <span class="n">recipient</span><span class="p">,</span> <span class="kt">uint256</span> <span class="n">amount</span><span class="p">)</span> <span class="k">external</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">bool</span><span class="p">);</span>
-    <span class="k">function</span> <span class="n">allowance</span><span class="p">(</span><span class="kt">address</span> <span class="n">owner</span><span class="p">,</span> <span class="kt">address</span> <span class="n">spender</span><span class="p">)</span> <span class="k">external</span> <span class="k">view</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint256</span><span class="p">);</span>
-    <span class="k">function</span> <span class="n">approve</span><span class="p">(</span><span class="kt">address</span> <span class="n">spender</span><span class="p">,</span> <span class="kt">uint256</span> <span class="n">amount</span><span class="p">)</span> <span class="k">external</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">bool</span><span class="p">);</span>
-    <span class="k">function</span> <span class="n">transferFrom</span><span class="p">(</span><span class="kt">address</span> <span class="n">sender</span><span class="p">,</span> <span class="kt">address</span> <span class="n">recipient</span><span class="p">,</span> <span class="kt">uint256</span> <span class="n">amount</span><span class="p">)</span> <span class="k">external</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">bool</span><span class="p">);</span>
-    <span class="k">function</span> <span class="n">increaseAllowance</span><span class="p">(</span><span class="kt">address</span> <span class="n">spender</span><span class="p">,</span> <span class="kt">uint256</span> <span class="n">addedValue</span><span class="p">);</span>
-    <span class="k">function</span> <span class="n">decreaseAllowance</span><span class="p">(</span><span class="kt">address</span> <span class="n">spender</span><span class="p">,</span> <span class="kt">uint256</span> <span class="n">subtractedValue</span><span class="p">);</span>
-<span class="p">}</span>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[ WIP ] -&gt; [ PROPOSED ] -&gt; [ APPROVED ] -&gt; [ IMPLEMENTED ] X [ REJECTED ]
 </code></pre></div></div>
 
-<h2 id="rationale">Rationale</h2>
-<p>Many different kinds of distribution have been attempted by projects. One thing that’s clear is the limited effectiveness of airdrops. Historically, most airdrops have been either ignored by recipients or immediately sold.</p>
+<p>Each status change is requested by the AIP author and reviewed by the AIP editors. Use a pull request to update the status. Please include a link to where people should continue discussing your AIP. The AIP editors will process these requests as per the conditions below.</p>
 
-<p>Direct lockups would be the most straightforward, where a user locks up X tokens for Y time to receive X+Z tokens in return. This structure is easy to understand, but since we want to unlock in blocks there would be different tranches for tokens as they unlock through time. We’d end up having multiple concurrent airdrop contracts users interact with, which is confusing. Also, since there’s a limited number of total tokens to unlock, there’s a limited number of tokens that can be staked, so a single whale could conceivably take all the slots.</p>
-
-<p>Projects are still free to place educational material on the frontend to teach users about the application before they interact with the underlying system. If done properly, this solves a second problem with airdrops related to user education.</p>
-
-<h2 id="implementation">Implementation</h2>
-
-<p>The front-end is open to change during development, but the basic information to expose is:</p>
 <ul>
-  <li>Number of AMPL staked by user</li>
-  <li>Size of AMPL locked and unlocked pools</li>
-  <li>Current fractional ownership of unlock pool</li>
-  <li>“Stake” and “Unstake” functions</li>
-  <li>Unlock schedule</li>
+  <li><strong>Work in progress (WIP)</strong> – Once the champion has asked the Ampleforth community whether an idea has any chance of support, they will write a draft AIP as a <a href="https://github.com/ampleforth/AIPs/pulls">pull request</a>. Consider including an implementation if this will aid people in studying the AIP.</li>
+  <li><strong>Proposed</strong> If agreeable, AIP editor will assign the AIP a number (generally the issue or PR number related to the AIP) and merge your pull request. The AIP editor will not unreasonably deny an AIP. Proposed AIPs will be discussed on governance calls and in Discord. If there is a reasonable level of consensus around the change on the governance call the change will be moved to approved. If the change is contentious a vote of token holders may be held to resolve the issue or approval may be delayed until consensus is reached.</li>
+  <li>
+    <p><strong>Approved</strong> – This AIP has passed community governance and is now being prioritised for development.</p>
+  </li>
+  <li>
+    <p><strong>Implemented</strong> – This AIP has been implemented and deployed to mainnet.</p>
+  </li>
+  <li><strong>Rejected</strong> – This AIP has failed to reach community consensus.</li>
 </ul>
 
-<p>Smart contracts will reside in https://github.com/ampleforth/token-geyser</p>
+<h2 id="what-belongs-in-a-successful-aip">What belongs in a successful AIP?</h2>
+
+<p>Each AIP or ACCP should have the following parts:</p>
+
+<ul>
+  <li>Preamble - RFC 822 style headers containing metadata about the AIP, including the AIP number, a short descriptive title (limited to a maximum of 44 characters), and the author details.</li>
+  <li>Simple Summary - “If you can’t explain it simply, you don’t understand it well enough.” Provide a simplified and layman-accessible explanation of the AIP.</li>
+  <li>Abstract - a short (~200 word) description of the technical issue being addressed.</li>
+  <li>Motivation (*optional) - The motivation is critical for AIPs that want to change Ampleforth. It should clearly explain why the existing specification is inadequate to address the problem that the AIP solves. AIP submissions without sufficient motivation may be rejected outright.</li>
+  <li>Specification - The technical specification should describe the syntax and semantics of any new feature.</li>
+  <li>Rationale - The rationale fleshes out the specification by describing what motivated the design and why particular design decisions were made. It should describe alternate designs that were considered and related work, e.g. how the feature is supported in other languages. The rationale may also provide evidence of consensus within the community, and should discuss important objections or concerns raised during discussion.</li>
+  <li>Test Cases - Test cases may be added during the implementation phase but are required before implementation.</li>
+  <li>Copyright Waiver - All AIPs must be in the public domain. See the bottom of this AIP for an example copyright waiver.</li>
+</ul>
+
+<h2 id="aip-formats-and-templates">AIP Formats and Templates</h2>
+
+<p>AIPs should be written in <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">markdown</a> format.
+Image files should be included in a subdirectory of the <code class="language-plaintext highlighter-rouge">assets</code> folder for that AIP as follows: <code class="language-plaintext highlighter-rouge">assets/aip-X</code> (for aip <strong>X</strong>). When linking to an image in the AIP, use relative links such as <code class="language-plaintext highlighter-rouge">../assets/aip-X/image.png</code>.</p>
+
+<h2 id="aip-header-preamble">AIP Header Preamble</h2>
+
+<p>Each AIP must begin with an <a href="https://www.ietf.org/rfc/rfc822.txt">RFC 822</a> style header preamble, preceded and followed by three hyphens (<code class="language-plaintext highlighter-rouge">---</code>). This header is also termed <a href="https://jekyllrb.com/docs/front-matter/">“front matter” by Jekyll</a>. The headers must appear in the following order. Headers marked with “*” are optional and are described below. All other headers are required.</p>
+
+<p><code class="language-plaintext highlighter-rouge"> aip:</code> <AIP number=""> (this is determined by the AIP editor)</AIP></p>
+
+<p><code class="language-plaintext highlighter-rouge"> title:</code> <AIP title=""></AIP></p>
+
+<p><code class="language-plaintext highlighter-rouge"> author:</code> &lt;a list of the author’s or authors’ name(s) and/or username(s), or name(s) and email(s). Details are below.&gt;</p>
+
+<p><code class="language-plaintext highlighter-rouge"> * discussions-to:</code> &lt;a url pointing to the official github issue or discussion thread&gt;</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge"> status:</code> &lt; WIP</td>
+      <td>PROPOSED</td>
+      <td>APPROVED</td>
+      <td>IMPLEMENTED &gt;</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><code class="language-plaintext highlighter-rouge"> created:</code> <date created="" on=""></date></p>
+
+<p><code class="language-plaintext highlighter-rouge"> * updated:</code> <comma separated="" list="" of="" dates=""></comma></p>
+
+<p><code class="language-plaintext highlighter-rouge"> * requires:</code> &lt;AIP number(s)&gt;</p>
+
+<p><code class="language-plaintext highlighter-rouge"> * resolution:</code> &lt;a url pointing to the resolution of this AIP&gt;</p>
+
+<p>Headers that permit lists must separate elements with commas.</p>
+
+<p>Headers requiring dates will always do so in the format of ISO 8601 (yyyy-mm-dd).</p>
+
+<h4 id="author-header"><code class="language-plaintext highlighter-rouge">author</code> header</h4>
+
+<p>The <code class="language-plaintext highlighter-rouge">author</code> header optionally lists the names, email addresses or usernames of the authors/owners of the AIP. Those who prefer anonymity may use a username only, or a first name and a username. The format of the author header value must be:</p>
+
+<blockquote>
+  <p>Random J. User &lt;address@dom.ain&gt;</p>
+</blockquote>
+
+<p>or</p>
+
+<blockquote>
+  <p>Random J. User (@username)</p>
+</blockquote>
+
+<p>if the email address or GitHub username is included, and</p>
+
+<blockquote>
+  <p>Random J. User</p>
+</blockquote>
+
+<p>if the email address is not given.</p>
+
+<h4 id="discussions-to-header"><code class="language-plaintext highlighter-rouge">discussions-to</code> header</h4>
+
+<p>While an AIP is in WIP or Proposed status, a <code class="language-plaintext highlighter-rouge">discussions-to</code> header will indicate the URL at <a href="https://ampltalk.org/">ampltalk.org</a> where the AIP is being discussed.</p>
+
+<h4 id="created-header"><code class="language-plaintext highlighter-rouge">created</code> header</h4>
+
+<p>The <code class="language-plaintext highlighter-rouge">created</code> header records the date that the AIP was assigned a number. Both headers should be in yyyy-mm-dd format, e.g. 2001-08-14.</p>
+
+<h4 id="updated-header"><code class="language-plaintext highlighter-rouge">updated</code> header</h4>
+
+<p>The <code class="language-plaintext highlighter-rouge">updated</code> header records the date(s) when the AIP was updated with “substantial” changes. This header is only valid for AIPs of Draft and Active status.</p>
+
+<h4 id="requires-header"><code class="language-plaintext highlighter-rouge">requires</code> header</h4>
+
+<p>AIPs may have a <code class="language-plaintext highlighter-rouge">requires</code> header, indicating the AIP numbers that this AIP depends on.</p>
+
+<h2 id="auxiliary-files">Auxiliary Files</h2>
+
+<p>AIPs may include auxiliary files such as diagrams. Such files must be named AIP-XXXX-Y.ext, where “XXXX” is the AIP number, “Y” is a serial number (starting at 1), and “ext” is replaced by the actual file extension (e.g. “png”).</p>
+
+<h2 id="aip-editors">AIP Editors</h2>
+
+<p>The current AIP editors are</p>
+
+<p><code class="language-plaintext highlighter-rouge"> * Ahmed Naguib Aly (@ahnaguib)</code></p>
+
+<p><code class="language-plaintext highlighter-rouge"> * Nithin Krishna (@nithinkrishna)</code></p>
+
+<p><code class="language-plaintext highlighter-rouge"> * Brandon Iles (@brandoniles)</code></p>
+
+<h2 id="aip-editor-responsibilities">AIP Editor Responsibilities</h2>
+
+<p>For each new AIP that comes in, an editor does the following:</p>
+
+<ul>
+  <li>Read the AIP to check if it is ready: sound and complete. The ideas must make technical sense, even if they don’t seem likely to get to final status.</li>
+  <li>The title should accurately describe the content.</li>
+  <li>Check the AIP for language (spelling, grammar, sentence structure, etc.), markup (Github flavored Markdown), code style</li>
+</ul>
+
+<p>If the AIP isn’t ready, the editor will send it back to the author for revision, with specific instructions.</p>
+
+<p>Once the AIP is ready for the repository, the AIP editor will:</p>
+
+<ul>
+  <li>
+    <p>Assign an AIP number (generally the PR number or, if preferred by the author, the Issue # if there was discussion in the Issues section of this repository about this AIP)</p>
+  </li>
+  <li>
+    <p>Merge the corresponding pull request</p>
+  </li>
+  <li>
+    <p>Send a message back to the AIP author with the next step.</p>
+  </li>
+</ul>
+
+<p>Many AIPs are written and maintained by developers with write access to the Ampleforth codebase. The AIP editors monitor AIP changes, and correct any structure, grammar, spelling, or markup mistakes we see.</p>
+
+<p>The editors don’t pass judgment on AIPs. We merely do the administrative &amp; editorial part.</p>
+
+<h2 id="history">History</h2>
+
+<p>The AIP document was derived heavily from the EIP Ethereum Improvement Proposal document in many places text was simply copied and modified. Any comments about the AIP document should be directed to the AIP editors. The history of the EIP is quoted below from the EIP document  for context:</p>
+
+<ul>
+  <li><em>“This document (EIP) was derived heavily from <a href="https://github.com/bitcoin/bips">Bitcoin’s BIP-0001</a> written by Amir Taaki which in turn was derived from <a href="https://www.python.org/dev/peps/">Python’s PEP-0001</a>. In many places text was simply copied and modified. Although the PEP-0001 text was written by Barry Warsaw, Jeremy Hylton, and David Goodger, they are not responsible for its use…”</em> *</li>
+</ul>
+
+<p>Oct 12, 2020: AIP 1 has been drafted and submitted as a PR.</p>
+
+<p>See <a href="https://github.com/ampleforth/">the revision history for further details</a>, which is also available by clicking on the History button in the top right of the AIP.</p>
+
+<h3 id="bibliography">Bibliography</h3>
 
 <h2 id="copyright">Copyright</h2>
+
 <p>Copyright and related rights waived via <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>.</p>
 
 

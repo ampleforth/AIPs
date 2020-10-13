@@ -57,7 +57,7 @@ exclude:
   - vendor/cache/
   - vendor/gems/
   - vendor/ruby/
-  - accp-x.md
+  - accp-X.md
   - aip-X.md
 
 # Exclude from processing.
