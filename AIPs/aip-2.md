@@ -1,5 +1,5 @@
 ---
-aip: 1
+aip: 2
 title: Continuous Vesting Token Distribution
 status: Implemented
 author: Brandon Iles <brandon@ampleforth.org>, Nithin Ottilingam <nithin@ampleforth.org>

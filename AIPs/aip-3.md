@@ -1,5 +1,5 @@
 ---
-aip: 2
+aip: 3
 title: Disallow Contracts from calling Rebase
 status: Implemented
 author: Brandon Iles <brandon@ampleforth.org>, Nithin Ottilingam <nithin@ampleforth.org>, Ahmed Naguib Aly <naguib@ampleforth.org>

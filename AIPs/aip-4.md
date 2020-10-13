@@ -1,5 +1,5 @@
 ---
-aip: 3
+aip: 4
 title: Remove Pause Functions from Token and Policy
 status: Implemented
 author: Brandon Iles <brandon@ampleforth.org>, Nithin Ottilingam <nithin@ampleforth.org>, Ahmed Naguib Aly <naguib@ampleforth.org>
