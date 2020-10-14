@@ -26,8 +26,8 @@ At present, the Ampleforth supply policy takes a **`24HR_VWAP`** as its input an
 
 ### 1. Price ranges are asymmetric: 
 
-- Expansion occurs in the price range of `[1, ∞]` 
-- Contraction occurs in the range of `[0, 1]`
+- Expansion occurs in the price range of [1, ∞] 
+- Contraction occurs in the range of [0, 1]
 
 ### 2. Geometric expansion and contraction are “absolutely” different:
 
