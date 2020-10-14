@@ -79,6 +79,14 @@ x = normalized price deviation
 
 <img src="https://assets.fragments.org/aip/sigmoid_basic.png" alt="drawing" width="380"/>
 
+It also features shaping parameters that determine the location of lower / upper horizontal asymptotes, and the slope of the curve around its origin.
+
+```
+L = lower asymptote
+U = upper asymptote
+B = growth rate
+```
+
 #### 2. "Balanced" Sigmoid
 
 
