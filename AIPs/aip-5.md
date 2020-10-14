@@ -62,15 +62,19 @@ When rates of change happen more aggressively near the origin, the network can c
 
 Below we'll quickly review the basic sigmoid, and then explain the rationale for the "balanced" sigmoid being proposed.
 
-#### Basic Sigmoid
+#### 1. Basic Sigmoid
+
+The basic sigmoid takes the following shape: 
 
 <Chart> 
-  
-Equation and Parameters
 
-<img src="https://assets.fragments.org/aip/sigmoid_basic.png" alt="drawing" width="70%"/>
+Note the presence of horizontal asymptotes and maximum slope near the origin.
 
-#### Balanced Sigmoid
+1. Equation and Parameters
+
+<img src="https://assets.fragments.org/aip/sigmoid_basic.png" alt="drawing" width="380"/>
+
+#### 2. Balanced Sigmoid
 
 
 ### Technical Specification
