@@ -49,7 +49,7 @@ The key takeaway here is that expansion often rapidly outpaces contraction, resu
 
 ### Overview
 <!--This is a high level overview of *how* the AIP will solve the problem. The overview should clearly describe how the new feature will be implemented.-->
-The smart contract upgrade replaces the current linear supply policy with "balanced" sigmoid-shaped curve that: 
+The smart contract upgrade replaces the current linear supply policy with "mirrored" sigmoid-shaped curve that: 
 
 #### 1. Limits rates of change away from the origin via horizontal asymptotes. 
 This eliminates the [0, 1] vs [1, ∞] range problem of heavy-tailed markets. 
@@ -60,7 +60,7 @@ When rates of change happen more aggressively near the origin, the network can c
 ### Rationale
 <!--This is where you explain the reasoning behind how you propose to solve the problem. Why did you propose to implement the change in this way, what were the considerations and trade-offs. The rationale fleshes out what motivated the design and why particular design decisions were made. It should describe alternate designs that were considered and related work. The rationale may also provide evidence of consensus within the community, and should discuss important objections or concerns raised during discussion.-->
 
-Below we'll quickly review the basic sigmoid, and then explain the rationale for the "balanced" sigmoid being proposed.
+Below we'll quickly review the basic sigmoid, and then explain the rationale for the "mirrored" sigmoid being proposed.
 
 #### 1. Basic Sigmoid
 
@@ -87,8 +87,14 @@ U = upper asymptote
 B = growth rate
 ```
 
-#### 2. "Balanced" Sigmoid
+#### 2. "Mirrored" Sigmoid
 
+Although the basic Sigmoid is a good start, we can improve upon it by scaling supply changes such that they “mirror” one another. More specifically:
+
+* If a demand-change-factor of `A` corresponds with supply-scale-factor `B`.
+* We want to enforce that a demand-change-factor of `1/A` corresponds with a supply-scale-factor of `1/B`. 
+
+This way, supply reactions to equal and opposite relative changes in demand, always execute in the same amount of time. To help explain, let’s walk through the simple example of an alternating series. 
 
 ### Technical Specification
 <!--The technical specification should outline the public API of the changes proposed. That is, changes to any of the interfaces Ampleforth currently exposes or the creations of new ones.-->
