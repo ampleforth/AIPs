@@ -64,17 +64,17 @@ Below we'll quickly review the basic sigmoid, and then explain the rationale for
 
 #### 1. Basic Sigmoid
 
-The basic sigmoid takes the following shape: 
+The basic sigmoid takes the following shape, note the presence of horizontal asymptotes and maximum slope near the origin:
 
-<Chart> 
+... insert chart here ...
+  
+Equation and Parameters
 
-Note the presence of horizontal asymptotes and maximum slope near the origin.
-
-1. Equation and Parameters
+This equation accepts as its input, x, the normalized difference between VWAP and the price target. It returns, Y, the corresponding supply-change percentage.
 
 <img src="https://assets.fragments.org/aip/sigmoid_basic.png" alt="drawing" width="380"/>
 
-#### 2. Balanced Sigmoid
+#### 2. "Balanced" Sigmoid
 
 
 ### Technical Specification
