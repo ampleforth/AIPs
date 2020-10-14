@@ -10,18 +10,19 @@ requires (*optional): N/A
 
 ## Simple Summary
 <!--"If you can't explain it simply, you don't understand it well enough." Simply describe the outcome the proposed changes intends to achieve. This should be non-technical and accessible to a casual community member.-->
-<Write this after we're done>
+The current linear supply policy predisposes the Ampleforth network to short periods of rapid expansion and long periods of gradual contraction. This document proposes an update to the Ampleforth supply policy that would:
+
+1. Balance out the time spent between expansion and contraction
+2. Converge on the price-target more quickly for minor deviations
 
 ## Abstract
 <!--A short (~200 word) description of the proposed change, the abstract should clearly describe the proposed change. This is what *will* be done if the AIP is implemented, not *why* it should be done or *how* it will be done. If the AIP proposes deploying a new contract, write, "we propose to deploy a new contract that will do x".-->
-The current linear supply policy predisposes the Ampleforth network to short periods of rapid expansion and long periods of gradual contraction. This document proposes an update to the Ampleforth supply policy that would:
-1. Balance out the time spent between expansion and contraction
-2. Converge on the price-target more quickly for minor deviations
+We propose to deploy a new contract that replaces the current linear supply policy, with a sigmoid shaped supply policy. 
 
 ## Motivation
 <!--This is the problem statement. This is the *why* of the AIP. It should clearly explain *why* the current state of the protocol is inadequate.  It is critical that you explain *why* the change is needed, if the AIP proposes changing how something is calculated, you must address *why* the current calculation is innaccurate or wrong. This is not the place to describe how the AIP will address the issue!-->
 
-At present, the Ampleforth supply policy takes a `24HR_VWAP` as its input and offsets price differences of `X%` with supply changes of `(X%/rebase_reaction_lag)`. Two things to note about this. 
+At present, the Ampleforth supply policy takes a `24HR_VWAP` as its input and offsets price differences of `X%` with supply changes of `( X% / rebase_reaction_lag )`. Two things to note about this. 
 
 ### 1. Price ranges are asymmetric: 
 
@@ -36,9 +37,7 @@ As a result, the rate of expansion can—and often does—vastly outpace the rat
 
 - When price is held constant below the target (contraction) the relative change in supply is constant, but the absolute change in supply shrinks geometrically. This means the change in absolute potential sell pressure removed (as measured in dollars) shrinks geometrically. 
 
-The key takeaway here is that expansion often rapidly outpaces contraction, resulting in prolonged corrective periods. In other words: 
-
-- If an `absolute_potential_sell_pressure` of `$X` is introduced over the course of `t` days via expansion. It will likely take >> `t` days to remove the equivalent `$X` of `absolute_potential_sell_pressure`.
+The key takeaway here is that expansion often rapidly outpaces contraction, resulting in prolonged corrective periods. In other words, if an `absolute_potential_sell_pressure` of `$X` is introduced over the course of `t` days via expansion, it will likely take >> `t` days to remove the equivalent `$X` of `absolute_potential_sell_pressure` via contraction.
 
 
 ## Specification
