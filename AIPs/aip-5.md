@@ -51,11 +51,10 @@ The key takeaway here is that expansion often rapidly outpaces contraction, resu
 <!--This is a high level overview of *how* the AIP will solve the problem. The overview should clearly describe how the new feature will be implemented.-->
 The smart contract upgrade replaces the current linear supply policy with "mirrored" sigmoid-shaped curve that: 
 
-#### 1. Limits rates of change away from the origin via horizontal asymptotes. 
-This eliminates the [0, 1] vs [1, ∞] range problem of heavy-tailed markets. 
+* Asymptotes horizontally away from the origin. 
+* Steepens rates of change near the origin. 
 
-#### 2. Steepens rates of change near the origin. 
-When rates of change happen more aggressively near the origin, the network can converge on the price-target more quickly for minor deviations.
+Horizontal asymptotes eliminate the [0, 1] vs [1, ∞] range problem of heavy-tailed markets. Moreover, when rates of change happen more aggressively near the origin, the network can converge on the price-target more quickly for minor deviations.
 
 ### Rationale
 <!--This is where you explain the reasoning behind how you propose to solve the problem. Why did you propose to implement the change in this way, what were the considerations and trade-offs. The rationale fleshes out what motivated the design and why particular design decisions were made. It should describe alternate designs that were considered and related work. The rationale may also provide evidence of consensus within the community, and should discuss important objections or concerns raised during discussion.-->
