@@ -29,15 +29,13 @@ At present, the Ampleforth supply policy takes a `24HR_VWAP` as its input and of
 - Expansion occurs in the price range of [1, ∞] 
 - Contraction occurs in the range of [0, 1]
 
-As a result, the rate of expansion can—and often does—vastly outpace the rate of contraction. 
-
 ### 2. Geometric expansion and contraction are “absolutely” different:
 
 - When price is held constant above the target (expansion) the relative change in supply is constant, but the absolute change in supply grows geometrically. This means the change in absolute potential sell pressure (as measured in dollars) grows geometrically. 
 
 - When price is held constant below the target (contraction) the relative change in supply is constant, but the absolute change in supply shrinks geometrically. This means the change in absolute potential sell pressure removed (as measured in dollars) shrinks geometrically. 
 
-The key takeaway here is that expansion often rapidly outpaces contraction, resulting in prolonged corrective periods. In other words, if an `absolute_potential_sell_pressure` of `$X` is introduced over the course of `t` days via expansion, it will likely take >> `t` days to remove the equivalent `$X` of `absolute_potential_sell_pressure` via contraction.
+The key takeaway here is that expansion often rapidly outpaces contraction, resulting in prolonged corrective periods. 
 
 
 ## Specification
