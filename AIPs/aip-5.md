@@ -106,17 +106,32 @@ In this case we want the magnitude of supply changes upon expansion and contract
 **_"Mirroring" Solution_**
 
 To accomplish this, let’s observe that:
-* <code>For every scaling factor **S**, there exists an inverse scaling factor **S<sup>-1</sup>** such that **S * S<sup>-1</sup> = 1**</code>
+* <code>For every scaling factor S, there exists an inverse scaling factor S<sup>-1</sup> such that S * S<sup>-1</sup> = 1</code>
 
 And let’s also observe that:
 
-* <code>For every price **P** there exists an inverse price **P<sup>-1</sup>** such that **P * P<sup>-1</sup> = 1**</code>
+* <code>For every price P there exists an inverse price P<sup>-1</sup> such that P * P<sup>-1</sup> = 1</code>
 
 We can enforce the constraint of “mirrored” supply-change-factors by computing contraction supply-change-factors as the inverse of expansion supply-change-factors. In other words: 
 
 <img src="https://assets.fragments.org/aip/mirroring.png" alt="drawing" width="380"/>
 
 This way, for every price pair `{P, P-1}` the corresponding supply-change-factor pair `{S, S-1}` upholds the constraint that  `S * S-1 = 1`.
+
+... insert chart here ...
+
+**_Equation and Parameters_**
+
+Recall that the basic sigmoid equation accepts a price deviation and returns a supply change percentage. Combining it with the mirroring equation gives the output: 
+
+<img src="https://assets.fragments.org/aip/sigmoid_mirrored.png" alt="drawing" width="380"/>
+
+#### 3. "Mirrored" Sigmoid vs Linear
+
+We expect that the “mirrored” sigmoid supply curve will cause the Ampleforth network to  spend a more balanced amount of time between expansion and contraction, and avert prolonged contraction periods. 
+
+... insert chart here ...
+
 
 ### Technical Specification
 <!--The technical specification should outline the public API of the changes proposed. That is, changes to any of the interfaces Ampleforth currently exposes or the creations of new ones.-->
