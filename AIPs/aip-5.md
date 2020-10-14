@@ -106,11 +106,11 @@ In this case we want the magnitude of supply changes upon expansion and contract
 **_"Mirroring" Solution_**
 
 To accomplish this, let’s observe that:
-* For every scaling factor **S**, there exists an inverse scaling factor **S<sup>-1</sup>** such that **S * S<sup>-1</sup> = 1**
+* <code>For every scaling factor **S**, there exists an inverse scaling factor **S<sup>-1</sup>** such that **S * S<sup>-1</sup> = 1**</code>
 
 And let’s also observe that:
 
-* For every price **P** there exists an inverse price **P<sup>-1</sup>** such that **P * P<sup>-1</sup> = 1**
+* <code>For every price **P** there exists an inverse price **P<sup>-1</sup>** such that **P * P<sup>-1</sup> = 1**</code>
 
 We can enforce the constraint of “mirrored” supply-change-factors by computing contraction supply-change-factors as the inverse of expansion supply-change-factors. In other words: 
 
