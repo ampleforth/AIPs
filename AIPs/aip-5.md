@@ -2,7 +2,7 @@
 aip: 5
 title: Sigmoid Supply Policy
 author: Evan Kuo (@statuskuo), Ahmed Naguib Aly (@naguib)
-discussions-to: <Link to Discord Channel, Forum post, or Github Issue>
+discussions-to:
 status: WIP
 created: 2020-10-13
 requires (*optional): N/A
