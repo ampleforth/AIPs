@@ -49,7 +49,7 @@ The key takeaway here is that expansion often rapidly outpaces contraction, resu
 
 ### 4.1. Overview
 <!--This is a high level overview of *how* the AIP will solve the problem. The overview should clearly describe how the new feature will be implemented.-->
-The smart contract upgrade replaces the current linear supply policy with "mirrored" sigmoid-shaped curve that: 
+The smart contract upgrade replaces the current linear supply policy with a "mirrored" sigmoid-shaped curve that: 
 
 * Asymptotes horizontally away from the origin. 
 * Steepens rates of change near the origin. 
