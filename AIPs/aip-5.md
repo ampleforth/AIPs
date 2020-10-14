@@ -22,7 +22,7 @@ We propose to deploy a new contract that replaces the current linear supply poli
 ## Motivation
 <!--This is the problem statement. This is the *why* of the AIP. It should clearly explain *why* the current state of the protocol is inadequate.  It is critical that you explain *why* the change is needed, if the AIP proposes changing how something is calculated, you must address *why* the current calculation is innaccurate or wrong. This is not the place to describe how the AIP will address the issue!-->
 
-At present, the Ampleforth supply policy takes a **`24HR_VWAP`** as its input and offsets price differences of **`X%`** with supply changes of **`(X%/rebase_reaction_lag)`**. Two things to note about this. 
+At present, the Ampleforth supply policy takes a `VWAP` as its input and offsets price differences of `X%` with supply changes of `(X%/rebase_reaction_lag)`. Two things to note about this. 
 
 #### 1. Price ranges are asymmetric: 
 
@@ -70,7 +70,7 @@ The basic sigmoid takes the following shape, note the presence of horizontal asy
   
 **_Equation and Parameters_**
 
-This equation accepts as its input, **x**, the normalized difference between `VWAP` and the `price_target`. It returns, **Y**, the corresponding supply-change percentage.
+This equation accepts as its input, `x`, the normalized difference between `VWAP` and the `price_target`. It returns, `Y`, the corresponding supply-change percentage.
 
 <img src="https://assets.fragments.org/aip/sigmoid_basic.png" alt="drawing" width="380"/>
 
