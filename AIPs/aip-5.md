@@ -60,10 +60,9 @@ When rates of change happen more aggressively near the origin, the network can c
 ### Rationale
 <!--This is where you explain the reasoning behind how you propose to solve the problem. Why did you propose to implement the change in this way, what were the considerations and trade-offs. The rationale fleshes out what motivated the design and why particular design decisions were made. It should describe alternate designs that were considered and related work. The rationale may also provide evidence of consensus within the community, and should discuss important objections or concerns raised during discussion.-->
 
-Below we'll quickly review the basic sigmoid, and then explain the rationale for the "mirrored" sigmoid being proposed.
+Below we'll quickly review the basic sigmoid, and then explain the rationale for the "mirrored" sigmoid proposed.
 
 #### 1. Basic Sigmoid
-
 The basic sigmoid takes the following shape, note the presence of horizontal asymptotes and maximum slope near the origin:
 
 ... insert chart here ...
@@ -79,7 +78,7 @@ x = normalized price deviation
 
 <img src="https://assets.fragments.org/aip/sigmoid_basic.png" alt="drawing" width="380"/>
 
-It also features shaping parameters that determine the location of lower / upper horizontal asymptotes, and the slope of the curve around its origin.
+It also has shaping parameters that determine the location of lower / upper horizontal asymptotes, and the slope of the curve around its origin.
 
 ```
 L = lower asymptote
@@ -95,6 +94,29 @@ Although the basic Sigmoid is a good start, we can improve upon it by scaling su
 * We want to enforce that a demand-change-factor of `1/A` corresponds with a supply-scale-factor of `1/B`. 
 
 This way, supply reactions to equal and opposite relative changes in demand, always execute in the same amount of time. To help explain, let’s walk through the simple example of an alternating series. 
+
+**_Alternating Expansion and Contraction Example_**
+
+Imagine Price alternates between $0.5 and $2, every 24hrs, infinitely:
+
+<img src="https://assets.fragments.org/aip/series.png" alt="drawing" width="380"/>
+
+In this case we want the magnitude of supply changes upon expansion and contraction to perfectly offset one another. Otherwise, if the magnitude of supply changes on expansion and contraction differ, there will be supply “drift” in one direction or another and the change in total supply will be unbounded over time.
+
+**_"Mirroring" Solution_**
+
+To accomplish this, let’s observe that:
+* For every scaling factor **S**, there exists an inverse scaling factor **S<sup>-1</sup>** such that **S * S<sup>-1</sup> = 1**
+
+And let’s also observe that:
+
+* For every price **P** there exists an inverse price **P<sup>-1</sup>** such that **P * P<sup>-1</sup> = 1**
+
+We can enforce the constraint of “mirrored” supply-change-factors by computing contraction supply-change-factors as the inverse of expansion supply-change-factors. In other words: 
+
+<img src="https://assets.fragments.org/aip/mirroring.png" alt="drawing" width="380"/>
+
+This way, for every price pair `{P, P-1}` the corresponding supply-change-factor pair `{S, S-1}` upholds the constraint that  `S * S-1 = 1`.
 
 ### Technical Specification
 <!--The technical specification should outline the public API of the changes proposed. That is, changes to any of the interfaces Ampleforth currently exposes or the creations of new ones.-->
