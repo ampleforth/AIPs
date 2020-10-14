@@ -72,6 +72,11 @@ The basic sigmoid takes the following shape, note the presence of horizontal asy
 
 This equation accepts as its input, `x`, the normalized difference between `VWAP` and the `price_target`. It returns, `Y`, the corresponding `supply_change_percentage`.
 
+```
+Y = % supply change
+x = normalized price deviation
+```
+
 <img src="https://assets.fragments.org/aip/sigmoid_basic.png" alt="drawing" width="380"/>
 
 #### 2. "Balanced" Sigmoid
