@@ -21,23 +21,24 @@ The current linear supply policy predisposes the Ampleforth network to short per
 ## Motivation
 <!--This is the problem statement. This is the *why* of the AIP. It should clearly explain *why* the current state of the protocol is inadequate.  It is critical that you explain *why* the change is needed, if the AIP proposes changing how something is calculated, you must address *why* the current calculation is innaccurate or wrong. This is not the place to describe how the AIP will address the issue!-->
 
-At present, the Ampleforth supply policy takes a `24HR_VWAP` as its input and offsets price differences of `X%` with supply changes of `( X% / rebase_reaction_lag )`. Two things to note about this. 
+At present, the Ampleforth supply policy takes a `24HR_VWAP` as its input and offsets price differences of `X%` with supply changes of `(X%/rebase_reaction_lag)`. Two things to note about this. 
 
-Price ranges are asymmetric: 
+### 1. Price ranges are asymmetric: 
 
-Expansion occurs in the price range of [1, ∞] 
-Contraction occurs in the range of [0, 1]
+- Expansion occurs in the price range of [1, ∞] 
+- Contraction occurs in the range of [0, 1]
+
 As a result, the rate of expansion can—and often does—vastly outpace the rate of contraction. 
 
-Geometric expansion and contraction are “absolutely” different:
+### 2. Geometric expansion and contraction are “absolutely” different:
 
-When price is held constant above the target (expansion) the relative change in supply is constant, but the absolute change in supply grows geometrically. This means the change in absolute potential sell pressure (as measured in dollars) grows geometrically. 
+- When price is held constant above the target (expansion) the relative change in supply is constant, but the absolute change in supply grows geometrically. This means the change in absolute potential sell pressure (as measured in dollars) grows geometrically. 
 
-When price is held constant below the target (contraction) the relative change in supply is constant, but the absolute change in supply shrinks geometrically. This means the change in absolute potential sell pressure removed (as measured in dollars) shrinks geometrically. 
+- When price is held constant below the target (contraction) the relative change in supply is constant, but the absolute change in supply shrinks geometrically. This means the change in absolute potential sell pressure removed (as measured in dollars) shrinks geometrically. 
 
 The key takeaway here is that expansion often rapidly outpaces contraction, resulting in prolonged corrective periods. In other words: 
 
-If an absolute_potential_sell_pressure of $X is introduced over the course of t days via expansion. It will likely take >> t days to remove the equivalent $X of absolute_potential_sell_pressure.
+- If an `absolute_potential_sell_pressure` of `$X` is introduced over the course of `t` days via expansion. It will likely take >> `t` days to remove the equivalent `$X` of `absolute_potential_sell_pressure`.
 
 
 ## Specification
