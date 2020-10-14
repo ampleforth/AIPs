@@ -64,7 +64,7 @@ Below we'll quickly review the basic sigmoid, and then explain the rationale for
 #### 1. Basic Sigmoid
 The basic sigmoid takes the following shape, note the presence of horizontal asymptotes and maximum slope near the origin:
 
-... insert chart of basic sigmoid here (x-axis = price, y-axis = supply_change_factor) ...
+// insert chart of basic sigmoid here (x-axis = price, y-axis = supply_change_factor)
   
 **_Equation and Parameters_**
 
@@ -117,7 +117,7 @@ We can enforce the constraint of “mirrored” supply-change-factors by computi
 
 This way, for every price pair `{P, P-1}` the corresponding supply-change-factor pair `{S, S-1}` upholds the constraint that  `S * S-1 = 1`.
 
-... insert chart of mirrored sigmoid here (x-axis = price, y-axis = supply_change_factor) ...
+// insert chart of mirrored sigmoid here (x-axis = price, y-axis = supply_change_factor)
 
 **_Equation and Parameters_**
 
@@ -129,7 +129,7 @@ Recall that the basic sigmoid equation accepts a price deviation and returns a s
 
 We expect that the “mirrored” sigmoid supply curve will cause the Ampleforth network to  spend a more balanced amount of time between expansion and contraction, and avert prolonged contraction periods. 
 
-... insert chart of basic sigmoid + linear here (x-axis = price, y-axis = supply_change_factor) ...
+// insert chart of basic sigmoid + linear here (x-axis = price, y-axis = supply_change_factor)
 
 
 ### Technical Specification
