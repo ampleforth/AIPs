@@ -75,7 +75,7 @@ Y = supply change %
 x = normalized price deviation
 ```
 
-<img src="https://assets.fragments.org/aip/sigmoid_basic.png" alt="drawing" width="380"/>
+<img src="../assets/aip-5/basic_sigmoid_eq.png" alt="drawing" width="380"/>
 
 It also has shaping parameters that determine the location of lower / upper horizontal asymptotes, and the slope of the curve around its origin.
 
@@ -98,7 +98,7 @@ This way, supply reactions to equal and opposite relative changes in demand, alw
 
 Imagine Price alternates between $0.5 and $2, every 24hrs, infinitely:
 
-<img src="https://assets.fragments.org/aip/series.png" alt="drawing" width="380"/>
+<img src="../assets/aip-5/series.png" alt="drawing" width="380"/>
 
 In this case we want the magnitude of supply changes upon expansion and contraction to perfectly offset one another. Otherwise, if the magnitude of supply changes on expansion and contraction differ, there will be supply “drift” in one direction or another and the change in total supply will be unbounded over time.
 
@@ -113,7 +113,7 @@ And let’s also observe that:
 
 We can enforce the constraint of “mirrored” supply-change-factors by computing contraction supply-change-factors as the inverse of expansion supply-change-factors. In other words: 
 
-<img src="https://assets.fragments.org/aip/mirroring.png" alt="drawing" width="380"/>
+<img src="../assets/aip-5/piecewise_eq.png" alt="drawing" width="380"/>
 
 This way, for every price pair <code>{P, P<sup>-1</sup>}</code> the corresponding supply-change-factor pair <code>{S, S<sup>-1</sup>}</code> upholds the constraint that  <code>S * S<sup>-1</sup> = 1</code>.
 
@@ -123,7 +123,7 @@ This way, for every price pair <code>{P, P<sup>-1</sup>}</code> the correspondin
 
 Recall that the basic sigmoid equation accepts a price deviation and returns a supply change percentage. Combining it with the mirroring equation gives the output: 
 
-<img src="https://assets.fragments.org/aip/sigmoid_mirrored.png" alt="drawing" width="380"/>
+<img src="../assets/aip-5/piecewise_sigmoid_eq.png" alt="drawing" width="380"/>
 
 #### 4.2.3. "Mirrored" Sigmoid vs Linear
 
