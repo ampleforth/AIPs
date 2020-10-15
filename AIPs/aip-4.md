@@ -2,7 +2,7 @@
 aip: 4
 title: Remove Pause Functions from Token and Policy
 author: Brandon Iles <brandon@ampleforth.org>, Nithin Ottilingam <nithin@ampleforth.org>, Ahmed Naguib Aly <naguib@ampleforth.org>
-discussions-to: https://ampltalk.org/
+discussions-to: https://discord.gg/6Amxhs4
 status: Implemented
 created: 2020-07-24
 ---

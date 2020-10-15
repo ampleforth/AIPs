@@ -2,7 +2,7 @@
 aip: 1
 title: AIP Purpose and Guidelines
 author: Tom Nash (@morelazers)
-discussions-to: https://discord.gg/mptQ49m
+discussions-to: https://discord.gg/6Amxhs4
 status: Implemented
 created: 2020-09-12
 requires: N/A
@@ -108,7 +108,7 @@ if the email address is not given.
 
 #### `discussions-to` header
 
-While an AIP is in WIP or Proposed status, a `discussions-to` header will indicate the URL at [ampltalk.org](https://ampltalk.org/) where the AIP is being discussed.
+While an AIP is in WIP or Proposed status, a `discussions-to` header will indicate the URL on [Discord](https://discord.gg/6Amxhs4) where the AIP is being discussed.
 
 #### `created` header
 
