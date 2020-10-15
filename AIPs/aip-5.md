@@ -68,7 +68,7 @@ The basic sigmoid takes the following shape, note the presence of horizontal asy
   
 **_Equation and Parameters_**
 
-The basic sigmoid equation accepts as its input, `x`, the normalized difference between `VWAP` and the price target. It returns, `Y`, the corresponding supply change percentage.
+This equation accepts as its input, `x`, the normalized difference between `VWAP` and the price target. It returns, `Y`, the corresponding supply change percentage.
 
 ```
 Y = supply change %
