@@ -135,7 +135,8 @@ We expect that the “mirrored” sigmoid supply curve will cause the Ampleforth
 
 ### 4.3. Technical Specification
 <!--The technical specification should outline the public API of the changes proposed. That is, changes to any of the interfaces Ampleforth currently exposes or the creations of new ones.-->
-TBD
+
+[Currently in progress]
 
 ### 4.4. Test Cases
 <!--Test cases for an implementation are mandatory for AIPs but can be included with the implementation..-->
