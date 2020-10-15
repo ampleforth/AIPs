@@ -94,7 +94,7 @@ Although the basic Sigmoid is a good start, we can improve upon it by scaling su
 
 This way, supply reactions to equal and opposite relative changes in demand, always execute in the same amount of time. To help explain, let’s walk through the simple example of an alternating series. 
 
-**_Alternating Expansion and Contraction Example_**
+**_Alternating Series Example_**
 
 Imagine Price alternates between $0.5 and $2, every 24hrs, infinitely:
 
@@ -102,9 +102,9 @@ Imagine Price alternates between $0.5 and $2, every 24hrs, infinitely:
 
 In this case we want the magnitude of supply changes upon expansion and contraction to perfectly offset one another. Otherwise, if the magnitude of supply changes on expansion and contraction differ, there will be supply “drift” in one direction or another and the change in total supply will be unbounded over time.
 
-**_"Mirroring" Solution_**
+**_The "Mirroring" Solution_**
 
-To accomplish this, let’s observe that:
+To address this, let’s observe that:
 * <code>For every scaling factor S, there exists an inverse scaling factor S<sup>-1</sup> such that S * S<sup>-1</sup> = 1</code>
 
 And let’s also observe that:
