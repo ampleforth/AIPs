@@ -77,7 +77,7 @@ x = normalized price deviation
 
 <img src="../assets/aip-5/basic_sigmoid_eq.png" alt="drawing" width="380"/>
 
-It also has shaping parameters that determine the location of lower / upper horizontal asymptotes, and the slope of the curve around its origin.
+It has shaping parameters that determine: lower asymptote, upper asymptote, and the slope of the curve (ie: growth rate) around its origin.
 
 ```
 L = lower asymptote
