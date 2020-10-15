@@ -65,6 +65,7 @@ Below we'll quickly review the basic sigmoid, and then explain the rationale for
 The basic sigmoid takes the following shape, note the presence of horizontal asymptotes and maximum slope near the origin:
 
 // insert chart of basic sigmoid here (x-axis = price, y-axis = supply_change_factor)
+<img src="../assets/aip-5/basic_sigmoid_chart.png" alt="drawing" width="70%"/>
   
 **_Equation and Parameters_**
 
