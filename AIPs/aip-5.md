@@ -17,7 +17,7 @@ The current linear supply policy predisposes the Ampleforth network to short per
 
 ## 2. Abstract
 <!--A short (~200 word) description of the proposed change, the abstract should clearly describe the proposed change. This is what *will* be done if the AIP is implemented, not *why* it should be done or *how* it will be done. If the AIP proposes deploying a new contract, write, "we propose to deploy a new contract that will do x".-->
-We propose to deploy a new contract that updates the current linear supply policy, with a modified sigmoid-shaped supply policy. 
+We propose to deploy a new contract that updates the current linear supply policy with a modified sigmoid-shaped supply policy. 
 
 ## 3. Motivation
 <!--This is the problem statement. This is the *why* of the AIP. It should clearly explain *why* the current state of the protocol is inadequate.  It is critical that you explain *why* the change is needed, if the AIP proposes changing how something is calculated, you must address *why* the current calculation is innaccurate or wrong. This is not the place to describe how the AIP will address the issue!-->
