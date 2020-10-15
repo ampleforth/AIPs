@@ -2,7 +2,7 @@
 aip: 2
 title: Continuous Vesting Token Distribution
 author: Brandon Iles <brandon@ampleforth.org>, Nithin Ottilingam <nithin@ampleforth.org>
-discussions-to: https://ampltalk.org/
+discussions-to: https://discord.gg/6Amxhs4
 status: Implemented
 created: 2019-09-30
 ---

@@ -3,7 +3,7 @@ accp: 1
 title: ACCP Purpose and Guidelines
 status: Implemented
 author: Tom Nash <@morelazers>
-discussions-to: https://discord.gg/mptQ49m
+discussions-to: https://discord.gg/6Amxhs4
 created: 2020-09-12
 ---
 
@@ -161,7 +161,7 @@ See [the revision history for further details](https://github.com/ampleforth/**)
 
 ### Bibliography
 
-[the Ampleforth Discord]: https://discord.gg/mptQ49m
+[the Ampleforth Discord]: https://discord.gg/6Amxhs4
 [pull request]: https://github.com/Ampleforth/AIPs/pulls
 [markdown]: https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
 [Bitcoin's BIP-0001]: https://github.com/bitcoin/bips
