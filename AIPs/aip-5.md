@@ -104,7 +104,7 @@ In this case we want the magnitude of supply changes upon expansion and contract
 
 **_The "Mirroring" Solution_**
 
-To address this, let’s observe that:
+To address this, let's observe that:
 * <code>For every scaling factor S, there exists an inverse scaling factor S<sup>-1</sup> such that S * S<sup>-1</sup> = 1</code>
 
 And let’s also observe that:
