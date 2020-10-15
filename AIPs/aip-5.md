@@ -117,7 +117,7 @@ We can enforce the constraint of “mirrored” supply-change-factors by computi
 
 This way, for every price pair <code>{P, P<sup>-1</sup>}</code> the corresponding supply-change-factor pair <code>{S, S<sup>-1</sup>}</code> upholds the constraint that  <code>S * S<sup>-1</sup> = 1</code>.
 
-// insert chart of mirrored sigmoid here (x-axis = price, y-axis = supply_change_factor)
+<img src="../assets/aip-5/mirrored_sigmoid_chart.png" alt="drawing" width="380"/>
 
 **_Equation and Parameters_**
 
