@@ -98,7 +98,7 @@ This way, supply reactions to equal and opposite relative changes in demand, alw
 
 Imagine Price alternates between $0.5 and $2, every 24hrs, infinitely:
 
-<img src="../assets/aip-5/series.png" alt="drawing" width="380"/>
+<img src="../assets/aip-5/series.png" alt="drawing" width="320"/>
 
 In this case we want the magnitude of supply changes upon expansion and contraction to perfectly offset one another. Otherwise, if the magnitude of supply changes on expansion and contraction differ, there will be supply “drift” in one direction or another and the change in total supply will be unbounded over time.
 
