@@ -24,7 +24,7 @@ We propose to deploy a new contract that updates the current linear supply polic
 
 At present, the Ampleforth supply policy takes a `VWAP` as its input and offsets price differences of `X%` with supply changes of `(X%/rebase_reaction_lag)`. Two things to note about this. 
 
-#### 3.1. Price ranges are asymmetric: 
+#### 3.1. Price ranges are asymmetric:
 
 - Expansion occurs in the price range of [1, ∞] 
 - Contraction occurs in the range of [0, 1]
