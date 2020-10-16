@@ -65,7 +65,7 @@ Below we'll quickly review the basic sigmoid, and then explain the rationale for
 #### Basic Sigmoid
 The basic sigmoid takes the following shape, note the presence of horizontal asymptotes and maximum slope near the origin:
 
-<img src="../assets/aip-5/basic_sigmoid_plot.png" alt="drawing" width="100%"/>
+<img src="../assets/aip-5/basic_sigmoid_latexchart.png" alt="drawing" width="100%"/>
   
 **_Basic Sigmoid Equation and Parameters_**
 
@@ -118,7 +118,7 @@ We can enforce the constraint of “mirrored” supply-change-factors by computi
 
 This way, for every price pair <code>{P, P<sup>-1</sup>}</code> the corresponding supply-change-factor pair <code>{S, S<sup>-1</sup>}</code> upholds the constraint that  <code>S * S<sup>-1</sup> = 1</code>.
 
-<img src="../assets/aip-5/mirrored_sigmoid_plot.png" alt="drawing" width="100%"/>
+<img src="../assets/aip-5/balanced_sigmoid_latexchart.png" alt="drawing" width="100%"/>
 
 **_Mirrored Sigmoid Equation and Parameters_**
 
@@ -131,7 +131,7 @@ Recall that the basic sigmoid equation accepts a price deviation and returns a s
 We expect that the “mirrored” sigmoid supply curve will cause the Ampleforth network to  spend a more balanced amount of time between expansion and contraction, and avert prolonged contraction periods. 
 
 // insert chart of basic sigmoid + linear here (x-axis = price, y-axis = supply_change_factor)
-<img src="../assets/aip-5/mirrored_and_current_plot.png" alt="drawing" width="100%"/>
+<img src="../assets/aip-5/combined_latexchart.png" alt="drawing" width="100%"/>
 
 
 ### Technical Specification
