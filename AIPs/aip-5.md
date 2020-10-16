@@ -50,7 +50,7 @@ The key takeaway here is that expansion often rapidly outpaces contraction, resu
 
 ### Overview
 <!--This is a high level overview of *how* the AIP will solve the problem. The overview should clearly describe how the new feature will be implemented.-->
-The smart contract upgrade replaces the current linear supply policy with a "mirrored" sigmoid-shaped curve that: 
+The smart contract upgrade replaces the current linear supply policy with a "balanced" sigmoid-shaped curve that: 
 
 * Asymptotes horizontally away from the origin. 
 * Steepens rates of change near the origin. 
@@ -60,7 +60,7 @@ Horizontal asymptotes eliminate the [0, 1] vs [1, ∞] range problem of heavy-ta
 ### Rationale
 <!--This is where you explain the reasoning behind how you propose to solve the problem. Why did you propose to implement the change in this way, what were the considerations and trade-offs. The rationale fleshes out what motivated the design and why particular design decisions were made. It should describe alternate designs that were considered and related work. The rationale may also provide evidence of consensus within the community, and should discuss important objections or concerns raised during discussion.-->
 
-Below we'll quickly review the basic sigmoid, and then explain the rationale for the "mirrored" sigmoid proposed.
+Below we'll quickly review the basic sigmoid, and then explain the rationale for the "balanced" sigmoid proposed.
 
 #### 1. Basic Sigmoid
 The basic sigmoid takes the following shape, note the presence of horizontal asymptotes and maximum slope near the origin:
@@ -86,9 +86,9 @@ U = upper asymptote
 B = growth rate
 ```
 
-#### 2. "Mirrored" Sigmoid
+#### 2. "Balanced" Sigmoid
 
-Although the basic Sigmoid is a good start, we can improve upon it by scaling supply changes such that they “mirror” one another. More specifically:
+Although the basic Sigmoid is a good start, we can improve upon it by scaling supply changes such that they “balance” one another. More specifically:
 
 * If a demand-change-factor of `A` corresponds with supply-scale-factor `B`.
 * We want to enforce that a demand-change-factor of `1/A` corresponds with a supply-scale-factor of `1/B`. 
@@ -103,7 +103,7 @@ Imagine Price alternates between $0.5 and $2, every 24hrs, infinitely:
 
 In this case we want the magnitude of supply changes upon expansion and contraction to perfectly offset one another. Otherwise, if the magnitude of supply changes on expansion and contraction differ, there will be supply “drift” in one direction or another and the change in total supply will be unbounded over time.
 
-**2.2 _The "Mirroring" Solution_**
+**2.2 _The "Balancing" Solution_**
 
 To address this, let's observe that:
 * <code>For every scaling factor S, there exists an inverse scaling factor S<sup>-1</sup> such that S * S<sup>-1</sup> = 1</code>
@@ -112,7 +112,7 @@ And let’s also observe that:
 
 * <code>For every price P there exists an inverse price P<sup>-1</sup> such that P * P<sup>-1</sup> = 1</code>
 
-We can enforce the constraint of “mirrored” supply-change-factors by computing contraction supply-change-factors as the inverse of expansion supply-change-factors. In other words: 
+We can enforce the constraint of “balanced” supply-change-factors by computing contraction supply-change-factors as the inverse of expansion supply-change-factors. In other words: 
 
 <img src="../assets/aip-5/piecewise_eq.png" alt="drawing" width="380"/>
 
@@ -120,17 +120,16 @@ This way, for every price pair <code>{P, P<sup>-1</sup>}</code> the correspondin
 
 <img src="../assets/aip-5/balanced_sigmoid_latexchart.png" alt="drawing" width="100%"/>
 
-**2.3 _Mirrored Sigmoid Equation and Parameters_**
+**2.3 _Balanced Sigmoid Equation and Parameters_**
 
 Recall that the basic sigmoid equation accepts a price deviation and returns a supply change percentage. Combining it with the mirroring equation gives the output: 
 
 <img src="../assets/aip-5/piecewise_sigmoid_eq.png" alt="drawing" width="380"/>
 
-#### 3. "Mirrored" Sigmoid vs Linear
+#### 3. "Balacned" Sigmoid vs Linear
 
-We expect that the “mirrored” sigmoid supply curve will cause the Ampleforth network to  spend a more balanced amount of time between expansion and contraction, and avert prolonged contraction periods. 
+We expect that the “balanced” sigmoid supply curve will cause the Ampleforth network to  spend a more balanced amount of time between expansion and contraction, and avert prolonged contraction periods. 
 
-// insert chart of basic sigmoid + linear here (x-axis = price, y-axis = supply_change_factor)
 <img src="../assets/aip-5/combined_latexchart.png" alt="drawing" width="100%"/>
 
 
