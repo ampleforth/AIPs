@@ -67,7 +67,7 @@ The basic sigmoid takes the following shape, note the presence of horizontal asy
 
 <img src="../assets/aip-5/basic_sigmoid_plot.png" alt="drawing" width="100%"/>
   
-**_Equation and Parameters_**
+**_Basic Sigmoid Equation and Parameters_**
 
 This equation accepts as its input, `x`, the normalized difference between `VWAP` and the price target. It returns, `Y`, the corresponding supply change percentage.
 
@@ -120,7 +120,7 @@ This way, for every price pair <code>{P, P<sup>-1</sup>}</code> the correspondin
 
 <img src="../assets/aip-5/mirrored_sigmoid_plot.png" alt="drawing" width="100%"/>
 
-**_Equation and Parameters_**
+**_Mirrored Sigmoid Equation and Parameters_**
 
 Recall that the basic sigmoid equation accepts a price deviation and returns a supply change percentage. Combining it with the mirroring equation gives the output: 
 
