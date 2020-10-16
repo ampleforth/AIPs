@@ -140,7 +140,7 @@ We expect that the “balanced” sigmoid supply curve will cause the Ampleforth
 
 ### Test Cases
 <!--Test cases for an implementation are mandatory for AIPs but can be included with the implementation..-->
-TBD
+[Currently in progress]
 
 ## Copyright
 Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
