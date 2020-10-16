@@ -76,7 +76,7 @@ Y = supply change %
 x = normalized price deviation
 ```
 
-<img src="../assets/aip-5/basic_sigmoid_eq.png" alt="drawing" width="380"/>
+<img src="../assets/aip-5/basic_sigmoid_eq_2.png" alt="drawing" width="380"/>
 
 It has shaping parameters that determine: lower asymptote, upper asymptote, and the slope of the curve (ie: growth rate) around its origin.
 
