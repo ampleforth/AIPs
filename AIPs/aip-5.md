@@ -65,7 +65,7 @@ Below we'll quickly review the basic sigmoid, and then explain the rationale for
 #### Basic Sigmoid
 The basic sigmoid takes the following shape, note the presence of horizontal asymptotes and maximum slope near the origin:
 
-<img src="../assets/aip-5/basic_sigmoid_latexchart.png" alt="drawing" width="100%"/>
+<img src="../assets/aip-5/basic_sigmoid_latexchart_2.png" alt="drawing" width="100%"/>
   
 **_Basic Sigmoid Equation and Parameters_**
 
