@@ -103,7 +103,7 @@ Imagine Price alternates between $0.5 and $2, every 24hrs, infinitely:
 
 In this case we want the magnitude of supply changes upon expansion and contraction to perfectly offset one another. Otherwise, if the magnitude of supply changes on expansion and contraction differ, there will be supply “drift” in one direction or another and the change in total supply will be unbounded over time.
 
-**2.2 _The "Balancing" Solution_**
+**2.2. _The "Balancing" Solution_**
 
 To address this, let's observe that:
 * <code>For every scaling factor S, there exists an inverse scaling factor S<sup>-1</sup> such that S * S<sup>-1</sup> = 1</code>
@@ -120,7 +120,7 @@ This way, for every price pair <code>{P, P<sup>-1</sup>}</code> the correspondin
 
 <img src="../assets/aip-5/balanced_sigmoid_latexchart.png" alt="drawing" width="100%"/>
 
-**2.3 _Balanced Sigmoid Equation and Parameters_**
+**2.3. _Balanced Sigmoid Equation and Parameters_**
 
 Recall that the basic sigmoid equation accepts a price deviation and returns a supply change percentage. Combining it with the mirroring equation gives the output: 
 
