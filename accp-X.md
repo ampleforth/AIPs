@@ -2,7 +2,7 @@
 accp: <to be assigned>
 title: <ACCP title>
 author: <a list of the author's or authors' name(s) and/or username(s), or name(s) and email(s), e.g. (use with the parentheses or triangular brackets): FirstName LastName (@GitHubUsername), FirstName LastName <foo@bar.com>, FirstName (@GitHubUsername) and GitHubUsername (@GitHubUsername)>
-discussions-to: <Link to Discord Channel Forum post or Github Issue, E.g. https://discord.gg/6Amxhs4>
+discussions-to: <Link to github issue on https://github.com/ampleforth/AIPs/issues>
 status: WIP
 created: <date created on, in ISO 8601 (yyyy-mm-dd) format>
 requires (*optional): <AIP/ACCP number(s)>
