@@ -31,11 +31,11 @@ Your role as the champion is to write the ACCP using the style and format descri
 [ WIP ] -> [ PROPOSED ] -> [ APPROVED ] -> [ IMPLEMENTED ]
 ```
 
-Each status change is requested by the ACCP author and reviewed by the AIP editors. Use a pull request to update the status. Please include a link to where people should continue discussing your ACCP. The AIP editors will process these requests as per the conditions below.
+Each status change is requested by the ACCP author and reviewed by the AIP editors. Use a pull request to update the status. Please include a link to the [github issue](https://github.com/ampleforth/AIPs/issues) where people should continue discussing your ACCP. The AIP editors will process these requests as per the conditions below.
 
 * **Work in progress (WIP)** -- Once the champion has asked the Ampleforth community whether an idea has any chance of support, they will write a draft ACCP as a [pull request].
 
-* **Proposed** If agreeable, AIP editor will assign the ACCP a number (generally the issue or PR number related to the ACCP) and merge your pull request. The AIP editor will not unreasonably deny an ACCP. Proposed ACCPs will be discussed on governance calls and in Discord. If there is a reasonable level of consensus around the change on the governance call the change will be moved to approved. If the change is contentious a vote of token holders may be held to resolve the issue or approval may be delayed until consensus is reached.
+* **Proposed** If agreeable, AIP editor will assign the ACCP a number (generally the issue or PR number related to the ACCP) and merge your pull request. The AIP editor will not unreasonably deny an ACCP. Proposed ACCPs will be discussed on the [github issue](https://github.com/ampleforth/AIPs/issues). If there is a reasonable level of consensus around the change on the governance call the change will be moved to approved. If the change is contentious a vote of token holders may be held to resolve the issue or approval may be delayed until consensus is reached.
 
 * **Approved** -- This ACCP has passed community governance and is now being prioritised.
 
@@ -66,7 +66,7 @@ Each ACCP must begin with an [RFC 822](https://www.ietf.org/rfc/rfc822.txt) styl
 
 ` author:` <a list of the author's or authors' name(s) and/or username(s), or name(s) and email(s). Details are below.>
 
-` * discussions-to:` \<a url pointing to the official discussion thread\>
+` * discussions-to:` \<a url pointing to the official github issue\>
 
 ` status:` < WIP | PROPOSED | APPROVED | IMPLEMENTED >
 
@@ -98,7 +98,7 @@ if the email address is not given.
 
 #### `discussions-to` header
 
-While an ACCP is in WIP or Proposed status, a `discussions-to` header will indicate the mailing list or URL where the ACCP is being discussed.
+While an ACCP is in WIP or Proposed status, a `discussions-to` header will indicate URL for the [github issue](https://github.com/ampleforth/AIPs/issues) where the ACCP is being discussed.
 
 #### `created` header
 

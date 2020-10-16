@@ -36,10 +36,10 @@ Your role as the champion is to write the AIP using the style and format describ
 [ WIP ] -> [ PROPOSED ] -> [ APPROVED ] -> [ IMPLEMENTED ] X [ REJECTED ]
 ```
 
-Each status change is requested by the AIP author and reviewed by the AIP editors. Use a pull request to update the status. Please include a link to where people should continue discussing your AIP. The AIP editors will process these requests as per the conditions below.
+Each status change is requested by the AIP author and reviewed by the AIP editors. Use a pull request to update the status. Please include a link to the [github issue](https://github.com/ampleforth/AIPs/issues) where people should continue discussing your AIP. The AIP editors will process these requests as per the conditions below.
 
 * **Work in progress (WIP)** -- Once the champion has asked the Ampleforth community whether an idea has any chance of support, they will write a draft AIP as a [pull request]. Consider including an implementation if this will aid people in studying the AIP.
-* **Proposed** If agreeable, AIP editor will assign the AIP a number (generally the issue or PR number related to the AIP) and merge your pull request. The AIP editor will not unreasonably deny an AIP. Proposed AIPs will be discussed on governance calls and in Discord. If there is a reasonable level of consensus around the change on the governance call the change will be moved to approved. If the change is contentious a vote of token holders may be held to resolve the issue or approval may be delayed until consensus is reached.
+* **Proposed** If agreeable, AIP editor will assign the AIP a number (generally the issue or PR number related to the AIP) and merge your pull request. The AIP editor will not unreasonably deny an AIP. Proposed AIPs will be discussed on a [github issue](https://github.com/ampleforth/AIPs/issues). If there is a reasonable level of consensus around the change on the governance call the change will be moved to approved. If the change is contentious a vote of token holders may be held to resolve the issue or approval may be delayed until consensus is reached.
 * **Approved** -- This AIP has passed community governance and is now being prioritised for development.
 
 * **Implemented** -- This AIP has been implemented and deployed to mainnet.
@@ -74,7 +74,7 @@ Each AIP must begin with an [RFC 822](https://www.ietf.org/rfc/rfc822.txt) style
 
 ` author:` <a list of the author's or authors' name(s) and/or username(s), or name(s) and email(s). Details are below.>
 
-` * discussions-to:` \<a url pointing to the official github issue or discussion thread\>
+` * discussions-to:` \<a url pointing to the official github issue\>
 
 ` status:` < WIP | PROPOSED | APPROVED | IMPLEMENTED >
 
@@ -108,7 +108,7 @@ if the email address is not given.
 
 #### `discussions-to` header
 
-While an AIP is in WIP or Proposed status, a `discussions-to` header will indicate the URL on [Discord](https://discord.gg/6Amxhs4) where the AIP is being discussed.
+While an AIP is in WIP or Proposed status, a `discussions-to` header will indicate the URL for the [github issue](https://github.com/ampleforth/AIPs/issues) where the AIP is being discussed.
 
 #### `created` header
 
