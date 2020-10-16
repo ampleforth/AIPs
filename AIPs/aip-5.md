@@ -62,12 +62,12 @@ Horizontal asymptotes eliminate the [0, 1] vs [1, ∞] range problem of heavy-ta
 
 Below we'll quickly review the basic sigmoid, and then explain the rationale for the "mirrored" sigmoid proposed.
 
-#### Basic Sigmoid
+#### 1. Basic Sigmoid
 The basic sigmoid takes the following shape, note the presence of horizontal asymptotes and maximum slope near the origin:
 
 <img src="../assets/aip-5/basic_sigmoid_latexchart_2.png" alt="drawing" width="100%"/>
   
-**_Basic Sigmoid Equation and Parameters_**
+**1.1. _Basic Sigmoid Equation and Parameters_**
 
 This equation accepts as its input, `x`, the normalized difference between `VWAP` and the price target. It returns, `Y`, the corresponding supply change percentage.
 
@@ -86,7 +86,7 @@ U = upper asymptote
 B = growth rate
 ```
 
-#### "Mirrored" Sigmoid
+#### 2. "Mirrored" Sigmoid
 
 Although the basic Sigmoid is a good start, we can improve upon it by scaling supply changes such that they “mirror” one another. More specifically:
 
@@ -95,7 +95,7 @@ Although the basic Sigmoid is a good start, we can improve upon it by scaling su
 
 This way, supply reactions to equal and opposite relative changes in demand, always execute in the same amount of time. To help explain, let’s walk through the simple example of an alternating series. 
 
-**_Alternating Series Example_**
+**2.1. _Alternating Series Example_**
 
 Imagine Price alternates between $0.5 and $2, every 24hrs, infinitely:
 
@@ -103,7 +103,7 @@ Imagine Price alternates between $0.5 and $2, every 24hrs, infinitely:
 
 In this case we want the magnitude of supply changes upon expansion and contraction to perfectly offset one another. Otherwise, if the magnitude of supply changes on expansion and contraction differ, there will be supply “drift” in one direction or another and the change in total supply will be unbounded over time.
 
-**_The "Mirroring" Solution_**
+**2.2 _The "Mirroring" Solution_**
 
 To address this, let's observe that:
 * <code>For every scaling factor S, there exists an inverse scaling factor S<sup>-1</sup> such that S * S<sup>-1</sup> = 1</code>
@@ -120,13 +120,13 @@ This way, for every price pair <code>{P, P<sup>-1</sup>}</code> the correspondin
 
 <img src="../assets/aip-5/balanced_sigmoid_latexchart.png" alt="drawing" width="100%"/>
 
-**_Mirrored Sigmoid Equation and Parameters_**
+**2.3 _Mirrored Sigmoid Equation and Parameters_**
 
 Recall that the basic sigmoid equation accepts a price deviation and returns a supply change percentage. Combining it with the mirroring equation gives the output: 
 
 <img src="../assets/aip-5/piecewise_sigmoid_eq.png" alt="drawing" width="380"/>
 
-#### "Mirrored" Sigmoid vs Linear
+#### 3. "Mirrored" Sigmoid vs Linear
 
 We expect that the “mirrored” sigmoid supply curve will cause the Ampleforth network to  spend a more balanced amount of time between expansion and contraction, and avert prolonged contraction periods. 
 
