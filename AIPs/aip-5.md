@@ -126,7 +126,7 @@ Recall that the basic sigmoid equation accepts a price deviation and returns a s
 
 <img src="../assets/aip-5/piecewise_sigmoid_eq.png" alt="drawing" width="380"/>
 
-#### 3. "Balacned" Sigmoid vs Linear
+#### 3. "Balanced" Sigmoid vs Linear
 
 We expect that the “balanced” sigmoid supply curve will cause the Ampleforth network to  spend a more balanced amount of time between expansion and contraction, and avert prolonged contraction periods. 
 
