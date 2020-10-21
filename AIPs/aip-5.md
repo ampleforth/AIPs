@@ -38,11 +38,11 @@ Imagine Price alternates between $0.5 and $2, every 24hrs, infinitely:
 
 <img src="../assets/aip-5/series.png" alt="drawing" width="320"/>
 
-For fixed-supply assets, the `market_cap` in the example above would simply alternate between two discreet values. Similarly, for rebasing assets like AMPL, we would want the magnitude of supply changes upon expansion and contraction to perfectly offset one another. Otherwise, if they differ, there will be supply “drift” in one direction or another and the change in total supply will be uncapped over time.
+For fixed-supply assets, the `market_cap` in our example above would simply alternate between two values. For rebasing assets like AMPL, we want the magnitude of expansion and contraction supply changes to perfectly offset one another when following an alternating series. Otherwise, if they differ, there will be supply “drift” in one direction or another and the change in total supply will be unbounded over time.
 
 In the example above, for any `reaction_lag` value other than 1, the current Ampleforth supply policy will experience uncapped supply expansion over time. 
 
-### Motivation for Bounded Expansion
+### Motivation for Bounded Expansion Rate
 
 Any symmetric policy would either be bounded on both expansion and contraction or unbounded on both expansion and contraction. We propose bounded expansion and contraction to limit protocol sensitivity to short-lived, but extreme market conditions that can wildly expand or contract supply.
 
