@@ -11,9 +11,9 @@ requires (*optional): N/A
 
 ## Simple Summary
 <!--"If you can't explain it simply, you don't understand it well enough." Simply describe the outcome the proposed changes intends to achieve. This should be non-technical and accessible to a casual community member.-->
-The current linear supply policy reacts to demand in a way that predisposes the Ampleforth network to short periods of rapid expansion and long periods of gradual contraction. This document proposes an update to the Ampleforth supply policy that would:
+The current linear supply policy predisposes the Ampleforth network to short periods of rapid expansion and long periods of gradual contraction. This document proposes an update to the Ampleforth supply policy that would:
 
-* Create symmetry between expansion and contraction.
+* Create symmetry between how expansion and contraction react to demand.
 * Limit the protocol's sensitivity to short-lived, but extreme market conditions that can wildly expand or contract supply.
 
 ## Abstract
