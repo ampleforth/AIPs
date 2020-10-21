@@ -44,8 +44,6 @@ In the example above, for any `reaction_lag` value other than 1, the current Amp
 
 ### Motivation for Bounded Expansion
 
-Today’s asymmetric policy has bounded contraction rates but unbounded expansion rates simply because contraction occurs in the range of [0,1] while expansion occurs in the range of [1, ∞]. As a result expansion often rapidly outpaces contraction, resulting in prolonged corrective periods.
-
 Any symmetric policy would either be bounded on both expansion and contraction or unbounded on both expansion and contraction. We propose bounded expansion and contraction to limit protocol sensitivity to short-lived, but extreme market conditions that can wildly expand or contract supply.
 
 ## Specification
@@ -59,12 +57,7 @@ Any symmetric policy would either be bounded on both expansion and contraction o
 
 ### Overview
 <!--This is a high level overview of *how* the AIP will solve the problem. The overview should clearly describe how the new feature will be implemented.-->
-The smart contract upgrade replaces the current linear supply policy with a "balanced" sigmoid-shaped curve that: 
-
-* Asymptotes horizontally away from the origin. 
-* Steepens rates of change near the origin. 
-
-Horizontal asymptotes eliminate the [0, 1] vs [1, ∞] range problem of heavy-tailed markets. Moreover, when rates of change happen more aggressively near the origin, the network can converge on the price-target more quickly for minor deviations.
+The smart contract upgrade replaces the current linear supply policy with a "balanced" sigmoid-shaped curve that horizontally asymptotes away from the origin. 
 
 ### Rationale
 <!--This is where you explain the reasoning behind how you propose to solve the problem. Why did you propose to implement the change in this way, what were the considerations and trade-offs. The rationale fleshes out what motivated the design and why particular design decisions were made. It should describe alternate designs that were considered and related work. The rationale may also provide evidence of consensus within the community, and should discuss important objections or concerns raised during discussion.-->
