@@ -14,7 +14,7 @@ requires (*optional): N/A
 The current linear supply policy predisposes the Ampleforth network to short periods of rapid expansion and long periods of gradual contraction. This document proposes an update to the Ampleforth supply policy that would:
 
 * Create symmetry between how expansion and contraction react to demand.
-* Limit the protocol's sensitivity to short-lived, but extreme market conditions that can wildly expand or contract supply.
+* Limit the protocol's sensitivity to short-lived demand shocks.
 
 ## Abstract
 <!--A short (~200 word) description of the proposed change, the abstract should clearly describe the proposed change. This is what *will* be done if the AIP is implemented, not *why* it should be done or *how* it will be done. If the AIP proposes deploying a new contract, write, "we propose to deploy a new contract that will do x".-->
