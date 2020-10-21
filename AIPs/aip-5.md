@@ -104,7 +104,7 @@ Although the basic Sigmoid is a good start, we can improve upon it by scaling su
 
 This way, supply reactions to equal and opposite relative changes in demand, always execute in the same amount of time. For more context, see the alternating series example in the motivation section above.
 
-**2.2. _The "Balancing" Solution_**
+**2.1. _The "Balancing" Solution_**
 
 To create multiplicative symmetry let's begin by observing that:
 * <code>For every scaling factor S, there exists an inverse scaling factor S<sup>-1</sup> such that S * S<sup>-1</sup> = 1</code>
@@ -121,7 +121,7 @@ This way, for every price pair <code>{P, P<sup>-1</sup>}</code> the correspondin
 
 <img src="../assets/aip-5/balanced_sigmoid_latex_thin.jpg" alt="drawing" width="100%"/>
 
-**2.3. _Balanced Sigmoid Equation and Parameters_**
+**2.2. _Balanced Sigmoid Equation and Parameters_**
 
 Recall that the basic sigmoid equation accepts a price deviation and returns a supply change percentage. Combining it with the mirroring equation gives the output: 
 
