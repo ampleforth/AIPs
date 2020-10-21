@@ -38,7 +38,7 @@ Imagine Price alternates between $0.5 and $2, every 24hrs, infinitely:
 
 <img src="../assets/aip-5/series.png" alt="drawing" width="320"/>
 
-For fixed supply assets, the market_cap would simply alternate between two values. Similarly, we would want the magnitude of supply changes upon expansion and contraction to perfectly offset one another for rebasing assets like AMPL. Otherwise, if they differ, there will be supply “drift” in one direction or another and the change in total supply will be uncapped over time.
+For fixed supply assets, the asset's `market_cap` would simply alternate between two values. Similarly, we would want the magnitude of supply changes upon expansion and contraction to perfectly offset one another for rebasing assets like AMPL. Otherwise, if they differ, there will be supply “drift” in one direction or another and the change in total supply will be uncapped over time.
 
 In the alternating example above, for reaction_lag values other than 1, the current Ampleforth supply policy will experience uncapped supply expansion over time. 
 
