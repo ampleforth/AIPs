@@ -13,7 +13,7 @@ requires (*optional): N/A
 <!--"If you can't explain it simply, you don't understand it well enough." Simply describe the outcome the proposed changes intends to achieve. This should be non-technical and accessible to a casual community member.-->
 The current linear supply policy reacts to demand in a way that predisposes the Ampleforth network to short periods of rapid expansion and long periods of gradual contraction. This document proposes an update to the Ampleforth supply policy that would:
 
-* Create symmetry between how supply expansion and contraction react to changes in demand.
+* Create symmetry between expansion and contraction.
 * Limit protocol sensitivity to short-lived, but extreme market conditions that can wildly expand or contract supply.
 
 ## Abstract
@@ -30,7 +30,7 @@ At present, the Ampleforth supply policy takes a `VWAP` as its input and offsets
 
 ### Motivation for Symmetry
 
-When the supply policy reacts asymmetrically to relative change in demand the system can experience unbounded supply drift in one direction or another over time. Consider the example of an alternating series below: 
+A supply policy that reacts asymmetrically to relative changes in demand can experience unbounded supply drift in one direction or another over time. Consider the example of an alternating series below: 
 
 **_Alternating Series Example_**
 
