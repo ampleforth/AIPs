@@ -40,7 +40,7 @@ Imagine Price alternates between $0.5 and $2, every 24hrs, infinitely:
 
 For fixed-supply assets, the `market_cap` in the example above would simply alternate between two discreet values. Similarly, for rebasing assets like AMPL, we would want the magnitude of supply changes upon expansion and contraction to perfectly offset one another. Otherwise, if they differ, there will be supply “drift” in one direction or another and the change in total supply will be uncapped over time.
 
-In the alternating example above, for reaction_lag values other than 1, the current Ampleforth supply policy will experience uncapped supply expansion over time. 
+In the example above, for any `reaction_lag` value other than 1, the current Ampleforth supply policy will experience uncapped supply expansion over time. 
 
 ### Motivation for Bounded Expansion
 
@@ -102,19 +102,11 @@ Although the basic Sigmoid is a good start, we can improve upon it by scaling su
 * If a demand-change-factor of `A` corresponds with supply-scale-factor `B`.
 * We want to enforce that a demand-change-factor of `1/A` corresponds with a supply-scale-factor of `1/B`. 
 
-This way, supply reactions to equal and opposite relative changes in demand, always execute in the same amount of time. To help explain, let’s walk through the simple example of an alternating series. 
-
-**2.1. _Alternating Series Example_**
-
-Imagine Price alternates between $0.5 and $2, every 24hrs, infinitely:
-
-<img src="../assets/aip-5/series.png" alt="drawing" width="320"/>
-
-In this case we want the magnitude of supply changes upon expansion and contraction to perfectly offset one another. Otherwise, if the magnitude of supply changes on expansion and contraction differ, there will be supply “drift” in one direction or another and the change in total supply will be unbounded over time.
+This way, supply reactions to equal and opposite relative changes in demand, always execute in the same amount of time. For more context, see the alternating series example in the motivation section above.
 
 **2.2. _The "Balancing" Solution_**
 
-To address this, let's observe that:
+To create multiplicative symmetry let's begin by observing that:
 * <code>For every scaling factor S, there exists an inverse scaling factor S<sup>-1</sup> such that S * S<sup>-1</sup> = 1</code>
 
 And let’s also observe that:
