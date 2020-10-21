@@ -13,8 +13,8 @@ requires (*optional): N/A
 <!--"If you can't explain it simply, you don't understand it well enough." Simply describe the outcome the proposed changes intends to achieve. This should be non-technical and accessible to a casual community member.-->
 The current linear supply policy reacts to demand in a way that predisposes the Ampleforth network to short periods of rapid expansion and long periods of gradual contraction. This document proposes an update to the Ampleforth supply policy that would:
 
-* Balance the time spent between expansion and contraction
-* Converge on the price-target more quickly for minor deviations
+* Create symmetry between how supply expansion and contraction react to changes in demand.
+* Limit protocol sensitivity to short-lived, but extreme market conditions that can wildly expand or contract supply.
 
 ## Abstract
 <!--A short (~200 word) description of the proposed change, the abstract should clearly describe the proposed change. This is what *will* be done if the AIP is implemented, not *why* it should be done or *how* it will be done. If the AIP proposes deploying a new contract, write, "we propose to deploy a new contract that will do x".-->
@@ -25,19 +25,28 @@ We propose to deploy a new contract that updates the current linear supply polic
 
 At present, the Ampleforth supply policy takes a `VWAP` as its input and offsets price differences of `X%` with supply changes of `(X%/rebase_reaction_lag)`. Two things to note about this. 
 
-#### 1. Price ranges are asymmetric:
+1. Expansion and contraction do not react symmetrically to relative changes in demand. 
+2. The protocol has bounded rates of contraction but bounded rates of expansion.
 
-- Expansion occurs in the price range of [1, ∞] 
-- Contraction occurs in the range of [0, 1]
+### Motivation for Symmetry
 
-#### 2. Geometric expansion and contraction are “absolutely” different:
+When the supply policy reacts asymmetrically to relative change in demand the system can experience unbounded supply drift in one direction or another over time. Consider the example of an alternating series below: 
 
-- When price is held constant above the target (expansion) the relative change in supply is constant, but the absolute change in supply grows geometrically. This means the change in absolute potential sell pressure (as measured in dollars) grows geometrically. 
+**_Alternating Series Example_**
 
-- When price is held constant below the target (contraction) the relative change in supply is constant, but the absolute change in supply shrinks geometrically. This means the change in absolute potential sell pressure removed (as measured in dollars) shrinks geometrically. 
+Imagine Price alternates between $0.5 and $2, every 24hrs, infinitely:
 
-The key takeaway here is that expansion often rapidly outpaces contraction, resulting in prolonged corrective periods. 
+<img src="../assets/aip-5/series.png" alt="drawing" width="320"/>
 
+For fixed supply assets, the market_cap would simply alternate between two values. Similarly, we would want the magnitude of supply changes upon expansion and contraction to perfectly offset one another for rebasing assets like AMPL. Otherwise, if they differ, there will be supply “drift” in one direction or another and the change in total supply will be uncapped over time.
+
+In the alternating example above, for reaction_lag values other than 1, the current Ampleforth supply policy will experience uncapped supply expansion over time. 
+
+### Motivation for Bounded Expansion
+
+Today’s asymmetric policy has bounded contraction rates but unbounded expansion rates simply because contraction occurs in the range of [0,1] while expansion occurs in the range of [1, ∞]. As a result expansion often rapidly outpaces contraction, resulting in prolonged corrective periods.
+
+Any symmetric policy would either be bounded on both expansion and contraction or unbounded on both expansion and contraction. We propose bounded expansion and contraction to limit protocol sensitivity to short-lived, but extreme market conditions that can wildly expand or contract supply.
 
 ## Specification
 <!--The specification should describe the syntax and semantics of any new feature, there are five sections
