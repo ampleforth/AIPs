@@ -130,6 +130,8 @@ We expect that the “balanced” sigmoid supply curve will cause the Ampleforth
 ### Technical Specification
 <!--The technical specification should outline the public API of the changes proposed. That is, changes to any of the interfaces Ampleforth currently exposes or the creations of new ones.-->
 
+This creates no changes to external APIs. Clients, including exchanges, who listen to AMPL’s rebase events still receive the absolute supply change integer as before. However, note that any external application that calculates the delta independently will need to update their calculation logic.
+
 [Currently in progress]
 
 ### Test Cases
