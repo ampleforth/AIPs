@@ -132,7 +132,25 @@ We expect that the “balanced” sigmoid supply curve will cause the Ampleforth
 
 This creates no changes to external APIs. Clients, including exchanges, who listen to AMPL’s rebase events still receive the absolute supply change integer as before. However, note that any external application that calculates the delta independently will need to update their calculation logic.
 
-[Currently in progress]
+#### Initial Parameter Values
+
+These parameters were set to achieve the outcomes stated above (see motivation)—while keeping the aggregate expansion rate as similar to the current protocol as possible.
+
+The proposed values are:
+
+```
+L (Lower) = -0.11
+U (Upper) = 0.11 
+B (Growth) = 4 
+```
+
+**_Shape Comparison_**
+
+[ chart] 
+
+**_Historical Price Distribution_**
+
+[ chart]
 
 ### Test Cases
 <!--Test cases for an implementation are mandatory for AIPs but can be included with the implementation..-->
