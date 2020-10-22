@@ -32,7 +32,7 @@ At present, the Ampleforth supply policy takes a `VWAP` as its input and offsets
 
 ### Motivation for Symmetry
 
-A supply policy is asymmetric if the speed of contraction is not equal to the speed of expansion, given identical but opposite changes in relative demand. In the case of Ampleforth, the protocol current experiences much slower contraction than expansion. Consider the example of an alternating series below: 
+A supply policy is asymmetric if the speed of contraction is not equal to the speed of expansion, given identical but opposite changes in relative demand. In the case of Ampleforth, the protocol currently experiences much slower contraction than expansion. Consider the example of an alternating series below: 
 
 **_Alternating Series Example_**
 
