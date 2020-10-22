@@ -17,6 +17,8 @@ The current supply policy predisposes the Ampleforth network to short periods of
 
 * Limit the protocol's sensitivity to short-lived demand shocks.
 
+// add a sentence here 
+
 ## Abstract
 <!--A short (~200 word) description of the proposed change, the abstract should clearly describe the proposed change. This is what *will* be done if the AIP is implemented, not *why* it should be done or *how* it will be done. If the AIP proposes deploying a new contract, write, "we propose to deploy a new contract that will do x".-->
 We propose to deploy a new contract that updates the current linear supply policy with a modified sigmoid-shaped supply policy. 
@@ -40,6 +42,8 @@ Imagine Price alternates between $0.5 and $2, every 24hrs, infinitely:
 <img src="../assets/aip-5/series.png" alt="drawing" width="320"/>
 
 For fixed-supply assets, the `market_cap` in our example above would simply alternate between two values. For rebasing assets like AMPL, we similarly want the magnitude of expansion and contraction supply changes to perfectly offset one another in the case above. Otherwise, if they differ, there will be supply “drift” in one direction or another and the change in total supply will be unbounded over time.
+
+// remove unbounded supply drift language
 
 In the example above, for any `rebase_reaction_lag` value other than 1, the current Ampleforth supply policy will experience uncapped supply expansion over time. 
 
