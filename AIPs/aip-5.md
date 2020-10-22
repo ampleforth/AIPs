@@ -11,7 +11,7 @@ requires (*optional): N/A
 
 ## Simple Summary
 <!--"If you can't explain it simply, you don't understand it well enough." Simply describe the outcome the proposed changes intends to achieve. This should be non-technical and accessible to a casual community member.-->
-The current linear supply policy predisposes the Ampleforth network to short periods of rapid expansion and long periods of gradual contraction. This document proposes an update to the Ampleforth supply policy that would:
+The current supply policy predisposes the Ampleforth network to short periods of rapid expansion and long periods of gradual contraction. This document proposes an update to the Ampleforth supply policy that would:
 
 * Create symmetry between price signals that expand supply and price signals that contract supply—e.g. a signal to double supply (price of $2), should be perfectly offset by a signal to halve supply (price of $0.5). This is currently not the case, as explained below.
 
@@ -130,7 +130,7 @@ We expect that the “balanced” sigmoid supply curve will cause the Ampleforth
 ### Technical Specification
 <!--The technical specification should outline the public API of the changes proposed. That is, changes to any of the interfaces Ampleforth currently exposes or the creations of new ones.-->
 
-This creates no changes to external APIs. Clients, including exchanges, who listen to AMPL’s rebase events still receive the absolute supply change integer as before. However, note that any external application that calculates the delta independently will need to update their calculation logic.
+This update creates no changes to external APIs. Clients, including exchanges, who listen to AMPL’s rebase events still receive the absolute supply change integer as before. However, note that any external application that calculates the delta independently will need to update their calculation logic.
 
 #### Initial Parameter Values
 
