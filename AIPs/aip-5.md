@@ -40,7 +40,7 @@ Imagine Price alternates between $0.5 and $2, every 24hrs, infinitely:
 
 <img src="../assets/aip-5/series.png" alt="drawing" width="320"/>
 
-For fixed-supply assets, the `market_cap` in our example above would simply alternate between two values.  In the example above, for any `rebase_reaction_lag` value other than 1, the current Ampleforth supply policy will drift upwards over time. 
+For fixed-supply assets, the `market_cap` in our example above would simply alternate between two values.  However, for any `rebase_reaction_lag` value other than 1, the current Ampleforth supply policy will drift upwards over time. 
 
 ### Motivation for Capped Expansion Rate
 
