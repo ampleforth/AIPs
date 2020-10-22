@@ -140,6 +140,8 @@ This update creates no changes to external APIs. Clients, including exchanges, w
 
 These parameters were set to achieve the outcomes stated above (see motivation)—while keeping the aggregate expansion rate as similar to the current protocol as possible.
 
+Recall that the contraction curve is derived from the expansion curve through the "balancing" solution above. Therefore we only need to verify that the shaping parameters selected produce an expansion curve that generally resembles the current supply policy. Thereafter, a balanced contraction curve will follow from the balanced_sigmoid equation as defined above. 
+
 The proposed values are:
 
 ```
@@ -150,7 +152,17 @@ B (Growth) = 4
 
 **_Shape Comparison_**
 
+Below we present a chart depicting the balanced_sigmoid_shape alongside the current linear policy with (L=-.11, U=.11, B=4). 
+
 [ chart] 
+
+Here we can see that the:
+
+* The Upper asymptote occurs at a price of $2.5 with a scale factor of 1.1
+* The Lower asymptote occurs at a price of $0.50 with a scale factor of 0.9
+
+Note that the difference in shape is more pronounced for contraction than for expansion.
+
 
 **_Historical Price Distribution_**
 
