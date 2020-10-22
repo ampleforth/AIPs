@@ -44,7 +44,7 @@ For fixed-supply assets, the `market_cap` in our example above would simply alte
 
 ### Motivation for Capped Expansion Rate
 
-Any symmetric policy would either be capped on both expansion and contraction or uncapped on both expansion and contraction. We propose capped expansion and contraction to limit the protocol's sensitivity to short-lived, but extreme market conditions that can wildly expand or contract supply.
+We also propose asymptotic limits on the rates of supply change, in order to reduce the protocol's sensitivity to short-lived, but extreme market conditions.
 
 ## Specification
 <!--The specification should describe the syntax and semantics of any new feature, there are five sections
