@@ -27,12 +27,12 @@ We propose to deploy a new contract that updates the current linear supply polic
 
 At present, the Ampleforth supply policy takes a `VWAP` as its input and offsets price differences of `X%` with supply changes of `(X%/rebase_reaction_lag)`. Two things to note about this. 
 
-1. Expansion and contraction do not react symmetrically to relative changes in demand. 
+1. Expansion and contraction do not react symmetrically to equal and opposite relative changes in demand. 
 2. The protocol has capped rates of contraction but uncapped rates of expansion.
 
 ### Motivation for Symmetry
 
-A supply policy that reacts asymmetrically to relative changes in demand can experience unbounded supply drift in one direction or another over time. Consider the example of an alternating series below: 
+A supply policy is asymmetric if the speed of contraction is not equal to the speed of expansion, given identical but opposite changes in relative demand. In the case of Ampleforth, the protocol current experiences much slower contraction than expansion. Consider the example of an alternating series below: 
 
 **_Alternating Series Example_**
 
@@ -40,11 +40,7 @@ Imagine Price alternates between $0.5 and $2, every 24hrs, infinitely:
 
 <img src="../assets/aip-5/series.png" alt="drawing" width="320"/>
 
-For fixed-supply assets, the `market_cap` in our example above would simply alternate between two values. For rebasing assets like AMPL, we similarly want the magnitude of expansion and contraction supply changes to perfectly offset one another in the case above. Otherwise, if they differ, there will be supply “drift” in one direction or another and the change in total supply will be unbounded over time.
-
-// remove unbounded supply drift language
-
-In the example above, for any `rebase_reaction_lag` value other than 1, the current Ampleforth supply policy will experience uncapped supply expansion over time. 
+For fixed-supply assets, the `market_cap` in our example above would simply alternate between two values.  In the example above, for any `rebase_reaction_lag` value other than 1, the current Ampleforth supply policy will drift upwards over time. 
 
 ### Motivation for Capped Expansion Rate
 
