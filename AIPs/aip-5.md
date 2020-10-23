@@ -153,7 +153,7 @@ Below we present a chart depicting the balanced_sigmoid_shape alongside the curr
 
 Here we can see that the:
 
-* The Upper asymptote occurs at a price of $2.5 with a scale factor of 1.1
+* The Upper asymptote occurs at a price of $2.5 with a scale factor of 1.11
 * The Lower asymptote occurs at a price of $0.50 with a scale factor of 0.9
 
 Note that the difference in shape is more pronounced for contraction than for expansion.
