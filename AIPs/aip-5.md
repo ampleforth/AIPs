@@ -149,7 +149,7 @@ B (Growth) = 4
 
 Below we present a chart depicting the balanced_sigmoid_shape alongside the current linear policy with (L=-.11, U=.11, B=4). 
 
-[ chart] 
+<img src="../assets/aip-5/ShapeComparison-2.png" alt="drawing" width="100%"/>
 
 Here we can see that the:
 
@@ -175,7 +175,8 @@ The set function parameters meet the goal of having similar aggregate effect on 
 
 **_Proposed vs Current Rebase Totals_**
 
-[ chart]
+<img src="../assets/aip-5/sideXside-2.png" alt="drawing" width="100%"/>
+
 
 
 ### Test Cases
