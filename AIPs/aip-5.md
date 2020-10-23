@@ -67,8 +67,10 @@ Below we'll quickly review the basic sigmoid, and then explain the rationale for
 #### 1. Basic Sigmoid
 The basic sigmoid takes the following shape, note the presence of horizontal asymptotes and maximum slope near the origin:
 
+<p align="center">
 [<img src="../assets/aip-5/basic_sigmoid_latex_thin.jpg" width="700"/>](#)
-  
+</p>
+
 **1.1. _Basic Sigmoid Equation and Parameters_**
 
 This equation accepts as its input, `x`, the normalized difference between `VWAP` and the price target. It returns, `Y`, the corresponding supply change percentage.
@@ -112,7 +114,9 @@ We can enforce the constraint of “balanced” supply-change-factors by computi
 
 This way, for every price pair <code>{P, P<sup>-1</sup>}</code> the corresponding supply-change-factor pair <code>{S, S<sup>-1</sup>}</code> upholds the constraint that  <code>S * S<sup>-1</sup> = 1</code>.
 
+<p align="center">
 [<img src="../assets/aip-5/balanced_sigmoid_latex_thin.jpg" alt="drawing" width="700"/>](#)
+</p>
 
 **2.2. _Balanced Sigmoid Equation and Parameters_**
 
@@ -126,7 +130,9 @@ Recall that the basic sigmoid equation accepts a price deviation and returns a s
 
 We expect that the “balanced” sigmoid supply curve will cause the Ampleforth network to react symmetrically to relative demand signals, and eliminate the bias towards prolonged contraction periods. 
 
+<p align="center">
 [<img src="../assets/aip-5/combined_latexchart_withdeviation.png" alt="drawing" width="700"/>](#)
+</p>
 
 ### Technical Specification
 <!--The technical specification should outline the public API of the changes proposed. That is, changes to any of the interfaces Ampleforth currently exposes or the creations of new ones.-->
