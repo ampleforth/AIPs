@@ -1,6 +1,6 @@
 ---
 aip: 5
-title: Sigmoid Rebasing Function
+title: Sigmoid-Shaped Rebasing Function
 author: Evan Kuo (@statuskuo), Ahmed Naguib Aly (@naguib)
 discussions-to:
 status: WIP
