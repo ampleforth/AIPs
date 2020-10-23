@@ -165,11 +165,11 @@ Note that the difference in shape is more pronounced for contraction than for ex
 
 To verify that the proposed (sigmoid) expansion output is reasonably similar to the current (linear) output: 
 
-1. Proposed and current supply policy functions were applied to historic VWAP data. 
+1. Proposed and current supply policy functions were applied to historic `VWAP` data. 
 2. Aggregate positive rebases were computed for proposed and current supply functions.
 3. The ratio between proposed and current aggregate positive rebases is: **1.01**
 
-The set function parameters meet the goal of having similar aggregate effect on expansion rebases. This AIP only includes the verification methodology and not how those parameters were generated. We will release the deeper dive in a future blog.
+Based on our analysis above, the set function parameters meet the goal of having similar aggregate effect on expansion rebases. This AIP only includes the verification methodology and not how those parameters were generated. We look forward to releasing a deeper dive on this in a separate blog post.
 
 **_Normalized VWAP distribution_**
 
