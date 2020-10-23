@@ -171,12 +171,11 @@ The set function parameters meet the goal of having similar aggregate effect on 
 
 **_Normalized VWAP distribution_**
 
-[ chart]
+<img src="../assets/aip-5/distribution.png" alt="drawing" width="100%"/>
 
 **_Proposed vs Current Rebase Totals_**
 
 <img src="../assets/aip-5/sideXside-2.png" alt="drawing" width="100%"/>
-
 
 
 ### Test Cases
