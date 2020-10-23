@@ -159,9 +159,24 @@ Here we can see that the:
 Note that the difference in shape is more pronounced for contraction than for expansion.
 
 
-**_Historical Price Distribution_**
+**_Verification_**
+
+To verify that the proposed expansion output is reasonably similar to the current output: 
+
+1. Proposed (sigmoid) and Current (linear) supply policy functions were applied to historic VWAP data. 
+2. Aggregate positive rebases were computed for proposed and current supply functions.
+3. The ratio between proposed and current aggregate positive rebases is: 1.01
+
+The set function parameters meet the goal of having similar aggregate effect on expansion rebases. This AIP only includes the verification methodology and not how those parameters were generated. We will release the deeper dive in a future blog.
+
+Normalized VWAP distribution
 
 [ chart]
+
+Proposed vs Current Rebase Totals
+
+[ chart]
+
 
 ### Test Cases
 <!--Test cases for an implementation are mandatory for AIPs but can be included with the implementation..-->
