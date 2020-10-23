@@ -161,9 +161,9 @@ Note that the difference in shape is more pronounced for contraction than for ex
 
 **_Verification_**
 
-To verify that the proposed expansion output is reasonably similar to the current output: 
+To verify that the proposed (sigmoid) expansion output is reasonably similar to the current (linear) output: 
 
-1. Proposed (sigmoid) and Current (linear) supply policy functions were applied to historic VWAP data. 
+1. Proposed and current supply policy functions were applied to historic VWAP data. 
 2. Aggregate positive rebases were computed for proposed and current supply functions.
 3. The ratio between proposed and current aggregate positive rebases is: 1.01
 
