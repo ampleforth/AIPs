@@ -116,9 +116,11 @@ This way, for every price pair <code>{P, P<sup>-1</sup>}</code> the correspondin
 
 **2.2. _Balanced Sigmoid Equation and Parameters_**
 
-Recall that the basic sigmoid equation accepts a price deviation and returns a supply change percentage. Combining it with the mirroring equation gives the output: 
+Recall that the basic sigmoid equation accepts a price deviation and returns a supply change percentage. Combining it with the mirroring equation gives the output<sup>*</sup>: 
 
 <img src="../assets/aip-5/piecewise_sigmoid_eq.png" alt="drawing" width="380"/>
+
+*_<sup>\* In the equation above, P denotes normalized price, P = vwap_price/target</sup>_*
 
 #### 3. "Balanced" Sigmoid vs Linear
 
