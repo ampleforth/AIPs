@@ -1,6 +1,6 @@
 ---
 aip: 5
-title: Sigmoid Supply Policy
+title: Sigmoid Rebasing Function
 author: Evan Kuo (@statuskuo), Ahmed Naguib Aly (@naguib)
 discussions-to:
 status: WIP
