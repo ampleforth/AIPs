@@ -165,7 +165,7 @@ To verify that the proposed (sigmoid) expansion output is reasonably similar to 
 
 1. Proposed and current supply policy functions were applied to historic VWAP data. 
 2. Aggregate positive rebases were computed for proposed and current supply functions.
-3. The ratio between proposed and current aggregate positive rebases is: 1.01
+3. The ratio between proposed and current aggregate positive rebases is: **1.01**
 
 The set function parameters meet the goal of having similar aggregate effect on expansion rebases. This AIP only includes the verification methodology and not how those parameters were generated. We will release the deeper dive in a future blog.
 
