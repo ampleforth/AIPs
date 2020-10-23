@@ -169,11 +169,11 @@ To verify that the proposed (sigmoid) expansion output is reasonably similar to 
 
 The set function parameters meet the goal of having similar aggregate effect on expansion rebases. This AIP only includes the verification methodology and not how those parameters were generated. We will release the deeper dive in a future blog.
 
-Normalized VWAP distribution
+**_Normalized VWAP distribution_**
 
 [ chart]
 
-Proposed vs Current Rebase Totals
+**_Proposed vs Current Rebase Totals_**
 
 [ chart]
 
