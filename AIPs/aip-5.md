@@ -20,12 +20,12 @@ The two above considerations should make the Ampleforth protocol a more balanced
 
 ## Abstract
 <!--A short (~200 word) description of the proposed change, the abstract should clearly describe the proposed change. This is what *will* be done if the AIP is implemented, not *why* it should be done or *how* it will be done. If the AIP proposes deploying a new contract, write, "we propose to deploy a new contract that will do x".-->
-We propose to deploy a new contract that updates the current linear supply policy with a modified sigmoid-shaped supply policy. 
+We propose to deploy a new contract that updates the current linear rebasing function with a modified sigmoid-shaped rebasing function. 
 
 ## Motivation
 <!--This is the problem statement. This is the *why* of the AIP. It should clearly explain *why* the current state of the protocol is inadequate.  It is critical that you explain *why* the change is needed, if the AIP proposes changing how something is calculated, you must address *why* the current calculation is innaccurate or wrong. This is not the place to describe how the AIP will address the issue!-->
 
-At present, the Ampleforth supply policy takes a `VWAP` as its input and offsets price differences of `X%` with supply changes of `(X%/rebase_reaction_lag)`. Two things to note about this. 
+At present, the Ampleforth rebasing function takes a `VWAP` as its input and offsets price differences of `X%` with supply changes of `(X%/rebase_reaction_lag)`. Two things to note about this. 
 
 1. Expansion and contraction do not react symmetrically to equal and opposite relative changes in demand. 
 2. The protocol has capped rates of contraction but uncapped rates of expansion.
@@ -57,7 +57,7 @@ We also propose asymptotic limits on the rates of supply change, in order to red
 
 ### Overview
 <!--This is a high level overview of *how* the AIP will solve the problem. The overview should clearly describe how the new feature will be implemented.-->
-The smart contract upgrade replaces the current linear supply policy with a "balanced" sigmoid-shaped curve that horizontally asymptotes away from the origin. 
+The smart contract upgrade replaces the current linear rebasing function with a "balanced" sigmoid-shaped curve that horizontally asymptotes away from the origin. 
 
 ### Rationale
 <!--This is where you explain the reasoning behind how you propose to solve the problem. Why did you propose to implement the change in this way, what were the considerations and trade-offs. The rationale fleshes out what motivated the design and why particular design decisions were made. It should describe alternate designs that were considered and related work. The rationale may also provide evidence of consensus within the community, and should discuss important objections or concerns raised during discussion.-->
