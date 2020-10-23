@@ -38,7 +38,9 @@ A supply policy is asymmetric if the speed of contraction is not equal to the sp
 
 Imagine Price alternates between $0.5 and $2, every 24hrs, infinitely:
 
-[<img src="../assets/aip-5/series.png" alt="drawing" width="320"/>](#)
+<p align="center">
+<img src="../assets/aip-5/series.png" alt="drawing" width="320"/>
+</p>
 
 For fixed-supply assets, the `market_cap` in our example above would simply alternate between two values.  However, for any `rebase_reaction_lag` value other than 1, the current Ampleforth supply policy will drift upwards over time. 
 
@@ -80,7 +82,9 @@ Y = supply change %
 x = normalized price deviation
 ```
 
-[<img src="../assets/aip-5/basic_sigmoid_eq_2.png" alt="drawing" width="380"/>](#)
+<p align="center">
+<img src="../assets/aip-5/basic_sigmoid_eq_2.png" alt="drawing" width="380"/>
+</p>
 
 It has shaping parameters that determine: lower asymptote, upper asymptote, and the slope of the curve (ie: growth rate) around its origin.
 
@@ -110,7 +114,9 @@ And let’s also observe that:
 
 We can enforce the constraint of “balanced” supply-change-factors by computing contraction supply-change-factors as the inverse of expansion supply-change-factors. In other words: 
 
-[<img src="../assets/aip-5/piecewise_eq.png" alt="drawing" width="380"/>](#)
+<p align="center">
+<img src="../assets/aip-5/piecewise_eq.png" alt="drawing" width="380"/>
+</p>
 
 This way, for every price pair <code>{P, P<sup>-1</sup>}</code> the corresponding supply-change-factor pair <code>{S, S<sup>-1</sup>}</code> upholds the constraint that  <code>S * S<sup>-1</sup> = 1</code>.
 
@@ -122,7 +128,9 @@ This way, for every price pair <code>{P, P<sup>-1</sup>}</code> the correspondin
 
 Recall that the basic sigmoid equation accepts a price deviation and returns a supply change percentage. Combining it with the mirroring equation gives the output<sup>*</sup>: 
 
-[<img src="../assets/aip-5/piecewise_sigmoid_eq.png" alt="drawing" width="380"/>](#)
+<p align="center">
+<img src="../assets/aip-5/piecewise_sigmoid_eq.png" alt="drawing" width="380"/>
+</p>
 
 *_<sup>\* In the equation above, P denotes normalized price, P = vwap_price/target</sup>_*
 
