@@ -124,7 +124,7 @@ Recall that the basic sigmoid equation accepts a price deviation and returns a s
 
 We expect that the “balanced” sigmoid supply curve will cause the Ampleforth network to  spend a more balanced amount of time between expansion and contraction, and avert prolonged contraction periods. 
 
-<img src="../assets/aip-5/combined_latex_thin.jpg" alt="drawing" width="100%"/>
+<img src="../assets/aip-5/combined_latexchart_withdeviation.png" alt="drawing" width="100%"/>
 
 ### Technical Specification
 <!--The technical specification should outline the public API of the changes proposed. That is, changes to any of the interfaces Ampleforth currently exposes or the creations of new ones.-->
