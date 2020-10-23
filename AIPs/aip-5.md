@@ -157,7 +157,9 @@ B (Growth) = 4
 
 Below we present a chart depicting the balanced_sigmoid_shape alongside the current linear policy with (L=-.11, U=.11, B=4). 
 
-[<img src="../assets/aip-5/ShapeComparison-2.png" alt="drawing" width="100%"/>](#)
+<p align="center">
+<img src="../assets/aip-5/ShapeComparison-2.png" alt="drawing" width="700"/>
+</p>
 
 Here we can see that the:
 
@@ -179,12 +181,15 @@ Based on our analysis above, the set function parameters meet the goal of having
 
 **_Normalized VWAP distribution_**
 
-[<img src="../assets/aip-5/distribution-2.png" alt="drawing" width="100%"/>](#)
+<p align="center">
+<img src="../assets/aip-5/distribution-2.png" alt="drawing" width="700"/>
+</p>
 
 **_Proposed vs Current Rebase Totals_**
 
-[<img src="../assets/aip-5/sideXside-2.png" alt="drawing" width="100%"/>](#)
-
+<p align="center">
+<img src="../assets/aip-5/sideXside-2.png" alt="drawing" width="700"/>
+</p>
 
 ### Test Cases
 <!--Test cases for an implementation are mandatory for AIPs but can be included with the implementation..-->
