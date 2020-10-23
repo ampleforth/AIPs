@@ -67,7 +67,7 @@ Below we'll quickly review the basic sigmoid, and then explain the rationale for
 #### 1. Basic Sigmoid
 The basic sigmoid takes the following shape, note the presence of horizontal asymptotes and maximum slope near the origin:
 
-<img src="../assets/aip-5/basic_sigmoid_latex_thin.jpg" alt="drawing" width="100%"/>
+[<img src="../assets/aip-5/basic_sigmoid_latex_thin.jpg" alt="drawing" width="100%"/>](#)
   
 **1.1. _Basic Sigmoid Equation and Parameters_**
 
@@ -78,7 +78,7 @@ Y = supply change %
 x = normalized price deviation
 ```
 
-<img src="../assets/aip-5/basic_sigmoid_eq_2.png" alt="drawing" width="380"/>
+[<img src="../assets/aip-5/basic_sigmoid_eq_2.png" alt="drawing" width="380"/>](#)
 
 It has shaping parameters that determine: lower asymptote, upper asymptote, and the slope of the curve (ie: growth rate) around its origin.
 
@@ -108,17 +108,17 @@ And let’s also observe that:
 
 We can enforce the constraint of “balanced” supply-change-factors by computing contraction supply-change-factors as the inverse of expansion supply-change-factors. In other words: 
 
-<img src="../assets/aip-5/piecewise_eq.png" alt="drawing" width="380"/>
+[<img src="../assets/aip-5/piecewise_eq.png" alt="drawing" width="380"/>](#)
 
 This way, for every price pair <code>{P, P<sup>-1</sup>}</code> the corresponding supply-change-factor pair <code>{S, S<sup>-1</sup>}</code> upholds the constraint that  <code>S * S<sup>-1</sup> = 1</code>.
 
-<img src="../assets/aip-5/balanced_sigmoid_latex_thin.jpg" alt="drawing" width="100%"/>
+[<img src="../assets/aip-5/balanced_sigmoid_latex_thin.jpg" alt="drawing" width="100%"/>](#)
 
 **2.2. _Balanced Sigmoid Equation and Parameters_**
 
 Recall that the basic sigmoid equation accepts a price deviation and returns a supply change percentage. Combining it with the mirroring equation gives the output<sup>*</sup>: 
 
-<img src="../assets/aip-5/piecewise_sigmoid_eq.png" alt="drawing" width="380"/>
+[<img src="../assets/aip-5/piecewise_sigmoid_eq.png" alt="drawing" width="380"/>](#)
 
 *_<sup>\* In the equation above, P denotes normalized price, P = vwap_price/target</sup>_*
 
@@ -126,7 +126,7 @@ Recall that the basic sigmoid equation accepts a price deviation and returns a s
 
 We expect that the “balanced” sigmoid supply curve will cause the Ampleforth network to react symmetrically to relative demand signals, and eliminate the bias towards prolonged contraction periods. 
 
-<img src="../assets/aip-5/combined_latexchart_withdeviation.png" alt="drawing" width="100%"/>
+[<img src="../assets/aip-5/combined_latexchart_withdeviation.png" alt="drawing" width="100%"/>](#)
 
 ### Technical Specification
 <!--The technical specification should outline the public API of the changes proposed. That is, changes to any of the interfaces Ampleforth currently exposes or the creations of new ones.-->
@@ -151,7 +151,7 @@ B (Growth) = 4
 
 Below we present a chart depicting the balanced_sigmoid_shape alongside the current linear policy with (L=-.11, U=.11, B=4). 
 
-<img src="../assets/aip-5/ShapeComparison-2.png" alt="drawing" width="100%"/>
+[<img src="../assets/aip-5/ShapeComparison-2.png" alt="drawing" width="100%"/>](#)
 
 Here we can see that the:
 
@@ -173,11 +173,11 @@ Based on our analysis above, the set function parameters meet the goal of having
 
 **_Normalized VWAP distribution_**
 
-<img src="../assets/aip-5/distribution-2.png" alt="drawing" width="100%"/>
+[<img src="../assets/aip-5/distribution-2.png" alt="drawing" width="100%"/>](#)
 
 **_Proposed vs Current Rebase Totals_**
 
-<img src="../assets/aip-5/sideXside-2.png" alt="drawing" width="100%"/>
+[<img src="../assets/aip-5/sideXside-2.png" alt="drawing" width="100%"/>](#)
 
 
 ### Test Cases
