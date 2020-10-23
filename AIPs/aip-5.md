@@ -38,7 +38,7 @@ A supply policy is asymmetric if the speed of contraction is not equal to the sp
 
 Imagine Price alternates between $0.5 and $2, every 24hrs, infinitely:
 
-<img src="../assets/aip-5/series.png" alt="drawing" width="320"/>
+[<img src="../assets/aip-5/series.png" alt="drawing" width="320"/>](#)
 
 For fixed-supply assets, the `market_cap` in our example above would simply alternate between two values.  However, for any `rebase_reaction_lag` value other than 1, the current Ampleforth supply policy will drift upwards over time. 
 
