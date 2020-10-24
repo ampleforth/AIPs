@@ -153,9 +153,9 @@ This update creates no changes to external APIs. Clients, including exchanges, w
 
 #### Initial Parameter Values
 
-These parameters were set to achieve the outcomes stated above (see motivation)—while keeping the aggregate expansion rate as similar to the current protocol as possible.
+These parameters were set to achieve the outcomes stated above (see motivation)—while keeping the aggregate expansion rate as equivalent to the current protocol as possible.
 
-Recall that the contraction curve is derived from the expansion curve through the "balancing" solution above. Thus, we need only verify that the shaping parameters selected, produce an expansion curve that generally resembles the current rebasing function. Thereafter, a balanced contraction curve will follow from the balanced_sigmoid equation as defined above. 
+Recall that the contraction curve is derived from the expansion curve through the "balancing" solution above. Thus, we need to only verify that the parameters selected, produce an expansion curve that its expansion rate generally resembles the current rebasing function. based on it a balanced contraction curve will follow from the balanced_sigmoid equation as defined above. 
 
 The proposed values are:
 
