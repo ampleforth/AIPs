@@ -59,7 +59,7 @@ We also propose asymptotic limits on the rates of supply change, in order to red
 
 ### Overview
 <!--This is a high level overview of *how* the AIP will solve the problem. The overview should clearly describe how the new feature will be implemented.-->
-The smart contract upgrade replaces the current linear rebasing function with a "balanced" sigmoid-shaped curve that horizontally asymptotes away from the origin. 
+The smart contract upgrade replaces the current linear rebasing function with a "balanced" sigmoid-shaped curve that horizontally asymptotes away from the price target. 
 
 ### Rationale
 <!--This is where you explain the reasoning behind how you propose to solve the problem. Why did you propose to implement the change in this way, what were the considerations and trade-offs. The rationale fleshes out what motivated the design and why particular design decisions were made. It should describe alternate designs that were considered and related work. The rationale may also provide evidence of consensus within the community, and should discuss important objections or concerns raised during discussion.-->
@@ -86,7 +86,7 @@ x = normalized price deviation
 <img src="../assets/aip-5/basic_sigmoid_eq_2.png" alt="drawing" width="380"/>
 </p>
 
-It has shaping parameters that determine: lower asymptote, upper asymptote, and the steepness of the curve (ie: growth rate) around its origin.
+It has shaping parameters that determine: lower asymptote, upper asymptote, and the steepness of the curve (ie: growth rate).
 
 ```
 L = lower asymptote
@@ -96,12 +96,12 @@ B = growth rate
 
 #### 2. "Balanced" Sigmoid
 
-Although the Sigmoid is a good start, we can improve upon it by scaling supply changes such that they “balance” one another. More specifically:
+Although the Sigmoid is a good start, we can improve upon it by transforming supply changes such that they “balance” one another. More specifically:
 
 * If a demand-change-factor of `A` corresponds with supply-change-factor `B`.
 * We want to enforce that a demand-change-factor of `1/A` corresponds with a supply-change-factor of `1/B`. 
 
-This way, supply reactions to equal and opposite relative changes in demand, always even eachother out. For more context, see the alternating series example in the motivation section above.
+This way, supply reactions to equal and opposite relative changes in demand, always even each other out. For more context, see the alternating series example in the motivation section above.
 
 **2.1. _The "Balancing" Solution_**
 
@@ -151,7 +151,7 @@ This update creates no changes to external APIs. Clients, including exchanges, w
 
 These parameters were set to achieve the outcomes stated above (see motivation)—while keeping the aggregate expansion rate as similar to the current protocol as possible.
 
-Recall that the contraction curve is derived from the expansion curve through the "balancing" solution above. Thus, we need only verify that the shaping parameters selected, produce an expansion curve that generally resembles the current rebasing function. Thereafter, a balanced contraction curve will follow from the balanced_sigmoid equation as defined above. 
+Recall that the contraction curve is derived from the expansion curve through the "balancing" solution above. Thus, we need only verify that the shaping parameters selected, produce an expansion curve that generally resembles the current rebasing function. Based on this, a balanced contraction curve is constructed from the balanced_sigmoid equation as defined above. 
 
 The proposed values are:
 
