@@ -2,7 +2,7 @@
 aip: 5
 title: Sigmoid Rebasing Function
 author: Evan Kuo (@statuskuo), Ahmed Naguib Aly (@naguib)
-discussions-to:
+discussions-to: https://github.com/ampleforth/AIPs/issues/16
 status: WIP
 created: 2020-10-13
 requires (*optional): N/A
