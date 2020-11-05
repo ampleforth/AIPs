@@ -25,10 +25,14 @@ We propose to deploy a new contract that updates the current supply policy's lin
 ## Motivation
 <!--This is the problem statement. This is the *why* of the AIP. It should clearly explain *why* the current state of the protocol is inadequate.  It is critical that you explain *why* the change is needed, if the AIP proposes changing how something is calculated, you must address *why* the current calculation is innaccurate or wrong. This is not the place to describe how the AIP will address the issue!-->
 
+The AMPL is better suited to meet its goal as a unit of account for contract denomination if it responds to positive and negative changes in demand equivalently, because this would allow the asset to spend more time near the price target. An ideal system would not be biased towards spending time in contraction.
+
 At present, the Ampleforth rebasing function takes a `VWAP` as its input and responds to price differences of `X%` with supply changes of `(X%/rebase_reaction_lag)`. Two things to note about this. 
 
-1. Expansion and contraction do not react symmetrically to equal and opposite relative changes in demand. 
+1. Expansion and contraction do not react symmetrically to equal and opposite relative changes in demand. The protocol is more sensitive to price signals that trigger expansion, than it is to price signals that trigger contraction.
 2. The protocol has capped rates of contraction but uncapped rates of expansion.
+
+As a result, expansions reacting to sharp but short-lived increases in price, require long periods of contraction to correct.
 
 ### Motivation for Symmetry
 
@@ -42,11 +46,11 @@ Consider a price series that alternates between $0.5 and $2, every 24hrs, infini
 <img src="../assets/aip-5/series.png" alt="drawing" width="320"/>
 </p>
 
-For fixed-supply assets, the `market_cap` in our example above simply alternates between two values.  However, for any `rebase_reaction_lag` value other than 1, the current Ampleforth supply policy will drift upwards over time. 
+For fixed-supply assets, the `market_cap` in our example above simply alternates between two values.  This makes sense as you would expect a doubling of demand to cancel out a halving of demand. However, for any `rebase_reaction_lag` value other than 1, the current Ampleforth supply policy will drift upwards over time, forcing a correction cycle.
 
 ### Motivation for Capped Expansion Rate
-
-We also propose asymptotic limits on the rates of supply change, in order to reduce the protocol's sensitivity to short-lived, but extreme market conditions.
+ 
+Contraction occurs in the price range of [0,1] whereas expansion occurs in the range of [1,∞]. As a result, expansion can rapidly outpace contraction, requiring prolonged corrective periods. To this end, we also propose asymptotic limits on the rates of supply change, in order to reduce the protocol's sensitivity to short-lived, but extreme market conditions.
 
 ## Specification
 <!--The specification should describe the syntax and semantics of any new feature, there are five sections
