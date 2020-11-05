@@ -25,14 +25,12 @@ We propose to deploy a new contract that updates the current supply policy's lin
 ## Motivation
 <!--This is the problem statement. This is the *why* of the AIP. It should clearly explain *why* the current state of the protocol is inadequate.  It is critical that you explain *why* the change is needed, if the AIP proposes changing how something is calculated, you must address *why* the current calculation is innaccurate or wrong. This is not the place to describe how the AIP will address the issue!-->
 
-The AMPL is better suited to meet its goal as a unit of account for contract denomination if it responds to positive and negative changes in demand equivalently, because this would allow the asset to spend more time near the price target. An ideal system would not be biased towards spending time in contraction.
+At present, the Ampleforth rebasing function takes a `VWAP` as its input and responds to price differences of `X%` with supply changes of `(X%/rebase_reaction_lag)`. There are two things to note about this. 
 
-At present, the Ampleforth rebasing function takes a `VWAP` as its input and responds to price differences of `X%` with supply changes of `(X%/rebase_reaction_lag)`. Two things to note about this. 
-
-1. Expansion and contraction do not react symmetrically to equal and opposite relative changes in demand. The protocol is more sensitive to price signals that trigger expansion, than it is to price signals that trigger contraction.
+1. Expansion and contraction do not react symmetrically to equal and opposite relative changes in demand. 
 2. The protocol has capped rates of contraction but uncapped rates of expansion.
 
-As a result, expansions reacting to sharp but short-lived increases in price, require long periods of contraction to correct.
+The protocol is more sensitive to price signals that trigger expansion, than it is to price signals that trigger contraction. Moreover the rate of expansion can vastly outpace the rate of contraction. As a result, expansions reacting to sharp but short-lived increases in price, can require prolonged periods of contraction to correct.
 
 ### Motivation for Symmetry
 
