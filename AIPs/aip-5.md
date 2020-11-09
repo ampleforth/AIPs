@@ -25,12 +25,15 @@ We propose to deploy a new contract that updates the current supply policy's lin
 ## Motivation
 <!--This is the problem statement. This is the *why* of the AIP. It should clearly explain *why* the current state of the protocol is inadequate.  It is critical that you explain *why* the change is needed, if the AIP proposes changing how something is calculated, you must address *why* the current calculation is innaccurate or wrong. This is not the place to describe how the AIP will address the issue!-->
 
-At present, the Ampleforth rebasing function takes a `VWAP` as its input and responds to price differences of `X%` with supply changes of `(X%/rebase_reaction_lag)`. There are two things to note about this. 
+The original Ampleforth linear rebasing function was intended to make minimal assumptions about how price reacts to expansion and contraction--i.e. expansion would slow price increases by translating them into supply increases and contraction would slow price decreases by translating them into supply decreases. Hence the main purpose of the function is to point supply changes in the right direction without trying to predict the exact magnitude of supply change needed for the fastest reversion to the price target.
 
-1. Expansion and contraction do not react symmetrically to equal and opposite relative changes in demand. 
-2. The protocol has capped rates of contraction but uncapped rates of expansion.
+Now that we have observed a year’s worth of market history and analyzed the data, we can see that extreme market scenarios can have outsized effects on AMPL supply, which then require large and prolonged supply corrections. So, the goal of this change is to:
 
-The protocol is more sensitive to price signals that trigger expansion, than it is to price signals that trigger contraction. Moreover the rate of expansion can vastly outpace the rate of contraction. As a result, expansions reacting to sharp but short-lived increases in price, can require prolonged periods of contraction to correct.
+- Limit protocol sensitivity to short-lived, but extreme market conditions that can wildly expand or contract supply. Currently, the protocol already has a maximum contraction percentage, but a potentially unlimited expansion percentage.
+
+- Create symmetry between price signals to expand supply and signals to contract supply—e.g. a signal to double supply (price of $2), should be perfectly offset by a signal to halve supply (price of $0.5). This is currently not the case, as explained below.
+
+These changes are expected to make AMPL more robust as a base money in decentralized finance applications. AMPL will keep its dynamic properties to change supply to match demand. In addition AMPL will be enhanced by protections against short-lived but extreme market conditions. The protocol is also expected to remain closer to its target, now that larger supply adjustments will happen closer to the target price.
 
 ### Motivation for Symmetry
 
@@ -44,7 +47,7 @@ Consider a price series that alternates between $0.5 and $2, every 24hrs, infini
 <img src="../assets/aip-5/series.png" alt="drawing" width="320"/>
 </p>
 
-For fixed-supply assets, the `market_cap` in our example above simply alternates between two values.  This makes sense as you would expect a doubling of demand to cancel out a halving of demand. However, for any `rebase_reaction_lag` value other than 1, the current Ampleforth supply policy will drift upwards over time, forcing a correction cycle.
+For fixed-supply assets, the `market_cap` in our example above simply alternates between two values.  This makes sense as you would expect a doubling of demand to cancel out a halving of demand. However, for any `rebase_reaction_lag` value other than 1, the current Ampleforth supply policy will drift upwards over time, eventually calling for correction.
 
 ### Motivation for Capped Expansion Rate
  
