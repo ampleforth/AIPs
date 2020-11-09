@@ -25,9 +25,9 @@ We propose to deploy a new contract that updates the current supply policy's lin
 ## Motivation
 <!--This is the problem statement. This is the *why* of the AIP. It should clearly explain *why* the current state of the protocol is inadequate.  It is critical that you explain *why* the change is needed, if the AIP proposes changing how something is calculated, you must address *why* the current calculation is innaccurate or wrong. This is not the place to describe how the AIP will address the issue!-->
 
-The original Ampleforth linear rebasing function was intended to make minimal assumptions about how price reacts to expansion and contraction--i.e. expansion would slow price increases by translating them into supply increases and contraction would slow price decreases by translating them into supply decreases. Hence the main purpose of the function is to point supply changes in the right direction without trying to predict the exact magnitude of supply change needed for the fastest reversion to the price target.
+The original Ampleforth linear rebasing function was intended to make minimal assumptions about how price reacts to expansion and contraction (i.e. expansion would slow price increases by translating them into supply increases and contraction would slow price decreases by translating them into supply decreases). Said differently, the main purpose of the function is to point supply changes in the right direction without trying to predict the exact magnitude of supply change needed for the fastest reversion to the price target.
 
-Now that we have observed a year’s worth of market history and analyzed the data, we can see that extreme market scenarios can have outsized effects on AMPL supply, which then require large and prolonged supply corrections. So, the goal of this change is to:
+Now that we have observed a year’s worth of market history and analyzed the data, we can see that extreme market scenarios can have outsized effects on AMPL supply, which then require large and prolonged supply corrections. The goal of this change is to:
 
 - Limit protocol sensitivity to short-lived, but extreme market conditions that can wildly expand or contract supply. Currently, the protocol already has a maximum contraction percentage, but a potentially unlimited expansion percentage.
 
