@@ -2,7 +2,7 @@
 accp: <to be assigned>
 title: Request for an Ampleforth:Ether:Wrapped-Bitcoin Balancer Liquidity Pool
 author: Shady El Damaty (@seldamat)
-discussions-to: <Link to github issue on https://github.com/ampleforth/AIPs/issues>
+discussions-to: https://github.com/ampleforth/AIPs/issues/19
 status: WIP
 created: 2020-11-10
 requires (*optional): n/a
