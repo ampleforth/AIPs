@@ -3,7 +3,7 @@ accp: 3
 title: "Include support for the kMPL/AMPL Uniswap liquidity pool in the Ampleforth sync() function call fired during rebase"
 author: Davoice321 (@davoiceamplesense)
 discussions-to: https://github.com/ampleforth/AIPs/issues/25
-status: Proposed
+status: Rejected
 created: 2020-11-19
 requires (*optional): N/A
 ---
