@@ -1,7 +1,7 @@
 ---
 aip: 5
 title: Sigmoid Rebase Function
-author: Ahmed Naguib Aly (https://github.com/ahnaguib)
+author: [Ahmed Naguib Aly](https://github.com/ahnaguib)
 discussions-to: https://github.com/ampleforth/AIPs/issues/16
 status: Proposed
 created: 2020-12-1
