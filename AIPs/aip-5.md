@@ -3,7 +3,7 @@ aip: 5
 title: Sigmoid Rebase Function
 author: Ahmed Naguib Aly (https://github.com/ahnaguib)
 discussions-to: https://github.com/ampleforth/AIPs/issues/16
-status: PROPOSED
+status: Proposed
 created: 2020-12-1
 requires (*optional): N/A
 ---
@@ -37,7 +37,7 @@ Additional side benefits from having a cap on daily supply changes:
 
 ## Specification
 
-The smart contract upgrade replaces the current linear rebase function with a sigmoid curve that caps supply expansions at its asymptotes 
+The smart contract upgrade replaces the current linear rebase function with a sigmoid curve that caps supply expansions at its asymptotes
 
 
 <p align="center">
@@ -90,8 +90,8 @@ The proposed values are:
 
 ```
 l (Lower) = -0.11
-u (Upper) = 0.11 
-g (Growth) = 4 
+u (Upper) = 0.11
+g (Growth) = 4
 ```
 
 
@@ -124,7 +124,7 @@ To show that the proposed (sigmoid) expansion output is reasonably similar to th
 <img src="../assets/aip-5/rebase_histogram.png" alt="rebase histogram"/>
 </p>
 
-Based on the analysis above, the function parameters have a ratio of 1.055 between the aggregate rebases. 
+Based on the analysis above, the function parameters have a ratio of 1.055 between the aggregate rebases.
 
 ### Test Cases
 
