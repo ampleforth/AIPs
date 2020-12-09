@@ -5,7 +5,6 @@ author: Ahmed Naguib Aly (ahnaguib)
 discussions-to: https://github.com/ampleforth/AIPs/issues/16
 status: Proposed
 created: 2020-12-1
-requires (*optional): N/A
 ---
 
 ## Summary
