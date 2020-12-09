@@ -1,212 +1,176 @@
 ---
 aip: 5
-title: Sigmoid Rebasing Function
-author: Evan Kuo (@statuskuo), Ahmed Naguib Aly (@naguib)
+title: Sigmoid Rebase Function
+author: Ahmed Naguib Aly (https://github.com/ahnaguib)
 discussions-to: https://github.com/ampleforth/AIPs/issues/16
-status: WIP
-created: 2020-10-13
+status: PROPOSED
+created: 2020-12-1
 requires (*optional): N/A
 ---
 
+## Summary
 
-## Simple Summary
-<!--"If you can't explain it simply, you don't understand it well enough." Simply describe the outcome the proposed changes intends to achieve. This should be non-technical and accessible to a casual community member.-->
-The current Ampleforth rebasing function predisposes the network to short periods of rapid expansion and long periods of gradual contraction. This document proposes an update to the Ampleforth rebasing policy that would:
+This document proposes an update to the Ampleforth rebase policy that would limit the protocol's sensitivity to short-lived demand shocks.
 
-* Limit the protocol's sensitivity to short-lived demand shocks.
-* Create symmetry between supply expansion and contraction.
+This should make the Ampleforth protocol a more robust building block for decentralized finance.
 
-The two above considerations should make the Ampleforth protocol a more balanced and robust building block for decentralized finance.
 
 ## Abstract
-<!--A short (~200 word) description of the proposed change, the abstract should clearly describe the proposed change. This is what *will* be done if the AIP is implemented, not *why* it should be done or *how* it will be done. If the AIP proposes deploying a new contract, write, "we propose to deploy a new contract that will do x".-->
-We propose to deploy a new contract that updates the current supply policy's linear rebasing function with a modified sigmoid-like rebasing function. 
+
+The proposal is to deploy a new contract that updates the current supply policy's linear rebase function with a sigmoid (s-shaped) function.
+
 
 ## Motivation
-<!--This is the problem statement. This is the *why* of the AIP. It should clearly explain *why* the current state of the protocol is inadequate.  It is critical that you explain *why* the change is needed, if the AIP proposes changing how something is calculated, you must address *why* the current calculation is innaccurate or wrong. This is not the place to describe how the AIP will address the issue!-->
 
-The original Ampleforth linear rebasing function was intended to make minimal assumptions about how price reacts to expansion and contraction (i.e. expansion would slow price increases by translating them into supply increases and contraction would slow price decreases by translating them into supply decreases). Said differently, the main purpose of the function is to point supply changes in the right direction without trying to predict the exact magnitude of supply change needed for the fastest reversion to the price target.
+The original Ampleforth linear rebase function was intended to make minimal assumptions about how price reacts to expansion and contraction--i.e. expansion would slow price increases by translating them into supply increases and contraction would slow price decreases by translating them into supply decreases. Hence the main purpose of the function is to point supply change in the right direction without trying to predict the magnitude of supply change needed for the fastest convergence to the price target.
 
-Now that we have observed a year’s worth of market history and analyzed the data, we can see that extreme market scenarios can have outsized effects on AMPL supply, which then require large and prolonged supply corrections. The goal of this change is to:
+Now that we have observed a year’s worth of market history and analyzed the data, we can see that extreme market scenarios can have outsized effects on AMPL supply, which then require prolonged supply corrections. The goal of this change is to:
 
-- Limit protocol sensitivity to short-lived, but extreme market conditions that can wildly expand or contract supply. Currently, the protocol already has a maximum contraction percentage, but a potentially unlimited expansion percentage.
 
-- Create symmetry between price signals to expand supply and signals to contract supply—e.g. a signal to double supply (price of $2), should be perfectly offset by a signal to halve supply (price of $0.5). This is currently not the case, as explained below.
 
-These changes are expected to make AMPL more robust as a base money in decentralized finance applications. AMPL will keep its dynamic properties to change supply to match demand. In addition AMPL will be enhanced by protections against short-lived but extreme market conditions. The protocol is also expected to remain closer to its target, now that larger supply adjustments will happen closer to the target price.
+*   Limit protocol sensitivity to short-lived, but extreme market conditions that can disproportionately change supply.
 
-### Motivation for Symmetry
+Additional side benefits from having a cap on daily supply changes:
 
-A supply policy is asymmetric if the magnitude of contraction is not equal to the magnitude of expansion, given identical but opposite changes in relative demand. In the case of Ampleforth, the protocol currently experiences much slower contraction than expansion. Consider the example of an alternating series below: 
-
-**_Alternating Series Example_**
-
-Consider a price series that alternates between $0.5 and $2, every 24hrs, infinitely:
-
-<p align="center">
-<img src="../assets/aip-5/series.png" alt="drawing" width="320"/>
-</p>
-
-For fixed-supply assets, the `market_cap` in our example above simply alternates between two values.  This makes sense as you would expect a doubling of demand to cancel out a halving of demand. However, for any `rebase_reaction_lag` value other than 1, the current Ampleforth supply policy will drift upwards over time, eventually calling for correction.
-
-### Motivation for Capped Expansion Rate
- 
-Contraction occurs in the price range of [0,1] whereas expansion occurs in the range of [1,∞]. As a result, expansion can rapidly outpace contraction, requiring prolonged corrective periods. To this end, we also propose asymptotic limits on the rates of supply change, in order to reduce the protocol's sensitivity to short-lived, but extreme market conditions.
+*   Having a bound that makes AMPL supply changes relatively more predictable beyond the current day.
+*   Limit the potential effect from a bad oracle price. This makes AMPL more resilient to errors and attacks and also increases the feasibility of further oracle decentralization efforts.
 
 ## Specification
-<!--The specification should describe the syntax and semantics of any new feature, there are five sections
-1. Overview
-2. Rationale
-3. Technical Specification
-4. Test Cases
-5. Configurable Values
--->
 
-### Overview
-<!--This is a high level overview of *how* the AIP will solve the problem. The overview should clearly describe how the new feature will be implemented.-->
-The smart contract upgrade replaces the current linear rebasing function with a "balanced" sigmoid-shaped curve that horizontally asymptotes away from the price target. 
+The smart contract upgrade replaces the current linear rebase function with a sigmoid curve that caps supply expansions at its asymptotes 
 
-### Rationale
-<!--This is where you explain the reasoning behind how you propose to solve the problem. Why did you propose to implement the change in this way, what were the considerations and trade-offs. The rationale fleshes out what motivated the design and why particular design decisions were made. It should describe alternate designs that were considered and related work. The rationale may also provide evidence of consensus within the community, and should discuss important objections or concerns raised during discussion.-->
-
-Below we'll quickly review the basic sigmoid, and then explain the rationale for the "balanced" sigmoid proposed.
-
-#### 1. Sigmoid
-A sigmoid function takes the following shape, notice the horizontal asymptotes and the maximum slope at the target price($1):
 
 <p align="center">
-<img src="../assets/aip-5/basic_sigmoid_latex_thin.jpg" width="700"/>
+<img src="../assets/aip-5/curves.png" alt="curve shapes"/>
 </p>
 
-**1.1. _Sigmoid Function and Parameters_**
-
-This equation takes, `x`, the normalized difference between `VWAP` and the price target. It returns, `Y`, the corresponding supply change percentage.
 
 ```
-Y = supply change %
-x = normalized price deviation
+Rebase factor of 1.0 means no rebase.
+Normalized price = VWAP price / Target price
+
+note: x in the formula above is normalized price deviation and F(x) is the fraction of change
+while the diagram for better visual representation shows the normalized price on the x-axis and the supply multiplier factor on the y-axis
 ```
+
+The proposed curve above is generated by the sigmoid function:
+
 
 <p align="center">
-<img src="../assets/aip-5/basic_sigmoid_eq_2.png" alt="drawing" width="380"/>
+<img src="../assets/aip-5/formula.png" alt="formula" width="380"/>
 </p>
+
+
+```
+F(x) : fraction of supply added or removed (supply change %)
+x : normalized price deviation
+```
+
 
 It has shaping parameters that determine: lower asymptote, upper asymptote, and the steepness of the curve (ie: growth rate).
 
+
 ```
-L = lower asymptote
-U = upper asymptote
-B = growth rate
+l = lower asymptote
+u = upper asymptote
+g = growth rate
 ```
-
-#### 2. "Balanced" Sigmoid
-
-Although the Sigmoid is a good start, we can improve upon it by transforming supply changes such that they “balance” one another. More specifically:
-
-* If a demand-change-factor of `A` corresponds with supply-change-factor `B`.
-* We want to enforce that a demand-change-factor of `1/A` corresponds with a supply-change-factor of `1/B`. 
-
-This way, supply reactions to equal and opposite relative changes in demand, always even each other out. For more context, see the alternating series example in the motivation section above.
-
-**2.1. _The "Balancing" Solution_**
-
-To create multiplicative symmetry let's begin by observing that:
-* <code>For every scaling factor S, there exists an inverse scaling factor S<sup>-1</sup> such that S * S<sup>-1</sup> = 1</code>
-
-And let’s also observe that:
-
-* <code>For every price P there exists an inverse price P<sup>-1</sup> such that P * P<sup>-1</sup> = 1</code>
-
-We can enforce the constraint of “balanced” supply-change-factors by computing contraction supply-change-factors as the inverse of expansion supply-change-factors. In other words: 
-
-<p align="center">
-<img src="../assets/aip-5/piecewise_eq.png" alt="drawing" width="380"/>
-</p>
-
-This way, for every price pair <code>{P, P<sup>-1</sup>}</code> the corresponding supply-change-factor pair <code>{S, S<sup>-1</sup>}</code> upholds the constraint that  <code>S * S<sup>-1</sup> = 1</code>.
-
-<p align="center">
-<img src="../assets/aip-5/balanced_sigmoid_latex_thin.jpg" alt="drawing" width="700"/>
-</p>
-
-**2.2. _Balanced Sigmoid Equation and Parameters_**
-
-Recall that the sigmoid supply change function accepts a price deviation and returns a supply change percentage. Combining it with the inversing function gives the output<sup>*</sup>: 
-
-<p align="center">
-<img src="../assets/aip-5/piecewise_sigmoid_eq.png" alt="drawing" width="380"/>
-</p>
-
-*_<sup>\* In the equation above, P denotes normalized price, P = vwap_price/target</sup>_*
-
-#### 3. "Balanced" Sigmoid vs Linear
-
-We expect that the “balanced” sigmoid supply curve will cause the Ampleforth network to react symmetrically to relative demand signals, and eliminate the bias towards prolonged contraction periods.
-
-<p align="center">
-<img src="../assets/aip-5/combined_latexchart_withdeviation.png" alt="drawing" width="700"/>
-</p>
 
 ### Technical Specification
-<!--The technical specification should outline the public API of the changes proposed. That is, changes to any of the interfaces Ampleforth currently exposes or the creations of new ones.-->
 
 This update creates no changes to external APIs. Clients, including exchanges, who listen to AMPL’s rebase events still receive the absolute supply change integer as before. However, note that any external application that calculates the delta independently will need to update their calculation logic.
 
-#### Initial Parameter Values
+
+#### Parameter Values
 
 These parameters were set to achieve the outcomes stated above (see motivation)—while keeping the aggregate expansion rate as similar to the current protocol as possible.
 
-Recall that the contraction curve is derived from the expansion curve through the "balancing" solution above. Thus, we need only verify that the shaping parameters selected, produce an expansion curve that generally resembles the current rebasing function. Based on this, a balanced contraction curve is constructed from the balanced_sigmoid equation as defined above. 
-
 The proposed values are:
 
+
 ```
-L (Lower) = -0.11
-U (Upper) = 0.11 
-B (Growth) = 4 
+l (Lower) = -0.11
+u (Upper) = 0.11 
+g (Growth) = 4 
 ```
 
-**_Shape Comparison_**
 
-Below we present a chart depicting the balanced_sigmoid_shape alongside the current linear policy with (L=-.11, U=.11, B=4). 
-
-<p align="left">
-<img src="../assets/aip-5/ShapeComparison-2.png" alt="drawing" width="100%"/>
+<p align="center">
+<img src="../assets/aip-5/sigmoid.png" alt="sigmoid"/>
 </p>
 
-Here we can see that the:
 
-* The Upper asymptote approaches a scaling factor of 1.11 at a price of $3.
-* The Lower asymptote approaches a scaling factor of 0.9 at a price of $0.3
- 
-Note that the difference in shape is more pronounced for contraction than for expansion.
+```
+Note that the upper asymptote approaches a scaling factor of 1.11 at a normalized price of $3.
+```
 
+To show that the proposed (sigmoid) expansion output is reasonably similar to the current (linear) output:
 
-**_Verification_**
-
-To verify that the proposed (sigmoid) expansion output is reasonably similar to the current (linear) output: 
-
-1. Proposed and current supply policy functions were applied to historic `VWAP` data. 
+1. Proposed and current supply policy functions were applied to historic VWAP data.
 2. Aggregate positive rebases were computed for proposed and current supply functions.
-3. The ratio between proposed and current aggregate positive rebases is: **1.01**
-
-Based on our analysis above, the set function parameters meet the goal of having similar aggregate effect on expansion rebases. This AIP only includes the verification methodology and not how those parameters were generated. We look forward to releasing a deeper dive on this in a separate blog post.
+3. The ratio between proposed and current aggregate positive rebases is computed
 
 **_Normalized VWAP distribution_**
 
-<p align="left">
-<img src="../assets/aip-5/distribution-2.png" alt="drawing" width="100%"/>
+
+<p align="center">
+<img src="../assets/aip-5/price_distribution.png" alt="normalized price distribution"/>
 </p>
 
 **_Proposed vs Current Rebase Totals_**
 
-<p align="left">
-<img src="../assets/aip-5/sideXside-2.png" alt="drawing" width="100%"/>
+
+<p align="center">
+<img src="../assets/aip-5/rebase_histogram.png" alt="rebase histogram"/>
 </p>
 
-### Test Cases
-<!--Test cases for an implementation are mandatory for AIPs but can be included with the implementation..-->
-Existing unit tests will be updated with the correct calculation results to maintain test coverage
+Based on the analysis above, the function parameters have a ratio of 1.055 between the aggregate rebases. 
 
-## Copyright
-Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
+### Test Cases
+
+Existing unit tests will be updated with the correct calculation results to maintain test coverage.
+
+
+### Conclusions
+
+This change is expected to make the ampleforth protocol more robust as a base money in decentralized finance applications.
+The Ampleforth protocol will maintain the same nature to change supply to match demand.
+In addition, it will be enhanced by protections against short-lived but extreme market conditions.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
