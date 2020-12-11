@@ -23,17 +23,18 @@ The proposal is to deploy a new contract that updates the current supply policy'
 
 ## Motivation
 
-The original Ampleforth linear rebase function was intended to make minimal assumptions about how price reacts to expansion and contraction--i.e. expansion would slow price increases by translating them into supply increases and contraction would slow price decreases by translating them into supply decreases. Hence the main purpose of the function is to point supply change in the right direction without trying to predict the magnitude of supply change needed for the fastest convergence to the price target.
+The original Ampleforth linear rebase function was intended to make minimal assumptions about how price reacts to expansion and contraction—i.e. expansion would slow price increases by translating them into supply increases and contraction would slow price decreases by translating them into supply decreases.
+Hence the main purpose of the function is to point supply changes in the right direction without trying to predict the magnitude of supply change needed for the fastest convergence to the price target.
 
 Now that we have observed a year’s worth of market history and analyzed the data, we can see that extreme market scenarios can have outsized effects on AMPL supply, which then require prolonged supply corrections. The goal of this change is to:
 
 
 *   Limit protocol sensitivity to short-lived, but extreme market conditions that can disproportionately change supply.
 
-Additional side benefits from having a cap on daily supply changes:
+Additional side benefits from having a bound on daily supply changes:
 
-*   Having a bound that makes AMPL supply changes relatively more predictable beyond the current day.
-*   Limit the potential effect from a bad oracle price. This makes AMPL more resilient to errors and attacks and also increases the feasibility of further oracle decentralization efforts.
+*   Ampleforth supply changes become relatively more predictable beyond the current day.
+*   Limit the potential effect from a bad oracle price. This makes Ampleforth more resilient to errors and attacks and also increases the feasibility of further oracle decentralization efforts.
 
 <br/>
 
@@ -85,7 +86,8 @@ g = growth rate
 
 ### Technical Specification
 
-This update creates no changes to external APIs. Clients, including exchanges, who listen to AMPL’s rebase events still receive the absolute supply change integer as before. However, note that any external application that calculates the delta independently will need to update their calculation logic.
+This update creates no changes to external APIs. Clients, including exchanges, that listen to AMPL’s rebase events will still receive the absolute supply change integer as before.
+However, note that any external application that calculates the supply change independently will need to update their calculation logic.
 
 <br/>
 
@@ -144,7 +146,7 @@ Existing unit tests will be updated with the correct calculation results to main
 
 ## Conclusions
 
-This change is expected to make the ampleforth protocol more robust as a base money in decentralized finance applications.
+This change is expected to make the Ampleforth protocol more robust as a base money in decentralized finance applications.
 The Ampleforth protocol will maintain the same nature to change supply to match demand.
 In addition, it will be enhanced by protections against short-lived but extreme market conditions.
 
