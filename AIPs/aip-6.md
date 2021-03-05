@@ -3,7 +3,7 @@ aip: 6
 title: Additional interface methods to the token and policy
 author: Nithin Krishna (@nithinkrishna)
 discussions-to: https://github.com/ampleforth/AIPs/issues/31
-status: Approved
+status: Implemented
 created: 2021-1-26
 ---
 
