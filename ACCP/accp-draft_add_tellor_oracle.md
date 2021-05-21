@@ -26,6 +26,7 @@ As an oracle that specializes in decentralization and censorship-resistance, we 
 
 ## Specification
 The supply change is referred to as supply rebase and is applied daily at 2 AM UTC. The price used to compute the deviation from the market price is the volume weighted average of AMPL trades over the 24 hours of the previous day from midnight to midnight UTC across all markets/exchanges and pairs.  
+
 Tellor becomes the third oracle to power AMPL price feeds, joining Chainlink and Ampleforth itself. The median (or average, if there are only two) will determine the daily rebase to ensure the most accurate outcome each day.
 
 ## Rationale
@@ -47,6 +48,5 @@ The integrator pieces and contracts can be found here:  https://github.com/ample
 ## Test Cases
 In the pull request are various test cases for locally testing the pull request.  To follow best practices, the Tellor team will assist in testing on an Ethereum testnet before launch to mainnet.  Things that can be examined and solidified are the automation of the updates on Tellor and the analysis of the security and liveness of the system.
 
--
 ## Copyright
 Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
