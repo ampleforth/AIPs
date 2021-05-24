@@ -2,7 +2,7 @@
 accp: 4
 title: "Add Tellor oracle to provide AMPL/USD and US Personal Consumption Expenditures values"
 author: Tellor Team (@tellor-io)
-discussions-to:
+discussions-to: https://forum.ampleforth.org/t/proposal-to-add-tellor-as-additional-oracle/56
 status: Proposed
 created: 2021-05-21
 requires (*optional): N/A
