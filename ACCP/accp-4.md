@@ -1,7 +1,7 @@
 ---
-accp:
+accp: 4
 title: "Add Tellor oracle to provide AMPL/USD and US Personal Consumption Expenditures values"
-author: Tellor Team (info@tellor.io)
+author: Tellor Team (@tellor-io)
 discussions-to:
 status: Proposed
 created: 2021-05-21
@@ -25,7 +25,7 @@ In order for AMPL to do its daily “rebase,” it requires a price of AMPL/USD 
 As an oracle that specializes in decentralization and censorship-resistance, we believe adding Tellor into the system greatly helps Ampleforth’s own efforts of decentralization and adds further security and  robustness to the price feed.
 
 ## Specification
-The supply change is referred to as supply rebase and is applied daily at 2 AM UTC. The price used to compute the deviation from the market price is the volume weighted average of AMPL trades over the 24 hours of the previous day from midnight to midnight UTC across all markets/exchanges and pairs.  
+The supply change is referred to as supply rebase and is applied daily at 2 AM UTC. The price used to compute the deviation from the market price is the volume weighted average of AMPL trades over the 24 hours of the previous day from midnight to midnight UTC across all markets/exchanges and pairs.
 
 Tellor becomes the third oracle to power AMPL price feeds, joining Chainlink and Ampleforth itself. The median (or average, if there are only two) will determine the daily rebase to ensure the most accurate outcome each day.
 
@@ -36,12 +36,11 @@ Tellor’s system is a completely on-chain data feed that can be accessed by Amp
 
 Tellor added the AMPL/USD price calculation in mid 2020 and has been updating it since and they have also created scripts for automating the price updates before they are needed by the AMPL system.
 
-Tellor mining software (data providers) - https://github.com/tellor-io/telliot
-
-Tellor tipping scripts - https://github.com/tellor-io/tipperTemplate
+* [Tellor mining software (data providers)](https://github.com/tellor-io/telliot)
+* [Tellor tipping scripts](https://github.com/tellor-io/tipperTemplate)
 
 ## Technical Specification
-Tellor is a fully on-chain oracle, so all data is publicly accessible.  By creating a small interface for interacting with the Tellor contracts, values from the Tellor oracle can be utilized by the Ampleforth market-oracle.  The AMPL system will simply need to add Tellor to its list of oracles and medianize/average the prices accordingly.  
+Tellor is a fully on-chain oracle, so all data is publicly accessible.  By creating a small interface for interacting with the Tellor contracts, values from the Tellor oracle can be utilized by the Ampleforth market-oracle.  The AMPL system will simply need to add Tellor to its list of oracles and medianize/average the prices accordingly.
 
 The integrator pieces and contracts can be found here:  https://github.com/ampleforth/Tellor/pull/1 (AMPL can make this public when they see fit, or we can make it into a PR on the market oracle, up to them)
 
