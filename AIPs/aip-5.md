@@ -3,7 +3,7 @@ aip: 5
 title: Sigmoid Rebase Function
 author: Ahmed Naguib Aly (@ahnaguib)
 discussions-to: https://forum.ampleforth.org/t/rebase-curve-upgrade-proposal/327
-status: Proposed
+status: Implemented
 created: 2020-12-1
 ---
 ## Summary
