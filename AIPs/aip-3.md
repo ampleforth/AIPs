@@ -1,7 +1,7 @@
 ---
 aip: 3
 title: Disallow Contracts from calling Rebase
-author: Brandon Iles <brandon@ampleforth.org>, Nithin Ottilingam <nithin@ampleforth.org>, Ahmed Naguib Aly <naguib@ampleforth.org>
+author: Brandon Iles <brandon@ampleforth.org>, Nithin Krishna <nithin@ampleforth.org>, Ahmed Naguib Aly <naguib@ampleforth.org>
 discussions-to: https://discord.gg/6Amxhs4
 status: Implemented
 created: 2020-03-26
